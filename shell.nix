@@ -7,7 +7,6 @@
       ls = "lsd";
       cd = "z";
       cat = "bat";
-      icat = "kitty +kitten icat";
     };
     oh-my-zsh = {
       enable = true;
