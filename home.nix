@@ -19,6 +19,7 @@
     stateVersion = "24.05";
     packages = [
       pkgs.lsd
+      pkgs.neovim
       pkgs.python3
       pkgs.btop
       pkgs.silver-searcher
