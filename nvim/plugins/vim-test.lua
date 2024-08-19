@@ -1,4 +1,4 @@
-vim.g['test#strategy'] = 'kitty'
+vim.g['test#strategy'] = 'vimux'
 vim.keymap.set('n', '<leader>t', ':TestFile<CR>', {})
 vim.keymap.set('n', '<leader>s', ':TestNearest<CR>', {})
 vim.keymap.set('n', '<leader>l', ':TestLast<CR>', {})

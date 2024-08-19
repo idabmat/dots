@@ -115,6 +115,7 @@
         type = "lua";
         config = (builtins.readFile ./plugins/vimwiki.lua);
       }
+      pkgs.vimPlugins.vimux
       {
         plugin = pkgs.vimPlugins.vim-test;
         type = "lua";

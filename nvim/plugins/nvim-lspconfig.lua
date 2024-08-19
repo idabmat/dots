@@ -1,7 +1,7 @@
 local lspconfig = require('lspconfig')
 local coq = require('coq')
 lspconfig.bashls.setup(coq.lsp_ensure_capabilities({}))
-lspconfig.elixirls.setup(coq.lsp_ensure_capabilities({ cmd = { "language_server.sh" } }))
+lspconfig.elixirls.setup(coq.lsp_ensure_capabilities({ cmd = { "elixir-ls" } }))
 lspconfig.erlangls.setup(coq.lsp_ensure_capabilities({}))
 lspconfig.html.setup(coq.lsp_ensure_capabilities({ filetypes = { "html", "heex" } }))
 lspconfig.jsonls.setup(coq.lsp_ensure_capabilities({}))
