@@ -25,7 +25,6 @@
       pkgs.ripgrep
       # pkgs.xdg-utils
       # pkgs.libnotify
-      # pkgs.inotify-tools
       pkgs.lua-language-server
       pkgs.nixpkgs-fmt
       pkgs.nixd
@@ -34,9 +33,7 @@
       pkgs.tailwindcss-language-server
       pkgs.yaml-language-server
       pkgs.terraform-ls
-      # pkgs.vscode-langservers-extracted
-      # pkgs.chromium
-      # pkgs.chromedriver
+      pkgs.vscode-langservers-extracted
     ];
   };
 

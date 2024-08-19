@@ -46,4 +46,11 @@
     enable = true;
     enableZshIntegration = true;
   };
+  programs.tmux = {
+    enable = true;
+    shell = "${pkgs.zsh}/bin/zsh";
+    prefix = "C-a";
+    shortcut = "a";
+    terminal = "screen-256color";
+  };
 }
