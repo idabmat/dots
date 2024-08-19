@@ -21,7 +21,7 @@
         type = "lua";
         config = (builtins.readFile ./plugins/nvim-lspconfig.lua);
       }
-      pkgs.vimPlugins.vim-kitty-navigator
+      pkgs.vimPlugins.vim-tmux-navigator
       pkgs.vimPlugins.vim-gitgutter
       pkgs.vimPlugins.mkdir-nvim
       pkgs.vimPlugins.vim-fugitive

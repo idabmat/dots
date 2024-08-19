@@ -21,6 +21,7 @@
       pkgs.lsd
       pkgs.python3
       pkgs.btop
+      pkgs.ps
       pkgs.silver-searcher
       pkgs.ripgrep
       # pkgs.xdg-utils

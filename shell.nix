@@ -52,5 +52,8 @@
     prefix = "C-a";
     shortcut = "a";
     terminal = "screen-256color";
+    plugins = [
+      pkgs.tmuxPlugins.vim-tmux-navigator
+    ];
   };
 }
