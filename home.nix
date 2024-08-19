@@ -7,10 +7,10 @@
     ./nvim/config.nix
   ];
 
-  # nixpkgs.config.allowUnfreePredicate = pkg:
-  #   builtins.elem (lib.getName pkg) [
-  #     "graphite-cli"
-  #   ];
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "graphite-cli"
+    ];
   # nixpkgs.config.joypixels.acceptLicense = true;
 
   home = {
@@ -29,7 +29,7 @@
       pkgs.lua-language-server
       pkgs.nixpkgs-fmt
       pkgs.nixd
-      # pkgs.graphite-cli
+      pkgs.graphite-cli
       pkgs.nodePackages_latest.typescript-language-server
       pkgs.tailwindcss-language-server
       pkgs.yaml-language-server
