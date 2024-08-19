@@ -50,10 +50,21 @@
     enable = true;
     shell = "${pkgs.zsh}/bin/zsh";
     prefix = "C-a";
+    baseIndex = 1;
+    clock24 = true;
+    keyMode = "vi";
     shortcut = "a";
     terminal = "screen-256color";
+    escapeTime = 0;
     plugins = [
       pkgs.tmuxPlugins.vim-tmux-navigator
     ];
+    extraConfig = ''
+      bind C-a last-window
+      bind -r H resize-pane -L 5
+      bind -r J resize-pane -D 5
+      bind -r K resize-pane -U 5
+      bind -r L resize-pane -R 5
+    '';
   };
 }
