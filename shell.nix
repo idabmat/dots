@@ -24,6 +24,9 @@
       }
     ];
     initExtra = ''
+    if [[ -f "$HOME"/.nix-profile/etc/profile.d/nix.sh ]]; then
+      source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+    fi
     if [[ -f "$HOME"/.p10k.zsh ]]; then
       source "$HOME/.p10k.zsh"
     fi
