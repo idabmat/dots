@@ -36,6 +36,11 @@
       pkgs.terraform-ls
       # pkgs.vscode-langservers-extracted
     ];
+    file = {
+      ".p10k.zsh" = {
+        source = ./p10k.zsh;
+      };
+    };
   };
 
   programs = {
