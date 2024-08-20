@@ -34,7 +34,7 @@
       pkgs.tailwindcss-language-server
       pkgs.yaml-language-server
       pkgs.terraform-ls
-      pkgs.vscode-langservers-extracted
+      # pkgs.vscode-langservers-extracted
     ];
   };
 
