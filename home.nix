@@ -13,7 +13,6 @@
       "graphite-cli"
       "terraform"
     ];
-  # nixpkgs.config.joypixels.acceptLicense = true;
 
   home = {
     username = "me";
@@ -21,21 +20,12 @@
     stateVersion = "24.05";
     packages = [
       pkgs.lsd
+      pkgs.graphite-cli
       pkgs.python3
       pkgs.btop
       pkgs.ps
       pkgs.silver-searcher
       pkgs.ripgrep
-      # pkgs.xdg-utils
-      # pkgs.libnotify
-      pkgs.lua-language-server
-      pkgs.nil
-      pkgs.graphite-cli
-      pkgs.nodePackages_latest.typescript-language-server
-      pkgs.tailwindcss-language-server
-      pkgs.yaml-language-server
-      pkgs.bash-language-server
-      # pkgs.vscode-langservers-extracted
     ];
     file = {
       ".p10k.zsh" = {
