@@ -42,6 +42,12 @@
           }
         ];
       };
+      settings = {
+        theme = "gruvbox_dark_hard";
+        editor = {
+          true-color = true;
+        };
+      };
     };
   };
 }
