@@ -4,12 +4,14 @@
   imports = [
     ./git.nix
     ./shell.nix
+    ./helix.nix
     ./nvim/config.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "graphite-cli"
+      "terraform"
     ];
   # nixpkgs.config.joypixels.acceptLicense = true;
 
@@ -27,13 +29,12 @@
       # pkgs.xdg-utils
       # pkgs.libnotify
       pkgs.lua-language-server
-      pkgs.nixpkgs-fmt
-      pkgs.nixd
+      pkgs.nil
       pkgs.graphite-cli
       pkgs.nodePackages_latest.typescript-language-server
       pkgs.tailwindcss-language-server
       pkgs.yaml-language-server
-      pkgs.terraform-ls
+      pkgs.bash-language-server
       # pkgs.vscode-langservers-extracted
     ];
     file = {
