@@ -29,12 +29,15 @@
             name = "hcl";
             formatter = {
               command = "${pkgs.terraform}/bin/terraform";
-              args = [ "fmt" ];
+              args = [ "fmt" "-" ];
             };
           }
           {
             name = "elixir";
-            formatter = { command = "mix format"; };
+            formatter = {
+              command = "mix";
+              args = [ "format" "-" ];
+            };
           }
           {
             name = "nix";
@@ -44,7 +47,7 @@
             name = "tfvars";
             formatter = {
               command = "${pkgs.terraform}/bin/terraform";
-              args = [ "fmt" ];
+              args = [ "fmt" "-" ];
             };
           }
         ];
