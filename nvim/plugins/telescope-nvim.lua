@@ -1,8 +1,0 @@
-vim.keymap.set('n', '<c-p>', ':Telescope find_files<CR>', {})
-vim.keymap.set('n', '<c-f>', ':Telescope live_grep<CR>', {})
-vim.keymap.set('n', '<c-b>', ':Telescope buffers<CR>', {})
-vim.keymap.set('n', '<leader>r', ':Telescope lsp_references<CR>', {})
-vim.keymap.set('n', '<leader>i', ':Telescope lsp_implementations<CR>', {})
-vim.keymap.set('n', '<leader>d', ':Telescope lsp_definitions<CR>', {})
-vim.keymap.set('n', '<leader>lt', ':Telescope lsp_type_definitions<CR>', {})
-vim.keymap.set('n', '<leader>dd', ':Telescope diagnostics<CR>', {})

@@ -5,7 +5,6 @@
     ./git.nix
     ./shell.nix
     ./helix.nix
-    ./nvim/config.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
