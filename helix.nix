@@ -5,72 +5,25 @@
     helix = {
       enable = true;
       defaultEditor = true;
+      extraPackages = [
+        pkgs.bash-language-server
+        pkgs.dockerfile-language-server-nodejs
+        pkgs.elixir-ls
+        pkgs.gopls
+        # pkgs.vscode-langservers-extracted
+        pkgs.lua-language-server
+        pkgs.marksman
+        pkgs.nil
+        pkgs.rust-analyzer
+        pkgs.slint-lsp
+        pkgs.rubyPackages.solargraph
+        pkgs.tailwindcss-language-server
+        pkgs.taplo
+        pkgs.terraform-ls
+        pkgs.typescript-language-server
+        pkgs.yaml-language-server
+      ];
       languages = {
-        language-server = {
-          bash-language-server = {
-            command = "${pkgs.bash-language-server}/bin/bash-language-server";
-          };
-          # css = {
-          #   command = "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server";
-          # };
-          docker-langserver = {
-            command = "${pkgs.dockerfile-language-server-nodejs}";
-          };
-          elixir-ls = {
-            command = "${pkgs.elixir-ls}/bin/elixir-ls";
-            config = {
-              elixirLS.dialyzerEnabled = true;
-            };
-          };
-          gopls = {
-            command = "${pkgs.gopls}/bin/gopls";
-          };
-          # html = {
-          #   command = "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server";
-          # };
-          # json = {
-          #   command = "${pkgs.vscode-langservers-extracted}/bin/vscode-json-language-server";
-          # };
-          # jsonc = {
-          #   command = "${pkgs.vscode-langservers-extracted}/bin/vscode-json-language-server";
-          # };
-          lua-language-server = {
-            command = "${pkgs.lua-language-server}/bin/lua-language-server";
-          };
-          marksman = {
-            command = "${pkgs.marksman}/bin/marksman";
-          };
-          nil = {
-            command = "${pkgs.nil}/bin/nil";
-          };
-          rust-analyzer = {
-            command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-          };
-          # scss = {
-          #   command = "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server";
-          # };
-          slint-lsp = {
-            command = "${pkgs.slint-lsp}/bin/slint-lsp";
-          };
-          solargraph = {
-            command = "${pkgs.rubyPackages.solargraph}/bin/solargraph";
-          };
-          tailwindcss-ls = {
-            command = "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server";
-          };
-          taplo = {
-            command = "${pkgs.taplo}/bin/taplo";
-          };
-          terraform-ls = {
-            command = "${pkgs.terraform-ls}/bin/terraform-ls";
-          };
-          typescript-language-server = {
-            command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
-          };
-          yaml-language-server = {
-            command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
-          };
-        };
         language = [
           {
             name = "hcl";
