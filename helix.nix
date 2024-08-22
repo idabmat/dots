@@ -10,7 +10,7 @@
         pkgs.dockerfile-language-server-nodejs
         pkgs.elixir-ls
         pkgs.gopls
-        # pkgs.vscode-langservers-extracted
+        pkgs.vscode-langservers-extracted
         pkgs.lua-language-server
         pkgs.marksman
         pkgs.nil
