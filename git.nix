@@ -6,7 +6,7 @@
     userName = "Igor de Alcântara Barroso";
     userEmail = "igor@talimhq.com";
     delta = {
-      enable = false;
+      enable = true;
       options = {
         side-by-side = true;
         syntax-theme = "gruvbox-dark";
