@@ -56,6 +56,9 @@
         theme = "gruvbox_dark_hard";
         editor = {
           true-color = true;
+          soft-wrap = {
+            enable = true;
+          };
         };
       };
     };
