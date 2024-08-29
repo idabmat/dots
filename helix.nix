@@ -60,6 +60,13 @@
             enable = true;
           };
         };
+        keys = {
+          normal = {
+            space = {
+              B = ":pipe-to tmux split-window -v helix-git-blame";
+            };
+          };
+        };
       };
     };
   };
