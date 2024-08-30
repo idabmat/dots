@@ -24,12 +24,12 @@
       }
     ];
     initExtra = ''
-    if [[ -f "$HOME"/.nix-profile/etc/profile.d/nix.sh ]]; then
-      source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-    fi
-    if [[ -f "$HOME"/.p10k.zsh ]]; then
-      source "$HOME/.p10k.zsh"
-    fi
+      if [[ -f "$HOME"/.nix-profile/etc/profile.d/nix.sh ]]; then
+        source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+      fi
+      if [[ -f "$HOME"/.p10k.zsh ]]; then
+        source "$HOME/.p10k.zsh"
+      fi
     '';
   };
   programs.zoxide = {
@@ -67,5 +67,25 @@
       bind -T copy-mode-vi C-v send-keys -X begin-selection
       bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
     '';
+  };
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    colors = {
+      fg = "#908caa";
+      bg = "#232136";
+      hl = "#ea9a97";
+      "fg+" = "#e0def4";
+      "bg+" = "#393552";
+      "hl+" = "#ea9a97";
+      border = "#44415a";
+      header = "#3e8fb0";
+      gutter = "#232136";
+      spinner = "#f6c177";
+      info = "#9ccfd8";
+      pointer = "#c4a7e7";
+      marker = "#eb6f92";
+      prompt = "#908caa";
+    };
   };
 }

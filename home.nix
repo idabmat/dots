@@ -25,7 +25,6 @@
       pkgs.ps
       pkgs.silver-searcher
       pkgs.ripgrep
-      pkgs.fzf
       (pkgs.writeShellScriptBin "helix-git-blame" ''
         ORIGINAL_PANE=$(tmux select-pane -U)
         PANE_OUTPUT=$(tmux capture-pane -p -t "$ORIGINAL_PANE")
