@@ -51,10 +51,16 @@
     clock24 = true;
     keyMode = "vi";
     shortcut = "a";
+    mouse = true;
     terminal = "xterm-256color";
     escapeTime = 0;
+    newSession = true;
     plugins = [
       pkgs.tmuxPlugins.vim-tmux-navigator
+      {
+        plugin = pkgs.tmuxPlugins.rose-pine;
+        extraConfig = "set -g @rose_pine_variant 'moon'";
+      }
     ];
     extraConfig = ''
       set -ag terminal-overrides ",*:RGB"
