@@ -51,7 +51,7 @@
     clock24 = true;
     keyMode = "vi";
     shortcut = "a";
-    terminal = "screen-256color";
+    terminal = "xterm-256color";
     escapeTime = 0;
     plugins = [
       pkgs.tmuxPlugins.vim-tmux-navigator
