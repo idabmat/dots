@@ -9,7 +9,6 @@
       enable = true;
       options = {
         side-by-side = true;
-        syntax-theme = "gruvbox-dark";
       };
     };
     extraConfig = {

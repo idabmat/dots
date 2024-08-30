@@ -53,7 +53,7 @@
         ];
       };
       settings = {
-        theme = "gruvbox_dark_hard";
+        theme = "rose_pine_moon";
         editor = {
           true-color = true;
           soft-wrap = {
