@@ -54,12 +54,13 @@
     clock24 = true;
     keyMode = "vi";
     shortcut = "a";
-    terminal = "xterm-256color";
+    terminal = "screen-256color";
     escapeTime = 0;
     plugins = [
       pkgs.tmuxPlugins.vim-tmux-navigator
     ];
     extraConfig = ''
+      set -ag terminal-overrides ",*:RGB"
       bind C-a last-window
       bind -r H resize-pane -L 5
       bind -r J resize-pane -D 5
