@@ -63,6 +63,10 @@
         theme = "rose_pine_moon";
         editor = {
           true-color = true;
+          line-number = "relative";
+          cursorline = true;
+          cursorcolumn = true;
+          color-modes = true;
           soft-wrap = {
             enable = true;
           };
