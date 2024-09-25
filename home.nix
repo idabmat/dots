@@ -50,6 +50,9 @@
       ".p10k.zsh" = {
         source = ./p10k.zsh;
       };
+      ".cache/oh-my-zsh/completions/_devbox" = {
+        source = ./_devbox;
+      };
     };
   };
 
