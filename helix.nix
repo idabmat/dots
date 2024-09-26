@@ -22,6 +22,7 @@
         pkgs.terraform-ls
         pkgs.typescript-language-server
         pkgs.yaml-language-server
+        pkgs.zls
       ];
       languages = {
         language = [
