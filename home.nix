@@ -53,6 +53,9 @@
       ".cache/oh-my-zsh/completions/_devbox" = {
         source = ./_devbox;
       };
+      ".cache/oh-my-zsh/completions/_gt" = {
+        source = ./_gt;
+      };
     };
   };
 
