@@ -3,8 +3,12 @@
 {
   programs.git = {
     enable = true;
-    userName = "Igor de Alcântara Barroso";
+    userName = "Igor de Alcantara Barroso";
     userEmail = "igor@talimhq.com";
+    signing = {
+      key = "794A41BA3DBE9931";
+      signByDefault = true;
+    };
     delta = {
       enable = true;
       options = {
@@ -33,13 +37,13 @@
     };
   };
 
-  # programs.gpg = {
-  #   enable = true;
-  # };
-  #
-  # services.gpg-agent = {
-  #   enable = true;
-  #   enableSshSupport = true;
-  #   pinentryPackage = pkgs.pinentry-tty;
-  # };
+  programs.gpg = {
+     enable = true;
+   };
+  
+   services.gpg-agent = {
+     enable = true;
+     enableSshSupport = true;
+     pinentryPackage = pkgs.pinentry-tty;
+   };
 }

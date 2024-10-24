@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.zsh = {
@@ -31,6 +31,40 @@
         source "$HOME/.p10k.zsh"
       fi
     '';
+  };
+  programs.kitty = {
+    enable = true;
+    font = {
+      package = (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; });
+      name = "CaskaydiaCove Nerd Font Mono";
+      size = 14;
+    };
+    settings = {
+      disable_ligatures = "cursor";
+      background_opacity = 0.5;
+    };
+    shellIntegration = {
+      enableZshIntegration = true;
+    };
+    themeFile = "rose-pine-moon";
+  };
+  programs.firefox = {
+    enable = true;
+  };
+  programs.beets = {
+    enable = true;
+    settings = {
+      directory = "${config.home.homeDirectory}/music";
+      import = {
+        move = "yes";
+      };
+      plugins = [
+        "fetchart"
+        "chroma"
+        "embedart"
+        "lastgenre"
+      ];
+    };
   };
   programs.zoxide = {
     enable = true;
