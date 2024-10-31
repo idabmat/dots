@@ -38,6 +38,7 @@
       pkgs.openrgb
       pkgs.flyctl
       pkgs.rhythmbox
+      pkgs.pavucontrol
       (pkgs.writeShellScriptBin "helix-git-blame" ''
         ORIGINAL_PANE=$(tmux select-pane -U)
         PANE_OUTPUT=$(tmux capture-pane -p -t "$ORIGINAL_PANE")

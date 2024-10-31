@@ -55,14 +55,7 @@
     enable = true;
     settings = {
       directory = "${config.home.homeDirectory}/music";
-      import = {
-        move = "yes";
-      };
       plugins = [
-        "fetchart"
-        "chroma"
-        "embedart"
-        "lastgenre"
       ];
     };
   };
