@@ -39,6 +39,7 @@
       pkgs.flyctl
       pkgs.rhythmbox
       pkgs.pavucontrol
+      pkgs.playerctl
       (pkgs.writeShellScriptBin "helix-git-blame" ''
         ORIGINAL_PANE=$(tmux select-pane -U)
         PANE_OUTPUT=$(tmux capture-pane -p -t "$ORIGINAL_PANE")
@@ -144,6 +145,13 @@
             "SUPER,v,exec,walker -m clipboard"
             "SUPER,x,fullscreen,"
             "SUPER,return,exec,kitty"
+            ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+            ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+            ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ",XF86AudioPlay,exec,playerctl play-pause"
+            ",XF86AudioPrev,exec,playerctl previous"
+            ",XF86AudioNext,exec,playerctl next"
+            ",XF86AudioStop,exec,playerctl stop"
           ];
           bindm = [
             "CTRL,mouse:272,movewindow"
