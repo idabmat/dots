@@ -13,7 +13,12 @@
       "terraform"
       "slack"
       "discord"
+      "cuda_cudart"
+      "libcublas"
+      "cuda_cccl"
+      "cuda_nvcc"
     ];
+  nixpkgs.config.cudaSupport = true;
 
   home = {
     username = "me";
@@ -42,6 +47,8 @@
       pkgs.playerctl
       pkgs.rose-pine-cursor
       pkgs.rose-pine-gtk-theme
+      (pkgs.ollama.overrideAttrs { acceleration = "cuda"; })
+      pkgs.aichat
       (pkgs.writeShellScriptBin "helix-git-blame" ''
         ORIGINAL_PANE=$(tmux select-pane -U)
         PANE_OUTPUT=$(tmux capture-pane -p -t "$ORIGINAL_PANE")
