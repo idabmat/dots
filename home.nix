@@ -1,24 +1,41 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [
-    ./git.nix
-    ./shell.nix
-    ./helix.nix
-  ];
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "graphite-cli"
-      "terraform"
-      "slack"
-      "discord"
-      "cuda_cudart"
-      "libcublas"
-      "cuda_cccl"
-      "cuda_nvcc"
-    ];
-  nixpkgs.config.cudaSupport = true;
+  nixpkgs = {
+    config = {
+      cudaSupport = true;
+      allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkg) [
+          "graphite-cli"
+          "terraform"
+          "slack"
+          "discord"
+          "cuda_cudart"
+          "libcublas"
+          "cuda_cccl"
+          "cuda_nvcc"
+          "cuda_cupti"
+          "cuda_nvml_dev"
+          "cuda_nvrtc"
+          "cuda_nvtx"
+          "libcufft"
+          "libcurand"
+          "libcusolver"
+          "libnvjitlink"
+          "libcusparse"
+          "cudnn"
+          "cuda_profiler_api"
+          "cuda_cuobjdump"
+          "cuda_nvdisasm"
+          "cuda-merged"
+          "cuda_gdb"
+          "cuda_nvprune"
+          "cuda_cuxxfilt"
+          "cuda_sanitizer_api"
+          "libnpp"
+        ];
+    };
+  };
 
   home = {
     username = "me";
@@ -88,6 +105,280 @@
   programs = {
     home-manager = {
       enable = true;
+    };
+
+    git = {
+      enable = true;
+      userName = "Igor de Alcantara Barroso";
+      userEmail = "igor@talimhq.com";
+      signing = {
+        key = "794A41BA3DBE9931";
+        signByDefault = true;
+      };
+      delta = {
+        enable = true;
+        options = {
+          side-by-side = true;
+        };
+      };
+      extraConfig = {
+        github = {
+          user = "idabmat";
+        };
+        pull = {
+          rebase = false;
+        };
+        merge = {
+          confictstyle = "diff3";
+        };
+        init = {
+          defaultBranch = "main";
+        };
+        pager = {
+          diff = "delta";
+          log = "delta";
+          reflog = "delta";
+          show = "delta";
+        };
+      };
+    };
+
+    gpg = {
+      enable = true;
+    };
+
+    zsh = {
+      enable = true;
+      shellAliases = {
+        ls = "lsd";
+        cd = "z";
+        cat = "bat";
+      };
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "git"
+          "terraform"
+          "aws"
+        ];
+      };
+      plugins = [
+        {
+          name = "powerlevel10k";
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+          src = pkgs.zsh-powerlevel10k;
+        }
+      ];
+      initExtra = ''
+        if [[ -f "$HOME"/.nix-profile/etc/profile.d/nix.sh ]]; then
+          source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+        fi
+        if [[ -f "$HOME"/.p10k.zsh ]]; then
+          source "$HOME/.p10k.zsh"
+        fi
+      '';
+    };
+
+    kitty = {
+      enable = true;
+      font = {
+        package = (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; });
+        name = "CaskaydiaCove Nerd Font Mono";
+        size = 14;
+      };
+      settings = {
+        disable_ligatures = "cursor";
+        background_opacity = 0.5;
+      };
+      shellIntegration = {
+        enableZshIntegration = true;
+      };
+      themeFile = "rose-pine-moon";
+    };
+
+    firefox = {
+      enable = true;
+    };
+
+    beets = {
+      enable = true;
+      settings = {
+        directory = "${config.home.homeDirectory}/music";
+        plugins = [
+        ];
+      };
+    };
+
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    bat = {
+      enable = true;
+      config = {
+        theme = "rose-pine-moon";
+      };
+      themes = {
+        rose-pine-moon = {
+          src = pkgs.fetchFromGitHub {
+            owner = "rose-pine";
+            repo = "tm-theme";
+            rev = "c4235f9a65fd180ac0f5e4396e3a86e21a0884ec";
+            hash = "sha256-jji8WOKDkzAq8K+uSZAziMULI8Kh7e96cBRimGvIYKY=";
+          };
+          file = "dist/themes/rose-pine-moon.tmTheme";
+        };
+      };
+    };
+
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    tmux = {
+      enable = true;
+      shell = "${pkgs.zsh}/bin/zsh";
+      prefix = "C-a";
+      baseIndex = 1;
+      clock24 = true;
+      keyMode = "vi";
+      shortcut = "a";
+      mouse = true;
+      terminal = "xterm-256color";
+      escapeTime = 0;
+      newSession = true;
+      plugins = [
+        pkgs.tmuxPlugins.vim-tmux-navigator
+        {
+          plugin = pkgs.tmuxPlugins.rose-pine;
+          extraConfig = "set -g @rose_pine_variant 'moon'";
+        }
+      ];
+      extraConfig = ''
+        set -ag terminal-overrides ",*:RGB"
+        bind C-a last-window
+        bind -r H resize-pane -L 5
+        bind -r J resize-pane -D 5
+        bind -r K resize-pane -U 5
+        bind -r L resize-pane -R 5
+        bind C-u copy-mode
+        bind -T copy-mode-vi C-v send-keys -X begin-selection
+        bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
+      '';
+    };
+
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+      colors = {
+        fg = "#908caa";
+        bg = "#232136";
+        hl = "#ea9a97";
+        "fg+" = "#e0def4";
+        "bg+" = "#393552";
+        "hl+" = "#ea9a97";
+        border = "#44415a";
+        header = "#3e8fb0";
+        gutter = "#232136";
+        spinner = "#f6c177";
+        info = "#9ccfd8";
+        pointer = "#c4a7e7";
+        marker = "#eb6f92";
+        prompt = "#908caa";
+      };
+    };
+
+    helix = {
+      enable = true;
+      defaultEditor = true;
+      extraPackages = [
+        pkgs.helix-gpt
+        pkgs.bash-language-server
+        pkgs.dockerfile-language-server-nodejs
+        pkgs.elixir-ls
+        pkgs.gopls
+        pkgs.vscode-langservers-extracted
+        pkgs.lua-language-server
+        pkgs.marksman
+        pkgs.nil
+        pkgs.rust-analyzer
+        pkgs.slint-lsp
+        pkgs.rubyPackages.solargraph
+        pkgs.tailwindcss-language-server
+        pkgs.taplo
+        pkgs.terraform-ls
+        pkgs.typescript-language-server
+        pkgs.yaml-language-server
+        pkgs.zls
+      ];
+      languages = {
+        "language-server" = {
+          gpt = {
+            command = "${pkgs.helix-gpt}/bin/helix-gpt";
+            args = [ "--handler" "codeium" "--codeiumApiKey" "23028c87-48de-4f33-90bc-3cdad692dd38" ];
+          };
+        };
+        language = [
+          {
+            name = "hcl";
+            formatter = {
+              command = "${pkgs.terraform}/bin/terraform";
+              args = [ "fmt" "-" ];
+            };
+          }
+          {
+            name = "elixir";
+            formatter = {
+              command = "mix";
+              args = [ "format" "-" ];
+            };
+            "language-servers" = [
+              "elixir-ls"
+              "gpt"
+            ];
+          }
+          {
+            name = "gleam";
+            formatter = {
+              command = "gleam";
+              args = [ "format" "--stdin" ];
+            };
+          }
+          {
+            name = "nix";
+            formatter = { command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"; };
+          }
+          {
+            name = "tfvars";
+            formatter = {
+              command = "${pkgs.terraform}/bin/terraform";
+              args = [ "fmt" "-" ];
+            };
+          }
+        ];
+      };
+      settings = {
+        theme = "rose_pine_moon";
+        editor = {
+          true-color = true;
+          line-number = "relative";
+          cursorline = true;
+          cursorcolumn = true;
+          color-modes = true;
+          soft-wrap = {
+            enable = true;
+          };
+        };
+        keys = {
+          normal = {
+            space = {
+              B = ":pipe-to tmux split-window -v helix-git-blame";
+            };
+          };
+        };
+      };
     };
   };
   gtk = {
@@ -212,5 +503,17 @@
     };
   };
 
-  fonts.fontconfig.enable = true;
+  fonts = {
+    fontconfig = {
+      enable = true;
+    };
+  };
+
+  services = {
+    gpg-agent = {
+      enable = true;
+      enableSshSupport = true;
+      pinentryPackage = pkgs.pinentry-tty;
+    };
+  };
 }
