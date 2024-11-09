@@ -6,6 +6,7 @@
       enable = true;
       defaultEditor = true;
       extraPackages = [
+        pkgs.helix-gpt
         pkgs.bash-language-server
         pkgs.dockerfile-language-server-nodejs
         pkgs.elixir-ls
@@ -25,6 +26,12 @@
         pkgs.zls
       ];
       languages = {
+        "language-server" = {
+          gpt = {
+            command = "${pkgs.helix-gpt}/bin/helix-gpt";
+            args = [ "--handler" "codeium" "--codeiumApiKey" "23028c87-48de-4f33-90bc-3cdad692dd38" ];
+          };
+        };
         language = [
           {
             name = "hcl";
@@ -39,6 +46,10 @@
               command = "mix";
               args = [ "format" "-" ];
             };
+            "language-servers" = [
+              "elixir-ls"
+              "gpt"
+            ];
           }
           {
             name = "gleam";
