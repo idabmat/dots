@@ -113,13 +113,20 @@
           input = {
             natural_scroll = "yes";
           };
-          general = {
-            layout = "master";
-          };
+          dwindle = { };
           master = {
             new_status = "slave";
             orientation = "center";
             always_center_master = true;
+          };
+          general = {
+            layout = "dwindle";
+            border_size = 3;
+            "col.inactive_border" = "0xff6e6a86";
+            "col.active_border" = "0xff9ccfd8";
+          };
+          decoration = {
+            rounding = 15;
           };
           bind = [
             "SUPER,n,movefocus,l"
@@ -158,8 +165,18 @@
             "SUPER,v,exec,walker -m clipboard"
             "SUPER,x,fullscreen,"
             "SUPER,return,exec,kitty"
+          ];
+          binde = [
+            "SUPER CTRL,n,exec,hyprctl dispatch resizeactive -10 0"
+            "SUPER CTRL,e,exec,hyprctl dispatch resizeactive 0 -10"
+            "SUPER CTRL,i,exec,hyprctl dispatch resizeactive 0 10"
+            "SUPER CTRL,o,exec,hyprctl dispatch resizeactive 10 0"
+          ];
+          bindel = [
             ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
             ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+          ];
+          bindl = [
             ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
             ",XF86AudioPlay,exec,playerctl play-pause"
             ",XF86AudioPrev,exec,playerctl previous"
