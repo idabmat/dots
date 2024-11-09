@@ -40,6 +40,8 @@
       pkgs.rhythmbox
       pkgs.pavucontrol
       pkgs.playerctl
+      pkgs.rose-pine-cursor
+      pkgs.rose-pine-gtk-theme
       (pkgs.writeShellScriptBin "helix-git-blame" ''
         ORIGINAL_PANE=$(tmux select-pane -U)
         PANE_OUTPUT=$(tmux capture-pane -p -t "$ORIGINAL_PANE")
@@ -81,6 +83,16 @@
       enable = true;
     };
   };
+  gtk = {
+    theme = {
+      package = pkgs.rose-pine-gtk-theme;
+      name = "rose-pine-moon";
+    };
+    cursorTheme = {
+      package = pkgs.rose-pine-cursor;
+      name = "BreezeX-RosePine-Linux";
+    };
+  };
 
   wayland = {
     windowManager = {
@@ -93,6 +105,7 @@
             "GBM_BACKEND,nvidia-drm"
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
             "NVD_BACKEND,direct"
+            "GTK_THEME,rose-pine-moon"
           ];
           exec-once = [
             "walker --gapplication-service"
