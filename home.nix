@@ -3,36 +3,13 @@
 {
   nixpkgs = {
     config = {
-      cudaSupport = true;
+      cudaSupport = false;
       allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
           "graphite-cli"
           "terraform"
           "slack"
           "discord"
-          "cuda_cudart"
-          "libcublas"
-          "cuda_cccl"
-          "cuda_nvcc"
-          "cuda_cupti"
-          "cuda_nvml_dev"
-          "cuda_nvrtc"
-          "cuda_nvtx"
-          "libcufft"
-          "libcurand"
-          "libcusolver"
-          "libnvjitlink"
-          "libcusparse"
-          "cudnn"
-          "cuda_profiler_api"
-          "cuda_cuobjdump"
-          "cuda_nvdisasm"
-          "cuda-merged"
-          "cuda_gdb"
-          "cuda_nvprune"
-          "cuda_cuxxfilt"
-          "cuda_sanitizer_api"
-          "libnpp"
         ];
     };
   };
@@ -64,8 +41,6 @@
       pkgs.playerctl
       pkgs.rose-pine-cursor
       pkgs.rose-pine-gtk-theme
-      (pkgs.ollama.overrideAttrs { acceleration = "cuda"; })
-      pkgs.aichat
       (pkgs.writeShellScriptBin "helix-git-blame" ''
         ORIGINAL_PANE=$(tmux select-pane -U)
         PANE_OUTPUT=$(tmux capture-pane -p -t "$ORIGINAL_PANE")
