@@ -35,25 +35,6 @@
       pkgs.rose-pine-cursor
       pkgs.rose-pine-gtk-theme
       pkgs.aichat
-      (pkgs.writeShellScriptBin "helix-git-blame" ''
-        ORIGINAL_PANE=$(tmux select-pane -U)
-        PANE_OUTPUT=$(tmux capture-pane -p -t "$ORIGINAL_PANE")
-        tmux select-pane -D
-        RES=$(echo "$PANE_OUTPUT" | rg -e "(?:NOR|INS|SEL)\s+(\S*)\s[^│]* (\d+):*.*" -o --replace '$1 $2')
-        FILE=$(echo "$RES" | cut -d " " -f 1)
-        LINE=$(echo "$RES" | cut -d " " -f 2)
-
-        git blame -L "$LINE,+100" "$FILE" --color-by-age --color-lines | 
-          fzf --ansi \
-              --layout reverse \
-              --border \
-              --delimiter ':' \
-              --height '100%' \
-              --multi \
-              --print-query --exit-0 \
-              --scrollbar '▍' |
-              cut -d " " -f 1
-      '')
     ];
     file = {
       ".p10k.zsh" = {
@@ -338,13 +319,6 @@
           color-modes = true;
           soft-wrap = {
             enable = true;
-          };
-        };
-        keys = {
-          normal = {
-            space = {
-              B = ":pipe-to tmux split-window -v helix-git-blame";
-            };
           };
         };
       };
