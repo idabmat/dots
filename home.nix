@@ -1,16 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   nixpkgs = {
     config = {
-      cudaSupport = false;
-      allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [
-          "graphite-cli"
-          "terraform"
-          "slack"
-          "discord"
-        ];
+      allowUnfree = true;
     };
   };
 
@@ -41,6 +34,7 @@
       pkgs.playerctl
       pkgs.rose-pine-cursor
       pkgs.rose-pine-gtk-theme
+      pkgs.aichat
       (pkgs.writeShellScriptBin "helix-git-blame" ''
         ORIGINAL_PANE=$(tmux select-pane -U)
         PANE_OUTPUT=$(tmux capture-pane -p -t "$ORIGINAL_PANE")
@@ -292,7 +286,7 @@
         "language-server" = {
           gpt = {
             command = "${pkgs.helix-gpt}/bin/helix-gpt";
-            args = [ "--handler" "codeium" "--codeiumApiKey" "23028c87-48de-4f33-90bc-3cdad692dd38" ];
+            args = [ "--handler" "ollama" "--ollamaModel" "deepseek-coder-v2" ];
           };
         };
         language = [
