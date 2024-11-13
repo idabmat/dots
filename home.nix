@@ -17,6 +17,7 @@
       pkgs.python3
       pkgs.btop
       pkgs.ps
+      pkgs.unzip
       pkgs.silver-searcher
       pkgs.devbox
       pkgs.ripgrep
@@ -457,6 +458,15 @@
       enable = true;
       enableSshSupport = true;
       pinentryPackage = pkgs.pinentry-tty;
+    };
+    hyprpaper = {
+      enable = true;
+      settings =  {
+        ipc = "on";
+        splash = false;
+        preload = ["/home/me/.config/home-manager/wallpaper.png"];
+        wallpaper = [",/home/me/.config/home-manager/wallpaper.png"];
+      };
     };
   };
 }
