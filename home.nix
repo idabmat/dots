@@ -267,7 +267,7 @@
         "language-server" = {
           gpt = {
             command = "${pkgs.helix-gpt}/bin/helix-gpt";
-            args = [ "--handler" "ollama" "--ollamaModel" "deepseek-coder-v2" ];
+            args = [ "--handler" "ollama" "--ollamaModel" "deepseek-coder-v2-fixed" ];
           };
         };
         language = [
