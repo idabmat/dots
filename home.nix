@@ -361,7 +361,7 @@
             always_center_master = true;
           };
           general = {
-            layout = "dwindle";
+            layout = "master";
             border_size = 3;
             "col.inactive_border" = "0xff6e6a86";
             "col.active_border" = "0xff9ccfd8";
