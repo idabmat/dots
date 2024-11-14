@@ -51,9 +51,6 @@
       ".cache/oh-my-zsh/completions/_gt" = {
         source = ./_gt;
       };
-      ".config/walker/config.json" = {
-        source = ./config/walker/config.json;
-      };
     };
 
     pointerCursor = {
@@ -291,7 +288,7 @@
         "language-server" = {
           gpt = {
             command = "${pkgs.helix-gpt}/bin/helix-gpt";
-            args = [ "--handler" "ollama" "--ollamaModel" "deepseek-coder-v2" ];
+            args = [ "--handler" "ollama" "--ollamaModel" "qwen2.5-coder" ];
           };
         };
         language = [
