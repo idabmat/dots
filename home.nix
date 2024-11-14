@@ -35,10 +35,12 @@
       pkgs.playerctl
       pkgs.rose-pine-cursor
       pkgs.rose-pine-gtk-theme
+      pkgs.rose-pine-icon-theme
       pkgs.adwaita-icon-theme
       pkgs.nautilus
       pkgs.aichat
     ];
+
     file = {
       ".p10k.zsh" = {
         source = ./p10k.zsh;
@@ -53,6 +55,7 @@
         source = ./config/walker/config.json;
       };
     };
+
     pointerCursor = {
       gtk = {
         enable = true;
@@ -60,6 +63,16 @@
       package = pkgs.rose-pine-cursor;
       name = "BreezeX-RosePine-Linux";
       size = 32;
+    };
+  };
+
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        "gtk-theme" = "rose-pine";
+        "color-scheme" = "prefer-dark";
+      };
     };
   };
 
@@ -345,8 +358,8 @@
     };
 
     iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
+      package = pkgs.rose-pine-icon-theme;
+      name = "rose-pine";
     };
     cursorTheme = {
       package = pkgs.rose-pine-cursor;
@@ -372,6 +385,7 @@
             "HYPRCURSOR_SIZE,32"
           ];
           exec-once = [
+            "dbus-update-activation-environment --systemd PATH XDG_DATA_DIRS"
             "walker --gapplication-service"
             "hyprctl setcursor BreezeX-RosePine-Linux 32"
           ];
