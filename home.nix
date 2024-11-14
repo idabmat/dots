@@ -30,11 +30,13 @@
       pkgs.wl-clipboard
       pkgs.openrgb
       pkgs.flyctl
-      pkgs.rhythmbox
+      pkgs.musicpod
       pkgs.pavucontrol
       pkgs.playerctl
       pkgs.rose-pine-cursor
       pkgs.rose-pine-gtk-theme
+      pkgs.adwaita-icon-theme
+      pkgs.nautilus
       pkgs.aichat
     ];
     file = {
@@ -50,6 +52,14 @@
       ".config/walker/config.json" = {
         source = ./config/walker/config.json;
       };
+    };
+    pointerCursor = {
+      gtk = {
+        enable = true;
+      };
+      package = pkgs.rose-pine-cursor;
+      name = "BreezeX-RosePine-Linux";
+      size = 32;
     };
   };
 
@@ -144,7 +154,7 @@
       shellIntegration = {
         enableZshIntegration = true;
       };
-      themeFile = "rose-pine-moon";
+      themeFile = "rose-pine";
     };
 
     firefox = {
@@ -168,17 +178,17 @@
     bat = {
       enable = true;
       config = {
-        theme = "rose-pine-moon";
+        theme = "rose-pine";
       };
       themes = {
-        rose-pine-moon = {
+        rose-pine = {
           src = pkgs.fetchFromGitHub {
             owner = "rose-pine";
             repo = "tm-theme";
             rev = "c4235f9a65fd180ac0f5e4396e3a86e21a0884ec";
             hash = "sha256-jji8WOKDkzAq8K+uSZAziMULI8Kh7e96cBRimGvIYKY=";
           };
-          file = "dist/themes/rose-pine-moon.tmTheme";
+          file = "dist/themes/rose-pine.tmTheme";
         };
       };
     };
@@ -204,7 +214,7 @@
         pkgs.tmuxPlugins.vim-tmux-navigator
         {
           plugin = pkgs.tmuxPlugins.rose-pine;
-          extraConfig = "set -g @rose_pine_variant 'moon'";
+          extraConfig = "set -g @rose_pine_variant 'main'";
         }
       ];
       extraConfig = ''
@@ -268,7 +278,7 @@
         "language-server" = {
           gpt = {
             command = "${pkgs.helix-gpt}/bin/helix-gpt";
-            args = [ "--handler" "ollama" "--ollamaModel" "deepseek-coder-v2-fixed" ];
+            args = [ "--handler" "ollama" "--ollamaModel" "deepseek-coder-v2" ];
           };
         };
         language = [
@@ -311,7 +321,7 @@
         ];
       };
       settings = {
-        theme = "rose_pine_moon";
+        theme = "rose_pine";
         editor = {
           true-color = true;
           line-number = "relative";
@@ -325,14 +335,23 @@
       };
     };
   };
+
   gtk = {
+    enable = true;
+
     theme = {
       package = pkgs.rose-pine-gtk-theme;
-      name = "rose-pine-moon";
+      name = "rose-pine";
+    };
+
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
     };
     cursorTheme = {
       package = pkgs.rose-pine-cursor;
       name = "BreezeX-RosePine-Linux";
+      size = 32;
     };
   };
 
@@ -347,10 +366,14 @@
             "GBM_BACKEND,nvidia-drm"
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
             "NVD_BACKEND,direct"
-            "GTK_THEME,rose-pine-moon"
+            "GTK_THEME,rose-pine"
+            "XCURSOR_SIZE,32"
+            "HYPRCURSOR_THEME,BreezeX-RosePine-Linux"
+            "HYPRCURSOR_SIZE,32"
           ];
           exec-once = [
             "walker --gapplication-service"
+            "hyprctl setcursor BreezeX-RosePine-Linux 32"
           ];
           input = {
             natural_scroll = "yes";
@@ -366,6 +389,10 @@
             border_size = 3;
             "col.inactive_border" = "0xff6e6a86";
             "col.active_border" = "0xff9ccfd8";
+          };
+          misc = {
+            disable_hyprland_logo = true;
+            vrr = 2;
           };
           decoration = {
             rounding = 15;
