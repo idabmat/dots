@@ -44,6 +44,7 @@
       pkgs.adwaita-icon-theme
       pkgs.nautilus
       pkgs.aichat
+      pkgs.cantarell-fonts
     ];
 
     file = {
