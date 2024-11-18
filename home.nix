@@ -159,7 +159,7 @@
       };
       settings = {
         disable_ligatures = "cursor";
-        background_opacity = 0.5;
+        background_opacity = 1.0;
       };
       shellIntegration = {
         enableZshIntegration = true;
@@ -377,7 +377,7 @@
           };
           general = {
             layout = "master";
-            border_size = 3;
+            border_size = 1;
             "col.inactive_border" = "0xff6e6a86";
             "col.active_border" = "0xff9ccfd8";
           };
@@ -386,7 +386,7 @@
             vrr = 2;
           };
           decoration = {
-            rounding = 15;
+            rounding = 10;
           };
           bind = [
             "SUPER,n,movefocus,l"
