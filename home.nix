@@ -33,6 +33,7 @@
       pkgs.musicpod
       pkgs.pavucontrol
       pkgs.playerctl
+      pkgs.code-cursor
       pkgs.rose-pine-cursor
       pkgs.rose-pine-gtk-theme
       pkgs.rose-pine-icon-theme
