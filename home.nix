@@ -36,6 +36,8 @@
       pkgs.rose-pine-cursor
       pkgs.rose-pine-gtk-theme
       pkgs.rose-pine-icon-theme
+      pkgs.gradience
+      pkgs.adw-gtk3
       pkgs.adwaita-icon-theme
       pkgs.nautilus
       pkgs.aichat
@@ -65,12 +67,6 @@
 
   dconf = {
     enable = true;
-    settings = {
-      "org/gnome/desktop/interface" = {
-        "gtk-theme" = "rose-pine";
-        "color-scheme" = "prefer-dark";
-      };
-    };
   };
 
   programs = {
@@ -346,25 +342,6 @@
     };
   };
 
-  gtk = {
-    enable = true;
-
-    theme = {
-      package = pkgs.rose-pine-gtk-theme;
-      name = "rose-pine";
-    };
-
-    iconTheme = {
-      package = pkgs.rose-pine-icon-theme;
-      name = "rose-pine";
-    };
-    cursorTheme = {
-      package = pkgs.rose-pine-cursor;
-      name = "BreezeX-RosePine-Linux";
-      size = 32;
-    };
-  };
-
   wayland = {
     windowManager = {
       hyprland = {
@@ -376,13 +353,11 @@
             "GBM_BACKEND,nvidia-drm"
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
             "NVD_BACKEND,direct"
-            "GTK_THEME,rose-pine"
             "XCURSOR_SIZE,32"
             "HYPRCURSOR_THEME,BreezeX-RosePine-Linux"
             "HYPRCURSOR_SIZE,32"
           ];
           exec-once = [
-            "dbus-update-activation-environment --systemd PATH XDG_DATA_DIRS"
             "walker --gapplication-service"
             "hyprctl setcursor BreezeX-RosePine-Linux 32"
           ];
