@@ -30,7 +30,9 @@
       pkgs.wl-clipboard
       pkgs.openrgb
       pkgs.flyctl
-      pkgs.musicpod
+      pkgs.gnome-podcasts
+      pkgs.gnome-music
+      pkgs.localsearch
       pkgs.pavucontrol
       pkgs.playerctl
       pkgs.code-cursor
