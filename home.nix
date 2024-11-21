@@ -46,6 +46,8 @@
       pkgs.nautilus
       pkgs.aichat
       pkgs.cantarell-fonts
+      pkgs.slurp
+      pkgs.grim
     ];
 
     file = {
@@ -419,10 +421,12 @@
             "SUPER,tab,workspace,e+1"
             "SUPER_SHIFT,tab,workspace,e-1"
             "SUPER,a,exec,walker -m applications"
+            "SUPER,d,exec,walker -m websearch"
             "SUPER,j,exec,walker -m emojis"
             "SUPER,f,togglefloating,"
             "SUPER,q,killactive,"
-            "SUPER,s,exec,walker -m websearch"
+            "SUPER,s,exec,grim"
+            "SUPER SHIFT,s,exec,grim -g \"$(slurp)\" - | wl-copy"
             "SUPER,v,exec,walker -m clipboard"
             "SUPER,x,fullscreen,"
             "SUPER,return,exec,kitty"
