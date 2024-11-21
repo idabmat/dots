@@ -353,6 +353,9 @@
     windowManager = {
       hyprland = {
         enable = true;
+        systemd = {
+          variables = [ "--all" ];
+        };
         settings = {
           env = [
             "NIXOS_OZONE_WL,1"
