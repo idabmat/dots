@@ -32,6 +32,7 @@
       pkgs.flyctl
       pkgs.gnome-podcasts
       pkgs.gnome-music
+      pkgs.mplayer
       pkgs.localsearch
       pkgs.pavucontrol
       pkgs.playerctl
@@ -479,11 +480,11 @@
     };
     hyprpaper = {
       enable = true;
-      settings =  {
+      settings = {
         ipc = "on";
         splash = false;
-        preload = ["/home/me/.config/home-manager/wallpaper.png"];
-        wallpaper = [",/home/me/.config/home-manager/wallpaper.png"];
+        preload = [ "/home/me/.config/home-manager/wallpaper.png" ];
+        wallpaper = [ ",/home/me/.config/home-manager/wallpaper.png" ];
       };
     };
   };
