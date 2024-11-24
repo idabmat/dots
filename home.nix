@@ -179,6 +179,7 @@
       settings = {
         directory = "${config.home.homeDirectory}/music";
         plugins = [
+          "fetchart"
         ];
       };
     };
