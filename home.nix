@@ -48,6 +48,7 @@
       pkgs.cantarell-fonts
       pkgs.slurp
       pkgs.grim
+      pkgs.motion
     ];
 
     file = {
