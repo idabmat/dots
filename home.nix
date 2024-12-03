@@ -49,6 +49,7 @@
       pkgs.slurp
       pkgs.grim
       pkgs.motion
+      pkgs.gimp
     ];
 
     file = {
