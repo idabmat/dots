@@ -158,7 +158,7 @@
     kitty = {
       enable = true;
       font = {
-        package = (pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; });
+        package = pkgs.nerd-fonts.caskaydia-cove;
         name = "CaskaydiaCove Nerd Font Mono";
         size = 14;
       };
