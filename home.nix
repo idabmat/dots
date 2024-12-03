@@ -435,6 +435,7 @@
             "SUPER SHIFT,s,exec,grim -g \"$(slurp)\" - | wl-copy"
             "SUPER,v,exec,walker -m clipboard"
             "SUPER,x,fullscreen,"
+            "SUPER,z,exec, hyprctl dispatch fullscreen 1"
             "SUPER,return,exec,kitty"
           ];
           binde = [
