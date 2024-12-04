@@ -50,6 +50,7 @@
       pkgs.grim
       pkgs.motion
       pkgs.gimp
+      pkgs.jellyfin
     ];
 
     file = {
