@@ -51,6 +51,8 @@
       pkgs.motion
       pkgs.gimp
       pkgs.jellyfin
+      pkgs.audiobookshelf
+      pkgs.libation
     ];
 
     file = {
@@ -180,7 +182,7 @@
     beets = {
       enable = true;
       settings = {
-        directory = "${config.home.homeDirectory}/music";
+        directory = "/media/music";
         plugins = [
           "fetchart"
         ];
