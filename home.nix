@@ -24,6 +24,7 @@
       pkgs.walker
       pkgs.bitwarden-desktop
       pkgs.yubikey-manager
+      pkgs.yubioath-flutter
       pkgs.slack
       pkgs.chromium
       pkgs.discord
@@ -41,6 +42,7 @@
       pkgs.rose-pine-gtk-theme
       pkgs.rose-pine-icon-theme
       pkgs.gradience
+      pkgs.nwg-look
       pkgs.adw-gtk3
       pkgs.adwaita-icon-theme
       pkgs.nautilus
@@ -53,6 +55,7 @@
       pkgs.jellyfin
       pkgs.audiobookshelf
       pkgs.libation
+      pkgs.swaynotificationcenter
     ];
 
     file = {
@@ -73,7 +76,7 @@
       };
       package = pkgs.rose-pine-cursor;
       name = "BreezeX-RosePine-Linux";
-      size = 32;
+      size = 48;
     };
   };
 
@@ -161,9 +164,9 @@
     kitty = {
       enable = true;
       font = {
-        package = pkgs.nerd-fonts.caskaydia-cove;
-        name = "CaskaydiaCove Nerd Font Mono";
-        size = 14;
+        package = pkgs.iosevka;
+        name = "Iosevka";
+        size = 16;
       };
       settings = {
         disable_ligatures = "cursor";
@@ -177,6 +180,9 @@
 
     firefox = {
       enable = true;
+      profiles = {
+        me = { };
+      };
     };
 
     beets = {
@@ -363,23 +369,47 @@
           variables = [ "--all" ];
         };
         settings = {
+          monitor = [
+            "eDP-1,2560x1600@240,0x0,1"
+            "eDP-2,2560x1600@240,0x0,1"
+            "DP-3,3840x1100@60,0x1600,1.666667"
+            "DP-5,3840x1100@60,0x1600,1.666667"
+            "HDMI-A-1,disabled"
+          ];
+          workspace = [
+            "1, monitor:eDP-1, default:true"
+            "2, monitor:eDP-1"
+            "3, monitor:eDP-1"
+            "4, monitor:eDP-1"
+            "5, monitor:eDP-1"
+            "6, monitor:eDP-1"
+            "7, monitor:eDP-1"
+            "8, monitor:eDP-1"
+            "9, monitor:eDP-1"
+            "10, monitor:DP-3, default:true"
+          ];
           env = [
             "NIXOS_OZONE_WL,1"
             "LIBVA_DRIVER_NAME,nvidia"
             "GBM_BACKEND,nvidia-drm"
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
             "NVD_BACKEND,direct"
-            "XCURSOR_SIZE,32"
+            "XCURSOR_SIZE,48"
             "HYPRCURSOR_THEME,BreezeX-RosePine-Linux"
-            "HYPRCURSOR_SIZE,32"
+            "HYPRCURSOR_SIZE,48"
             "FREETYPE_PROPERTIES,cff:no-stem-darkening=0 autofitter:no-stem-darkening=0"
+            "GDK_DPI_SCALE,1.5"
           ];
           exec-once = [
             "walker --gapplication-service"
-            "hyprctl setcursor BreezeX-RosePine-Linux 32"
+            "hyprctl setcursor BreezeX-RosePine-Linux 48"
+            "swaync"
           ];
           input = {
             natural_scroll = "yes";
+            touchpad = {
+              natural_scroll = "yes";
+            };
           };
           dwindle = { };
           master = {
@@ -388,7 +418,7 @@
             always_center_master = true;
           };
           general = {
-            layout = "master";
+            layout = "dwindle";
             border_size = 1;
             "col.inactive_border" = "0xff6e6a86";
             "col.active_border" = "0xff9ccfd8";
@@ -400,6 +430,16 @@
           decoration = {
             rounding = 10;
           };
+          gestures = {
+            workspace_swipe = "true";
+            workspace_swipe_forever = "true";
+          };
+          device = [
+            {
+              name = "elan9009:00-04f3:41d9";
+              output = "DP-3";
+            }
+          ];
           bind = [
             "SUPER,n,movefocus,l"
             "SUPER,e,movefocus,d"
@@ -418,6 +458,7 @@
             "SUPER,7,workspace,7"
             "SUPER,8,workspace,8"
             "SUPER,9,workspace,9"
+            "SUPER,0,workspace,10"
             "SUPER_SHIFT,1,movetoworkspace,1"
             "SUPER_SHIFT,2,movetoworkspace,2"
             "SUPER_SHIFT,3,movetoworkspace,3"
@@ -427,8 +468,9 @@
             "SUPER_SHIFT,7,movetoworkspace,7"
             "SUPER_SHIFT,8,movetoworkspace,8"
             "SUPER_SHIFT,9,movetoworkspace,9"
-            "SUPER,tab,workspace,e+1"
-            "SUPER_SHIFT,tab,workspace,e-1"
+            "SUPER_SHIFT,0,movetoworkspace,10"
+            "SUPER,tab,workspace,m+1"
+            "SUPER_SHIFT,tab,workspace,m-1"
             "SUPER,a,exec,walker -m applications"
             "SUPER,d,exec,walker -m websearch"
             "SUPER,j,exec,walker -m emojis"
@@ -440,6 +482,7 @@
             "SUPER,x,fullscreen,"
             "SUPER,z,exec, hyprctl dispatch fullscreen 1"
             "SUPER,return,exec,kitty"
+            "SUPER,space,exec,swaync-client -t"
           ];
           binde = [
             "SUPER CTRL,n,exec,hyprctl dispatch resizeactive -10 0"
@@ -453,6 +496,7 @@
           ];
           bindl = [
             ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ",XF86AudioMicMute,exec,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
             ",XF86AudioPlay,exec,playerctl play-pause"
             ",XF86AudioPrev,exec,playerctl previous"
             ",XF86AudioNext,exec,playerctl next"
