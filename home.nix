@@ -164,8 +164,8 @@
     kitty = {
       enable = true;
       font = {
-        package = pkgs.iosevka;
-        name = "Iosevka";
+        package = pkgs.nerd-fonts.caskaydia-cove;
+        name = "CarkaydiaCove Nerd Font Mono";
         size = 16;
       };
       settings = {
