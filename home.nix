@@ -33,7 +33,7 @@
       pkgs.flyctl
       pkgs.gnome-podcasts
       pkgs.gnome-music
-      pkgs.mplayer
+      # pkgs.mplayer
       pkgs.localsearch
       pkgs.pavucontrol
       pkgs.playerctl
@@ -185,15 +185,15 @@
       };
     };
 
-    beets = {
-      enable = true;
-      settings = {
-        directory = "/media/music";
-        plugins = [
-          "fetchart"
-        ];
-      };
-    };
+    # beets = {
+    #   enable = true;
+    #   settings = {
+    #     directory = "/media/music";
+    #     plugins = [
+    #       "fetchart"
+    #     ];
+    #   };
+    # };
 
     zoxide = {
       enable = true;
