@@ -34,7 +34,7 @@
       pkgs.flyctl
       pkgs.gnome-podcasts
       pkgs.gnome-music
-      # pkgs.mplayer
+      pkgs.mplayer
       pkgs.timg
       pkgs.localsearch
       pkgs.pavucontrol
