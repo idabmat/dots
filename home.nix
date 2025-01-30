@@ -488,6 +488,7 @@
             "SUPER,a,exec,walker -m applications"
             "SUPER,d,exec,walker -m websearch"
             "SUPER,j,exec,walker -m emojis"
+            "SUPER,t,exec,ghostty -e /home/me/code/todox/bin/todox"
             "SUPER,f,togglefloating,"
             "SUPER,q,killactive,"
             "SUPER,s,exec,grim"
