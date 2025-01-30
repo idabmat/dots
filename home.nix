@@ -333,6 +333,13 @@
             ];
           }
           {
+            name = "go";
+            "language-servers" = [
+              "gopls"
+              "gpt"
+            ];
+          }
+          {
             name = "gleam";
             formatter = {
               command = "gleam";
