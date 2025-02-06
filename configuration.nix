@@ -96,9 +96,6 @@ in
         enable = true;
       };
     };
-    pulseaudio = {
-      enable = false;
-    };
   };
 
   # networking.hostName = "nixos"; # Define your hostname.
@@ -158,6 +155,9 @@ in
       pulse = {
         enable = true;
       };
+    };
+    pulseaudio = {
+      enable = false;
     };
     greetd = {
       enable = true;
