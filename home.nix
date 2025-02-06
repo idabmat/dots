@@ -12,8 +12,6 @@
     homeDirectory = "/home/me";
     stateVersion = "24.05";
     packages = [
-      pkgs.yubikey-manager
-      pkgs.yubikey-manager-qt
       pkgs.lsd
       pkgs.graphite-cli
       pkgs.python3
@@ -26,6 +24,7 @@
       pkgs.walker
       pkgs.bitwarden-desktop
       pkgs.yubikey-manager
+      pkgs.yubioath-flutter
       pkgs.slack
       pkgs.chromium
       pkgs.discord
@@ -35,6 +34,7 @@
       pkgs.gnome-podcasts
       pkgs.gnome-music
       pkgs.mplayer
+      pkgs.timg
       pkgs.localsearch
       pkgs.pavucontrol
       pkgs.playerctl
@@ -43,6 +43,7 @@
       pkgs.rose-pine-gtk-theme
       pkgs.rose-pine-icon-theme
       pkgs.gradience
+      pkgs.nwg-look
       pkgs.adw-gtk3
       pkgs.adwaita-icon-theme
       pkgs.nautilus
@@ -55,6 +56,7 @@
       pkgs.jellyfin
       pkgs.audiobookshelf
       pkgs.libation
+      pkgs.swaynotificationcenter
     ];
 
     file = {
@@ -177,8 +179,15 @@
       themeFile = "rose-pine";
     };
 
+    ghostty = {
+      enable = true;
+    };
+
     firefox = {
       enable = true;
+      profiles = {
+        me = { };
+      };
     };
 
     beets = {
@@ -209,7 +218,7 @@
             rev = "c4235f9a65fd180ac0f5e4396e3a86e21a0884ec";
             hash = "sha256-jji8WOKDkzAq8K+uSZAziMULI8Kh7e96cBRimGvIYKY=";
           };
-          file = "dist/themes/rose-pine.tmTheme";
+          file = "dist/themes/rose-pine-moon.tmTheme";
         };
       };
     };
@@ -235,7 +244,7 @@
         pkgs.tmuxPlugins.vim-tmux-navigator
         {
           plugin = pkgs.tmuxPlugins.rose-pine;
-          extraConfig = "set -g @rose_pine_variant 'main'";
+          extraConfig = "set -g @rose_pine_variant 'moon'";
         }
       ];
       extraConfig = ''
@@ -270,6 +279,11 @@
         marker = "#eb6f92";
         prompt = "#908caa";
       };
+    };
+
+    yazi = {
+      enable = true;
+      enableZshIntegration = true;
     };
 
     helix = {
@@ -322,6 +336,13 @@
             ];
           }
           {
+            name = "go";
+            "language-servers" = [
+              "gopls"
+              "gpt"
+            ];
+          }
+          {
             name = "gleam";
             formatter = {
               command = "gleam";
@@ -342,7 +363,7 @@
         ];
       };
       settings = {
-        theme = "rose_pine";
+        theme = "rose_pine_moon";
         editor = {
           true-color = true;
           line-number = "relative";
@@ -379,9 +400,13 @@
           exec-once = [
             "walker --gapplication-service"
             "hyprctl setcursor BreezeX-RosePine-Linux 32"
+            "swaync"
           ];
           input = {
             natural_scroll = "yes";
+            touchpad = {
+              natural_scroll = "yes";
+            };
           };
           dwindle = { };
           master = {
@@ -389,7 +414,7 @@
             orientation = "center";
           };
           general = {
-            layout = "master";
+            layout = "dwindle";
             border_size = 1;
             "col.inactive_border" = "0xff6e6a86";
             "col.active_border" = "0xff9ccfd8";
@@ -400,6 +425,10 @@
           };
           decoration = {
             rounding = 10;
+          };
+          gestures = {
+            workspace_swipe = "true";
+            workspace_swipe_forever = "true";
           };
           bind = [
             "SUPER,n,movefocus,l"
@@ -419,6 +448,7 @@
             "SUPER,7,workspace,7"
             "SUPER,8,workspace,8"
             "SUPER,9,workspace,9"
+            "SUPER,0,workspace,10"
             "SUPER_SHIFT,1,movetoworkspace,1"
             "SUPER_SHIFT,2,movetoworkspace,2"
             "SUPER_SHIFT,3,movetoworkspace,3"
@@ -428,11 +458,13 @@
             "SUPER_SHIFT,7,movetoworkspace,7"
             "SUPER_SHIFT,8,movetoworkspace,8"
             "SUPER_SHIFT,9,movetoworkspace,9"
-            "SUPER,tab,workspace,e+1"
-            "SUPER_SHIFT,tab,workspace,e-1"
+            "SUPER_SHIFT,0,movetoworkspace,10"
+            "SUPER,tab,workspace,m+1"
+            "SUPER_SHIFT,tab,workspace,m-1"
             "SUPER,a,exec,walker -m applications"
             "SUPER,d,exec,walker -m websearch"
             "SUPER,j,exec,walker -m emojis"
+            "SUPER,t,exec,ghostty -e /home/me/code/todox/bin/todox"
             "SUPER,f,togglefloating,"
             "SUPER,q,killactive,"
             "SUPER,s,exec,grim"
@@ -440,7 +472,8 @@
             "SUPER,v,exec,walker -m clipboard"
             "SUPER,x,fullscreen,"
             "SUPER,z,exec, hyprctl dispatch fullscreen 1"
-            "SUPER,return,exec,kitty"
+            "SUPER,return,exec,ghostty"
+            "SUPER,space,exec,swaync-client -t"
           ];
           binde = [
             "SUPER CTRL,n,exec,hyprctl dispatch resizeactive -10 0"
@@ -454,6 +487,7 @@
           ];
           bindl = [
             ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ",XF86AudioMicMute,exec,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
             ",XF86AudioPlay,exec,playerctl play-pause"
             ",XF86AudioPrev,exec,playerctl previous"
             ",XF86AudioNext,exec,playerctl next"
