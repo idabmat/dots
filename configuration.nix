@@ -218,6 +218,7 @@ in
       authorizedKeys = {
         keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPg+ljxM+kwwIyvSwIDf5oTDBgU5zA168oAcu4oo3KjW me"
+          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPxaM6r4pYjD42iNlSCwhtkET8VteiX7f0Xxgxl0B5zTAAAABHNzaDo= me@MobileHome"
         ];
       };
     };
