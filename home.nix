@@ -12,6 +12,8 @@
     homeDirectory = "/home/me";
     stateVersion = "24.05";
     packages = [
+      pkgs.yubikey-manager
+      pkgs.yubikey-manager-qt
       pkgs.lsd
       pkgs.graphite-cli
       pkgs.python3
