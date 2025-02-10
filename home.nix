@@ -181,6 +181,40 @@
 
     ghostty = {
       enable = true;
+      enableZshIntegration = true;
+      settings = {
+        window-decoration = false;
+        gtk-tabs-location = "bottom";
+        gtk-single-instance = true;
+        font-family = "CaskaydiaCove Nerd Font Mono";
+        font-size = 14;
+        theme = "rose-pine-moon";
+        keybind = [
+          "ctrl+a>shift+r=reload_config"
+
+          "ctrl+a>c=new_tab"
+          "ctrl+a>n=next_tab"
+          "ctrl+tab=next_tab"
+          "ctrl+a>n=previous_tab"
+          "ctrl+shift+tab=previous_tab"
+
+          "ctrl+a>one=goto_tab:1"
+          "ctrl+a>two=goto_tab:2"
+          "ctrl+a>three=goto_tab:3"
+          "ctrl+a>four=goto_tab:4"
+          "ctrl+a>five=goto_tab:5"
+          "ctrl+a>six=goto_tab:6"
+          "ctrl+a>seven=goto_tab:7"
+          "ctrl+a>eight=goto_tab:8"
+          "ctrl+a>nine=goto_tab:9"
+
+          "ctrl+a>s=new_split:down"
+          "ctrl+a>v=new_split:right"
+          "ctrl+a>left=goto_split:left"
+          "ctrl+a>right=goto_split:right"
+          "ctrl+a>ctrl+a=goto_split:next"
+        ];
+      };
     };
 
     firefox = {
