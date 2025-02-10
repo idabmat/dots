@@ -222,6 +222,9 @@
       profiles = {
         me = { };
       };
+      nativeMessagingHosts = [
+        pkgs.web-eid-app
+      ];
     };
 
     beets = {
