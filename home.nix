@@ -58,6 +58,7 @@
       pkgs.audiobookshelf
       pkgs.libation
       pkgs.swaynotificationcenter
+      pkgs.vulkan-hdr-layer-kwin6
     ];
 
     file = {
@@ -383,6 +384,15 @@
           variables = [ "--all" ];
         };
         settings = {
+          ecosystem = {
+            no_update_news = true;
+            no_donation_nag = true;
+          };
+          experimental = {
+            wide_color_gamut = false;
+            hdr = false;
+            xx_color_management_v4 = false;
+          };
           monitor = [
             "eDP-1,2560x1600@240,0x0,1"
             "eDP-2,2560x1600@240,0x0,1"
