@@ -13,6 +13,7 @@
     stateVersion = "24.05";
     packages = [
       pkgs.lsd
+      pkgs.lla
       pkgs.graphite-cli
       pkgs.python3
       pkgs.btop
