@@ -413,6 +413,12 @@
           soft-wrap = {
             enable = true;
           };
+          default-yank-register = "+";
+          clipboard-provider = "wayland";
+          end-of-line-diagnostics = "hint";
+          inline-diagnostics = {
+            cursor-line = "warning";
+          };
         };
       };
     };
