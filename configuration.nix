@@ -168,6 +168,9 @@
       remotePlay.openFirewall = false;
       dedicatedServer.openFirewall = false;
       localNetworkGameTransfers.openFirewall = false;
+      extraCompatPackages = [
+        pkgs.proton-ge-bin
+      ];
     };
     dconf = {
       enable = true;
