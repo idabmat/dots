@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   nixpkgs = {
@@ -64,12 +64,6 @@
       ".p10k.zsh" = {
         source = ./p10k.zsh;
       };
-      ".cache/oh-my-zsh/completions/_devbox" = {
-        source = ./_devbox;
-      };
-      ".cache/oh-my-zsh/completions/_gt" = {
-        source = ./_gt;
-      };
     };
 
     pointerCursor = {
@@ -79,6 +73,14 @@
       package = pkgs.rose-pine-cursor;
       name = "BreezeX-RosePine-Linux";
       size = 32;
+    };
+    activation = {
+      generateCompletions = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        mkdir -p ${config.home.homeDirectory}/.cache/oh-my-zsh/completions
+        ${pkgs.devbox}/bin/devbox completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_devbox
+        ${pkgs.graphite-cli}/bin/gt completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_gt
+        ${pkgs.lla}/bin/lla completion zsh --path ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_lla
+      '';
     };
   };
 
