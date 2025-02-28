@@ -512,7 +512,7 @@
             "SUPER,a,exec,walker -m applications"
             "SUPER,d,exec,walker -m websearch"
             "SUPER,j,exec,walker -m emojis"
-            "SUPER,t,exec,ghostty -e /home/me/code/todox/bin/todox"
+            "SUPER,t,exec,ghostty -e ${config.home.homeDirectory}/code/todox/bin/todox"
             "SUPER,f,togglefloating,"
             "SUPER,q,killactive,"
             "SUPER,s,exec,grim"
@@ -580,8 +580,8 @@
       settings = {
         ipc = "on";
         splash = false;
-        preload = [ "/home/me/.config/home-manager/wallpaper.png" ];
-        wallpaper = [ ",/home/me/.config/home-manager/wallpaper.png" ];
+        preload = [ "${config.home.homeDirectory}/.config/home-manager/wallpaper.png" ];
+        wallpaper = [ ",${config.home.homeDirectory}/.config/home-manager/wallpaper.png" ];
       };
     };
   };
