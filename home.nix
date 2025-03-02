@@ -234,7 +234,7 @@
     };
 
     beets = {
-      enable = true;
+      enable = false;
       settings = {
         directory = "/media/music";
         plugins = [
