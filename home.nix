@@ -14,6 +14,7 @@
     packages = [
       pkgs.ghostty
       pkgs.lsd
+      pkgs.lla
       pkgs.graphite-cli
       pkgs.python3
       pkgs.btop
@@ -394,23 +395,23 @@
             xx_color_management_v4 = false;
           };
           monitor = [
-            # "eDP-1,2560x1600@240,0x0,1"
-            # "eDP-2,2560x1600@240,0x0,1"
-            # "DP-3,3840x1100@60,0x1600,1.666667"
-            # "DP-5,3840x1100@60,0x1600,1.666667"
-            "HDMI-A-1,3440x1440@60,0x0,1"
+            "eDP-1,2560x1600@240,0x0,1"
+            "eDP-2,2560x1600@240,0x0,1"
+            "DP-3,3840x1100@60,0x1600,1.666667"
+            "DP-5,3840x1100@60,0x1600,1.666667"
+            # "HDMI-A-1,3440x1440@60,0x0,1"
           ];
           workspace = [
-            # "1, monitor:eDP-2, default:true"
-            # "2, monitor:eDP-2"
-            # "3, monitor:eDP-2"
-            # "4, monitor:eDP-2"
-            # "5, monitor:eDP-2"
-            # "6, monitor:eDP-2"
-            # "7, monitor:eDP-2"
-            # "8, monitor:eDP-2"
-            # "9, monitor:eDP-2"
-            # "10, monitor:DP-5, default:true"
+            "1, monitor:eDP-2, default:true"
+            "2, monitor:eDP-2"
+            "3, monitor:eDP-2"
+            "4, monitor:eDP-2"
+            "5, monitor:eDP-2"
+            "6, monitor:eDP-2"
+            "7, monitor:eDP-2"
+            "8, monitor:eDP-2"
+            "9, monitor:eDP-2"
+            "10, monitor:DP-5, default:true"
           ];
           env = [
             "NIXOS_OZONE_WL,1"
@@ -423,7 +424,7 @@
             "HYPRCURSOR_SIZE,48"
             "FREETYPE_PROPERTIES,cff:no-stem-darkening=0 autofitter:no-stem-darkening=0"
             "GDK_DPI_SCALE,1.5"
-            "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2"
+            # "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2"
           ];
           exec-once = [
             "walker --gapplication-service"
