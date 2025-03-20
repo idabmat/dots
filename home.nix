@@ -217,7 +217,7 @@
             rev = "c4235f9a65fd180ac0f5e4396e3a86e21a0884ec";
             hash = "sha256-jji8WOKDkzAq8K+uSZAziMULI8Kh7e96cBRimGvIYKY=";
           };
-          file = "dist/themes/rose-pine-moon.tmTheme";
+          file = "dist/themes/rose-pine.tmTheme";
         };
       };
     };
@@ -243,7 +243,7 @@
         pkgs.tmuxPlugins.vim-tmux-navigator
         {
           plugin = pkgs.tmuxPlugins.rose-pine;
-          extraConfig = "set -g @rose_pine_variant 'moon'";
+          extraConfig = "set -g @rose_pine_variant 'main'";
         }
       ];
       extraConfig = ''
@@ -362,7 +362,7 @@
         ];
       };
       settings = {
-        theme = "rose_pine_moon";
+        theme = "rose_pine";
         editor = {
           true-color = true;
           line-number = "relative";
