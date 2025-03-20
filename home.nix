@@ -13,6 +13,7 @@
     stateVersion = "24.05";
     packages = [
       pkgs.ghostty
+      pkgs.fastfetch
       pkgs.lsd
       pkgs.lla
       pkgs.graphite-cli
