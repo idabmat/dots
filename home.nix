@@ -466,6 +466,7 @@
             border_size = 1;
             "col.inactive_border" = "0xff6e6a86";
             "col.active_border" = "0xff9ccfd8";
+            gaps_out = 0;
           };
           misc = {
             disable_hyprland_logo = true;
