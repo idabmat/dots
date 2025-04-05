@@ -447,6 +447,7 @@
             "HYPRCURSOR_THEME,BreezeX-RosePine-Linux"
             "HYPRCURSOR_SIZE,32"
             "FREETYPE_PROPERTIES,cff:no-stem-darkening=0 autofitter:no-stem-darkening=0"
+            "GDK_DPI_SCALE,1.5"
           ];
           exec-once = [
             "walker --gapplication-service"
