@@ -434,6 +434,9 @@
           variables = [ "--all" ];
         };
         settings = {
+          monitor = [
+            "DP-1,3440x1440@143.92, 0x0, 1"
+          ];
           env = [
             "NIXOS_OZONE_WL,1"
             "LIBVA_DRIVER_NAME,nvidia"
