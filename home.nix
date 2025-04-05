@@ -193,7 +193,7 @@
         gtk-tabs-location = "bottom";
         gtk-single-instance = true;
         font-family = "CaskaydiaCove Nerd Font Mono";
-        font-size = 14;
+        font-size = 21;
         theme = "rose-pine-moon";
         keybind = [
           "ctrl+a>shift+r=reload_config"
