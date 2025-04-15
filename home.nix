@@ -50,6 +50,8 @@
       pkgs.adwaita-icon-theme
       pkgs.nautilus
       pkgs.aichat
+      pkgs.yek
+      pkgs.jq
       pkgs.cantarell-fonts
       pkgs.slurp
       pkgs.grim
