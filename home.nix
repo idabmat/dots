@@ -16,6 +16,7 @@
       pkgs.lla
       pkgs.graphite-cli
       pkgs.python3
+      pkgs.exercism
       pkgs.btop
       pkgs.ps
       pkgs.unzip
@@ -80,6 +81,7 @@
         ${pkgs.devbox}/bin/devbox completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_devbox
         ${pkgs.graphite-cli}/bin/gt completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_gt
         ${pkgs.lla}/bin/lla completion zsh --path ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_lla
+        ${pkgs.exercism}/bin/exercism completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_exercism
       '';
     };
   };
