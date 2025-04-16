@@ -1,5 +1,21 @@
 { config, pkgs, lib, ... }:
 
+let
+  zen-browser = pkgs.stdenv.mkDerivation {
+    name = "zen-browser";
+    src = pkgs.fetchurl {
+      url = "https://github.com/zen-browser/desktop/releases/download/1.11.3b/zen-x86_64.AppImage";
+      sha256 = "1w80l44ds5i96s4pm4n3p6vnh4xs1nfgkv82lk660ij3pr48dzmx";
+    };
+    buildInputs = with pkgs; [ appimage-run makeWrapper ];
+    buildCommand = ''
+      mkdir -p $out/bin $out/share/applications
+      cp $src $out/share/applications/zen-browser.AppImage
+      chmod +x $out/share/applications/zen-browser.AppImage
+      makeWrapper ${pkgs.appimage-run}/bin/appimage-run $out/bin/zen-browser --add-flags "$out/share/applications/zen-browser.AppImage"
+    '';
+  };
+in
 {
   nixpkgs = {
     config = {
@@ -61,6 +77,7 @@
       pkgs.audiobookshelf
       pkgs.libation
       pkgs.swaynotificationcenter
+      zen-browser
     ];
 
     file = {
@@ -78,7 +95,7 @@
       size = 32;
     };
     activation = {
-      generateCompletions = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      generateCompletions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         mkdir -p ${config.home.homeDirectory}/.cache/oh-my-zsh/completions
         ${pkgs.devbox}/bin/devbox completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_devbox
         ${pkgs.graphite-cli}/bin/gt completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_gt
@@ -528,7 +545,7 @@
             "SUPER SHIFT,s,exec,grim -g \"$(slurp)\" - | wl-copy"
             "SUPER,v,exec,walker -m clipboard"
             "SUPER,x,fullscreen,"
-            "SUPER,z,exec, hyprctl dispatch fullscreen 1"
+            "SUPER,z,exec,zen-browser"
             "SUPER,return,exec,ghostty"
             "SUPER,space,exec,swaync-client -t"
           ];
