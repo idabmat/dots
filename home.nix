@@ -77,6 +77,7 @@ in
       pkgs.audiobookshelf
       pkgs.libation
       pkgs.swaynotificationcenter
+      pkgs.spotify
       zen-browser
     ];
 
