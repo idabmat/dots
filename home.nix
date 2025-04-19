@@ -4,8 +4,8 @@ let
   zen-browser = pkgs.stdenv.mkDerivation {
     name = "zen-browser";
     src = pkgs.fetchurl {
-      url = "https://github.com/zen-browser/desktop/releases/download/1.11.3b/zen-x86_64.AppImage";
-      sha256 = "1w80l44ds5i96s4pm4n3p6vnh4xs1nfgkv82lk660ij3pr48dzmx";
+      url = "https://github.com/zen-browser/desktop/releases/download/1.11.4b/zen-x86_64.AppImage";
+      sha256 = "03rpmrxzvj9r2gmv7v3lw70d3n107xadcjg0jqyw72cp8gjsn76c";
     };
     buildInputs = with pkgs; [ appimage-run makeWrapper ];
     buildCommand = ''
