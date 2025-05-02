@@ -126,6 +126,13 @@ local harpoon = require('harpoon')
 vim.keymap.set('n', '<leader>pa', function() harpoon:list():add() end)
 vim.keymap.set('n', '<leader>p', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("LspFormatting", {}),
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("lspconfig")["elixirls"].setup({
   capabilities = capabilities,
