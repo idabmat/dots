@@ -122,6 +122,10 @@ vim.keymap.set('n', '<leader>s', ':TestNearest<CR>')
 vim.keymap.set('n', '<leader>l', ':TestLast<CR>')
 vim.keymap.set('n', '<leader>a', ':TestSuite<CR>')
 
+local harpoon = require('harpoon')
+vim.keymap.set('n', '<leader>pa', function() harpoon:list():add() end)
+vim.keymap.set('n', '<leader>p', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("lspconfig")["elixirls"].setup({
   capabilities = capabilities,
