@@ -351,9 +351,86 @@ in
       enableZshIntegration = true;
     };
 
-    helix = {
+    neovim = {
       enable = true;
       defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+      extraLuaConfig = "require('configs/base')";
+      plugins = with pkgs.vimPlugins; [
+        cmp-buffer
+        cmp-cmdline
+        cmp-nvim-lsp
+        cmp-path
+        cmp-vsnip
+        {
+          plugin = lualine-nvim;
+          type = "lua";
+          config = "require('plugins/lualine-nvim')";
+        }
+        mkdir-nvim
+        {
+          plugin = nvim-autopairs;
+          type = "lua";
+          config = "require('nvim-autopairs').setup({})";
+        }
+        {
+          plugin = nvim-cmp;
+          type = "lua";
+          config = "require('plugins/nvim-cmp')";
+        }
+        nvim-lspconfig
+        {
+          plugin = (nvim-treesitter.withPlugins (p: [
+            p.bash
+            p.css
+            p.dockerfile
+            p.elixir
+            p.gitcommit
+            p.gitignore
+            p.gleam
+            p.go
+            p.hcl
+            p.heex
+            p.html
+            p.hyprlang
+            p.javascript
+            p.json
+            p.lua
+            p.mermaid
+            p.nix
+            p.sql
+            p.typescript
+            p.zig
+          ]));
+          type = "lua";
+          config = "require('plugins/nvim-treesitter')";
+        }
+        nvim-web-devicons
+        plenary-nvim
+        {
+          plugin = rose-pine;
+          type = "lua";
+          config = "vim.cmd('colorscheme rose-pine-moon')";
+        }
+        tcomment_vim
+        telescope-nvim
+        telescope-fzf-native-nvim
+        vim-fugitive
+        vim-gitgutter
+        vim-repeat
+        vim-surround
+        vim-vsnip
+      ];
+      extraPackages = with pkgs; [
+        elixir-ls
+        nil
+      ];
+    };
+
+    helix = {
+      enable = true;
+      defaultEditor = false;
       extraPackages = [
         pkgs.helix-gpt
         pkgs.bash-language-server
@@ -587,6 +664,12 @@ in
       publicShare = "${config.home.homeDirectory}/public";
       templates = "${config.home.homeDirectory}/templates";
       videos = "${config.home.homeDirectory}/videos";
+    };
+    configFile = {
+      "nvim/lua" = {
+        recursive = true;
+        source = ./lua;
+      };
     };
   };
 
