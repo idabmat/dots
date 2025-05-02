@@ -420,6 +420,7 @@ in
         vim-gitgutter
         vim-repeat
         vim-surround
+        vim-test
         vim-vsnip
       ];
       extraPackages = with pkgs; [

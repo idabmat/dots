@@ -115,6 +115,13 @@ vim.keymap.set('n', '<leader>gs', telescope.git_status)
 vim.keymap.set('n', '<leader>gss', telescope.git_stash)
 vim.keymap.set('n', '<leader>tt', telescope.treesitter)
 
+vim.g['test#strategy'] = 'neovim'
+vim.g['test#neovim#term_position'] = 'vert'
+vim.keymap.set('n', '<leader>t', ':TestFile<CR>')
+vim.keymap.set('n', '<leader>s', ':TestNearest<CR>')
+vim.keymap.set('n', '<leader>l', ':TestLast<CR>')
+vim.keymap.set('n', '<leader>a', ':TestSuite<CR>')
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("lspconfig")["elixirls"].setup({
   capabilities = capabilities,
