@@ -364,11 +364,6 @@ in
         cmp-path
         cmp-vsnip
         {
-          plugin = harpoon2;
-          type = "lua";
-          config = "require('harpoon'):setup()";
-        }
-        {
           plugin = lualine-nvim;
           type = "lua";
           config = "require('plugins/lualine-nvim')";
