@@ -362,16 +362,27 @@ in
       vimAlias = true;
       extraLuaConfig = "require('configs/base')";
       plugins = with pkgs.vimPlugins; [
+        cmp-buffer
+        cmp-cmdline
+        cmp-path
+        cmp-nvim-lsp
+        cmp_luasnip
         {
           plugin = lualine-nvim;
           type = "lua";
           config = "require('plugins/lualine-nvim')";
         }
+        luasnip
         mkdir-nvim
         {
           plugin = nvim-autopairs;
           type = "lua";
           config = "require('nvim-autopairs').setup({})";
+        }
+        {
+          plugin = nvim-cmp;
+          type = "lua";
+          config = "require('plugins/cmp')";
         }
         {
           plugin = nvim-lspconfig;
