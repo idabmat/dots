@@ -52,6 +52,7 @@ local options = {
   spellfile = "$HOME/.vim-spell-en.utf-8.add",
   background = 'dark',
   termguicolors = true,
+  ttimeoutlen = 5, --snappier <esc> from insert mode
 }
 
 for k, v in pairs(options) do
