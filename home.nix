@@ -188,7 +188,7 @@ in
           src = pkgs.zsh-powerlevel10k;
         }
       ];
-      initExtra = ''
+      initContent = ''
         if [[ -f "$HOME"/.nix-profile/etc/profile.d/nix.sh ]]; then
           source "$HOME/.nix-profile/etc/profile.d/nix.sh"
         fi
@@ -715,7 +715,9 @@ in
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
-      pinentryPackage = pkgs.pinentry-tty;
+      pinentry = {
+        package = pkgs.pinentry-tty;
+      };
     };
     hyprpaper = {
       enable = true;
