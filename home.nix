@@ -9,8 +9,8 @@ let
   zen-browser = pkgs.stdenv.mkDerivation {
     name = "zen-browser";
     src = pkgs.fetchurl {
-      url = "https://github.com/zen-browser/desktop/releases/download/1.11.5b/zen-x86_64.AppImage";
-      sha256 = "0n7md6kq4wjsqinwjqarnas4v3pq2m66khckdpf2yig62m968ma4";
+      url = "https://github.com/zen-browser/desktop/releases/download/1.12b/zen-x86_64.AppImage";
+      sha256 = "0w1jj2rpv3yaxgwzhan1c3yjnb2s2nswl5dsmhr7j8g3mh783kv2";
     };
     buildInputs = with pkgs; [
       appimage-run
