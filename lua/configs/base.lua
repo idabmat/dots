@@ -8,7 +8,9 @@ vim.g.html_indent_tags = "li|p"
 
 local options = {
   number = true,                  -- Line numbers are good
-  ruler = true,
+  ruler = true,                   -- show current line,column
+  cursorline = true,              -- highlight current line
+  cursorcolumn = true,            -- highlight current column
   backspace = "indent,eol,start", -- Allow backpace in insert mode
   history = 1000,                 -- Store lots of :cmdline history
   lazyredraw = true,
