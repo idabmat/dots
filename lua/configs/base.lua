@@ -1,4 +1,3 @@
----@diagnostic disable:undefined-global
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.keymap.set('n', '<leader><leader>', '<c-^>', {})
@@ -124,16 +123,3 @@ vim.keymap.set('n', '<leader>t', ':TestFile<CR>')
 vim.keymap.set('n', '<leader>s', ':TestNearest<CR>')
 vim.keymap.set('n', '<leader>l', ':TestLast<CR>')
 vim.keymap.set('n', '<leader>a', ':TestSuite<CR>')
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup("LspFormatting", {}),
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-require("lspconfig")["elixirls"].setup({
-  capabilities = capabilities,
-  cmd = { "elixir-ls" },
-})

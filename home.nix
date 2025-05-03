@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   zen-browser = pkgs.stdenv.mkDerivation {
@@ -7,7 +12,10 @@ let
       url = "https://github.com/zen-browser/desktop/releases/download/1.11.5b/zen-x86_64.AppImage";
       sha256 = "0n7md6kq4wjsqinwjqarnas4v3pq2m66khckdpf2yig62m968ma4";
     };
-    buildInputs = with pkgs; [ appimage-run makeWrapper ];
+    buildInputs = with pkgs; [
+      appimage-run
+      makeWrapper
+    ];
     buildCommand = ''
       mkdir -p $out/bin $out/share/applications
       cp $src $out/share/applications/zen-browser.AppImage
@@ -250,18 +258,14 @@ in
       profiles = {
         me = { };
       };
-      nativeMessagingHosts = [
-        pkgs.web-eid-app
-      ];
+      nativeMessagingHosts = [ pkgs.web-eid-app ];
     };
 
     beets = {
       enable = false;
       settings = {
         directory = "/media/music";
-        plugins = [
-          "fetchart"
-        ];
+        plugins = [ "fetchart" ];
       };
     };
 
@@ -358,11 +362,6 @@ in
       vimAlias = true;
       extraLuaConfig = "require('configs/base')";
       plugins = with pkgs.vimPlugins; [
-        cmp-buffer
-        cmp-cmdline
-        cmp-nvim-lsp
-        cmp-path
-        cmp-vsnip
         {
           plugin = lualine-nvim;
           type = "lua";
@@ -375,34 +374,35 @@ in
           config = "require('nvim-autopairs').setup({})";
         }
         {
-          plugin = nvim-cmp;
+          plugin = nvim-lspconfig;
           type = "lua";
-          config = "require('plugins/nvim-cmp')";
+          config = "require('plugins/lsp')";
         }
-        nvim-lspconfig
         {
-          plugin = (nvim-treesitter.withPlugins (p: [
-            p.bash
-            p.css
-            p.dockerfile
-            p.elixir
-            p.gitcommit
-            p.gitignore
-            p.gleam
-            p.go
-            p.hcl
-            p.heex
-            p.html
-            p.hyprlang
-            p.javascript
-            p.json
-            p.lua
-            p.mermaid
-            p.nix
-            p.sql
-            p.typescript
-            p.zig
-          ]));
+          plugin = (
+            nvim-treesitter.withPlugins (p: [
+              p.bash
+              p.css
+              p.dockerfile
+              p.elixir
+              p.gitcommit
+              p.gitignore
+              p.gleam
+              p.go
+              p.hcl
+              p.heex
+              p.html
+              p.hyprlang
+              p.javascript
+              p.json
+              p.lua
+              p.mermaid
+              p.nix
+              p.sql
+              p.typescript
+              p.zig
+            ])
+          );
           type = "lua";
           config = "require('plugins/nvim-treesitter')";
         }
@@ -424,8 +424,22 @@ in
         vim-vsnip
       ];
       extraPackages = with pkgs; [
+        bash-language-server
+        dockerfile-language-server-nodejs
         elixir-ls
+        gopls
+        lua-language-server
+        marksman
         nil
+        nixfmt-rfc-style
+        rust-analyzer
+        tailwindcss-language-server
+        taplo
+        terraform-ls
+        typescript-language-server
+        vscode-langservers-extracted
+        yaml-language-server
+        zls
       ];
     };
 
@@ -456,7 +470,12 @@ in
         "language-server" = {
           gpt = {
             command = "${pkgs.helix-gpt}/bin/helix-gpt";
-            args = [ "--handler" "ollama" "--ollamaModel" "qwen2.5-coder" ];
+            args = [
+              "--handler"
+              "ollama"
+              "--ollamaModel"
+              "qwen2.5-coder"
+            ];
           };
         };
         language = [
@@ -464,14 +483,20 @@ in
             name = "hcl";
             formatter = {
               command = "${pkgs.terraform}/bin/terraform";
-              args = [ "fmt" "-" ];
+              args = [
+                "fmt"
+                "-"
+              ];
             };
           }
           {
             name = "elixir";
             formatter = {
               command = "mix";
-              args = [ "format" "-" ];
+              args = [
+                "format"
+                "-"
+              ];
             };
             "language-servers" = [
               "elixir-ls"
@@ -489,18 +514,26 @@ in
             name = "gleam";
             formatter = {
               command = "gleam";
-              args = [ "format" "--stdin" ];
+              args = [
+                "format"
+                "--stdin"
+              ];
             };
           }
           {
             name = "nix";
-            formatter = { command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"; };
+            formatter = {
+              command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+            };
           }
           {
             name = "tfvars";
             formatter = {
               command = "${pkgs.terraform}/bin/terraform";
-              args = [ "fmt" "-" ];
+              args = [
+                "fmt"
+                "-"
+              ];
             };
           }
         ];
@@ -534,9 +567,7 @@ in
           variables = [ "--all" ];
         };
         settings = {
-          monitor = [
-            "DP-1,3440x1440@143.92, 0x0, 1"
-          ];
+          monitor = [ "DP-1,3440x1440@143.92, 0x0, 1" ];
           env = [
             "NIXOS_OZONE_WL,1"
             "LIBVA_DRIVER_NAME,nvidia"
@@ -621,7 +652,7 @@ in
             "SUPER,f,togglefloating,"
             "SUPER,q,killactive,"
             "SUPER,s,exec,grim"
-            "SUPER SHIFT,s,exec,grim -g \"$(slurp)\" - | wl-copy"
+            ''SUPER SHIFT,s,exec,grim -g "$(slurp)" - | wl-copy''
             "SUPER,v,exec,walker -m clipboard"
             "SUPER,x,fullscreen,"
             "SUPER,z,exec,zen-browser"
@@ -692,7 +723,9 @@ in
         ipc = "on";
         splash = false;
         preload = [ "${config.home.homeDirectory}/.config/home-manager/wallpaper.png" ];
-        wallpaper = [ ",${config.home.homeDirectory}/.config/home-manager/wallpaper.png" ];
+        wallpaper = [
+          ",${config.home.homeDirectory}/.config/home-manager/wallpaper.png"
+        ];
       };
     };
   };
