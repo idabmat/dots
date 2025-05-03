@@ -68,39 +68,6 @@ vim.lsp.config('nil_ls', {
   },
 })
 
-vim.lsp.config('tailwindss', {
-  cmd = { 'taiwindcss-language-server', '--stdio' },
-  filetypes = { 'aspnetcorerazor', 'astro', 'astro-markdown', 'blade', 'clojure', 'django-html', 'htmldjango', 'edge', 'eelixir', 'elixir', 'ejs', 'erb', 'eruby', 'gohtml', 'gohtmltmpl', 'haml', 'handlebars', 'hbs', 'html', 'htmlangular', 'html-eex', 'heex', 'jade', 'leaf', 'liquid', 'markdown', 'mdx', 'mustache', 'njk', 'nunjucks', 'php', 'razor', 'slim', 'twig', 'css', 'less', 'postcss', 'sass', 'scss', 'stylus', 'sugarss', 'javascript', 'javascriptreact', 'reason', 'rescript', 'typescript', 'typescriptreact', 'vue', 'svelte', 'templ' },
-  settings = {
-    tailwindCSS = {
-      classAttributes = { 'class', 'className', 'class:list', 'classList', 'ngClass' },
-      includeLanguages = {
-        eelixir = 'html-eex',
-        eruby = 'erb',
-        htmlangular = 'html',
-        templ = 'html'
-      },
-      lint = {
-        cssConflict = 'warning',
-        invalidApply = 'error',
-        invalidConfigPath = 'error',
-        invalidScreen = 'error',
-        invalidTailwindDirective = 'error',
-        invalidVariant = 'error',
-        recommendedVariantOrder = 'warning'
-      },
-      validate = true
-    }
-  }
-})
-
-vim.lsp.config('zls', {
-  cmd = { 'zls' },
-  filetypes = { 'zig', 'zir' },
-  root_markers = { 'zls.json', 'build.zig', '.git' },
-  workspace_required = false,
-})
-
 vim.lsp.enable('bashls')
 vim.lsp.enable('cssls')
 vim.lsp.enable('dockerls')
