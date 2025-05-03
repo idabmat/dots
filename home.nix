@@ -368,6 +368,11 @@ in
         cmp-nvim-lsp
         cmp_luasnip
         {
+          plugin = hardtime-nvim;
+          type = "lua";
+          config = "require('plugins/hardtime')";
+        }
+        {
           plugin = lualine-nvim;
           type = "lua";
           config = "require('plugins/lualine-nvim')";
@@ -432,7 +437,6 @@ in
         vim-repeat
         vim-surround
         vim-test
-        vim-vsnip
       ];
       extraPackages = with pkgs; [
         bash-language-server
