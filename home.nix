@@ -362,6 +362,11 @@ in
       vimAlias = true;
       extraLuaConfig = "require('configs/base')";
       plugins = with pkgs.vimPlugins; [
+        {
+          plugin = codecompanion-nvim;
+          type = "lua";
+          config = "require('plugins/codecompanion')";
+        }
         cmp-buffer
         cmp-cmdline
         cmp-path
