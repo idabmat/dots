@@ -12,7 +12,6 @@ local options = {
   cursorcolumn = true,            -- highlight current column
   backspace = "indent,eol,start", -- Allow backpace in insert mode
   history = 1000,                 -- Store lots of :cmdline history
-  lazyredraw = true,
   showcmd = true,                 -- Show incomplete cmds down the bottom
   showmode = true,                -- Show current mode down the bottom
   visualbell = true,              -- No sounds
