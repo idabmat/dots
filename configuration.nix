@@ -2,17 +2,20 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  zfsCompatibleKernelPackages = lib.filterAttrs
-    (
-      name: kernelPackages:
-        (builtins.match "linux_[0-9]+_[0-9]+" name) != null
-        && (builtins.tryEval kernelPackages).success
-        && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
-    )
-    pkgs.linuxKernel.packages;
+  zfsCompatibleKernelPackages = lib.filterAttrs (
+    name: kernelPackages:
+    (builtins.match "linux_[0-9]+_[0-9]+" name) != null
+    && (builtins.tryEval kernelPackages).success
+    && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
+  ) pkgs.linuxKernel.packages;
   latestKernelPackage = lib.last (
     lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (
       builtins.attrValues zfsCompatibleKernelPackages
@@ -27,10 +30,9 @@ in
     };
   };
 
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot = {
@@ -66,7 +68,7 @@ in
       ];
     };
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       modesetting = {
         enable = true;
       };
@@ -128,7 +130,7 @@ in
 
   environment = {
     systemPackages = with pkgs; [
-      helix
+      neovim
     ];
     shells = with pkgs; [
       zsh
@@ -138,7 +140,10 @@ in
   nix = {
     package = pkgs.nixVersions.stable;
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       substituters = [
         "https://cuda-maintainers.cachix.org"
       ];
@@ -149,6 +154,10 @@ in
   };
 
   programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
     hyprland = {
       enable = true;
     };
@@ -198,7 +207,7 @@ in
       enable = true;
     };
     udev = {
-      packages = [pkgs.yubikey-personalization];
+      packages = [ pkgs.yubikey-personalization ];
     };
     xserver = {
       videoDrivers = [ "nvidia" ];
@@ -235,7 +244,5 @@ in
     };
   };
 
-
   system.stateVersion = "24.05";
 }
-
