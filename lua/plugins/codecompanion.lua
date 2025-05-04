@@ -4,13 +4,22 @@ require('codecompanion').setup({
       adapter = 'r1',
     },
     inline = {
-      adapter = 'r1',
+      adapter = 'coder',
     },
     cmd = {
-      adapter = 'r1',
+      adapter = 'coder',
     },
   },
   adapters = {
+    coder = function()
+      return require('codecompanion.adapters').extend('ollama', {
+        schema = {
+          model = {
+            default = 'deepseek-coder-v2:latest',
+          },
+        },
+      })
+    end,
     r1 = function()
       return require('codecompanion.adapters').extend('ollama', {
         schema = {
@@ -19,7 +28,7 @@ require('codecompanion').setup({
           },
         },
       })
-    end
+    end,
   },
   opts = {
     log_level = 'DEBUG',
