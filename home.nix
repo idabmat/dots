@@ -391,6 +391,12 @@ in
         luasnip
         mkdir-nvim
         {
+          plugin = neotest;
+          type = "lua";
+          config = "require('plugins/neotest')";
+        }
+        neotest-elixir
+        {
           plugin = nvim-autopairs;
           type = "lua";
           config = "require('nvim-autopairs').setup({})";
@@ -446,7 +452,6 @@ in
         vim-fugitive
         vim-repeat
         vim-surround
-        vim-test
       ];
       extraPackages = with pkgs; [
         bash-language-server
