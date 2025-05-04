@@ -368,6 +368,12 @@ in
         cmp-nvim-lsp
         cmp_luasnip
         {
+          plugin = gitsigns-nvim;
+          type = "lua";
+          config = "require('plugins/gitsigns')";
+        }
+        gitsigns-nvim
+        {
           plugin = hardtime-nvim;
           type = "lua";
           config = "require('plugins/hardtime')";
@@ -433,7 +439,6 @@ in
         telescope-nvim
         telescope-fzf-native-nvim
         vim-fugitive
-        vim-gitgutter
         vim-repeat
         vim-surround
         vim-test
