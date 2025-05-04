@@ -96,25 +96,21 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
   end
 })
 
-vim.keymap.set('n', '<leader>h', vim.lsp.buf.signature_help, {})
-vim.keymap.set('n', '<leader>hh', vim.lsp.buf.hover, {})
-vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, {})
+vim.keymap.set('n', '<leader>h', vim.lsp.buf.hover, {})
 vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, {})
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
+
 local telescope = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', telescope.find_files)
-vim.keymap.set('n', '<leader>fg', telescope.live_grep)
-vim.keymap.set('n', '<leader>fb', telescope.buffers)
-vim.keymap.set('n', '<leader>fh', telescope.help_tags)
-vim.keymap.set('n', '<leader>r', telescope.lsp_references)
-vim.keymap.set('n', '<leader>i', telescope.lsp_implementations)
-vim.keymap.set('n', '<leader>d', telescope.lsp_definitions)
-vim.keymap.set('n', '<leader>td', telescope.lsp_type_definitions)
-vim.keymap.set('n', '<leader>dd', telescope.diagnostics)
+vim.keymap.set('n', '<leader>f', telescope.find_files)
+vim.keymap.set('n', '<leader>p', telescope.live_grep)
+vim.keymap.set('n', '<leader>b', telescope.buffers)
+vim.keymap.set('n', 'gr', telescope.lsp_references)
+vim.keymap.set('n', 'gi', telescope.lsp_implementations)
+vim.keymap.set('n', 'gd', telescope.lsp_definitions)
+vim.keymap.set('n', '<leader>d', telescope.diagnostics)
 vim.keymap.set('n', '<leader>gb', telescope.git_branches)
 vim.keymap.set('n', '<leader>gs', telescope.git_status)
 vim.keymap.set('n', '<leader>gss', telescope.git_stash)
-vim.keymap.set('n', '<leader>tt', telescope.treesitter)
 
 vim.g['test#strategy'] = 'neovim'
 vim.g['test#neovim#term_position'] = 'vert'
