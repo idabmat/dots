@@ -1,7 +1,7 @@
 require('codecompanion').setup({
   strategies = {
     chat = {
-      adapter = 'r1',
+      adapter = 'coder',
     },
     inline = {
       adapter = 'coder',
@@ -10,7 +10,26 @@ require('codecompanion').setup({
       adapter = 'coder',
     },
   },
+  extensions = {
+    mcphub = {
+      callback = 'mcphub.extensions.codecompanion',
+      opts = {
+        show_result_in_chat = true,
+        make_vars = true,
+        make_slash_commands = true,
+      },
+    },
+  },
   adapters = {
+    qwen = function()
+      return require('codecompanion.adapters').extend('ollama', {
+        schema = {
+          model = {
+            default = 'qwen2.5-coder:latest',
+          },
+        },
+      })
+    end,
     coder = function()
       return require('codecompanion.adapters').extend('ollama', {
         schema = {

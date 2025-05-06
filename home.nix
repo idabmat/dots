@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  mcp-hub,
   ...
 }:
 
@@ -22,6 +23,79 @@ let
       chmod +x $out/share/applications/zen-browser.AppImage
       makeWrapper ${pkgs.appimage-run}/bin/appimage-run $out/bin/zen-browser --add-flags "$out/share/applications/zen-browser.AppImage"
     '';
+  };
+  codecompanion = pkgs.vimUtils.buildVimPlugin {
+    name = "codecompanion.nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "olimorris";
+      repo = "codecompanion.nvim";
+      rev = "01d523e7687d71c52dbee0a250b2f8fed85b4f60";
+      sha256 = "AOvupJKJufd2fKJmGXUeMo+nHLDGr5TCz18BWIyd+bc=";
+    };
+    nvimSkipModule = [
+      "codecompanion.adapters.ollama"
+      "codecompanion.adapters.githubmodels"
+      "codecompanion.adapters.azure_openai"
+      "codecompanion.adapters.deepseek"
+      "codecompanion.adapters.anthropic"
+      "codecompanion.adapters.mistral"
+      "codecompanion.adapters.gemini"
+      "codecompanion.adapters.huggingface"
+      "codecompanion.adapters.openai"
+      "codecompanion.adapters.novita"
+      "codecompanion.adapters.xai"
+      "codecompanion.adapters.copilot"
+      "codecompanion.adapters.openai_compatible"
+      "codecompanion.http"
+      "codecompanion.strategies.inline.init"
+      "codecompanion.strategies.cmd"
+      "codecompanion.strategies.chat.slash_commands.file"
+      "codecompanion.strategies.chat.slash_commands.help"
+      "codecompanion.strategies.chat.slash_commands.buffer"
+      "codecompanion.strategies.chat.slash_commands.symbols"
+      "codecompanion.strategies.chat.slash_commands.fetch"
+      "codecompanion.strategies.chat.agents.tools.files"
+      "codecompanion.strategies.chat.agents.executor.cmd"
+      "codecompanion.strategies.chat.agents.executor.init"
+      "codecompanion.strategies.chat.agents.init"
+      "codecompanion.strategies.chat.init"
+      "codecompanion.strategies.chat.keymaps"
+      "codecompanion.providers.slash_commands.default"
+      "codecompanion.providers.actions.telescope"
+      "codecompanion.providers.actions.snacks"
+      "codecompanion.providers.actions.mini_pick"
+      "codecompanion.utils.adapters"
+      "minimal"
+    ];
+  };
+  mcphub_nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "mcphub.nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "ravitemer";
+      repo = "mcphub.nvim";
+      rev = "HEAD";
+      sha256 = "44A0kL8Ui28MAN3tIsIa+CTnwNBHq45owoM7kdCNDPI=";
+    };
+    nvimSkipModule = [
+      "mcphub"
+      "mcphub.hub"
+      "bundled_build"
+      "mcphub.extensions.avante"
+      "mcphub.extensions.codecompanion"
+      "mcphub.extensions.codecompanion.xml_tool"
+      "mcphub.extensions.lualine"
+      "mcphub.native.neovim.lsp"
+      "mcphub.native.neovim.terminal"
+      "mcphub.native.neovim.files.search"
+      "mcphub.native.neovim.files.write"
+      "mcphub.native.neovim.files.operations"
+      "mcphub.native.neovim.files.init"
+      "mcphub.native.neovim.files.replace"
+      "mcphub.native.neovim.init"
+      "mcphub.native.neovim.prompts"
+      "mcphub.native.mcphub.init"
+      "mcphub.native.mcphub.guide"
+    ];
   };
 in
 {
@@ -87,6 +161,7 @@ in
       pkgs.swaynotificationcenter
       pkgs.spotify
       zen-browser
+      mcp-hub.packages.${pkgs.system}.default
     ];
 
     file = {
@@ -363,7 +438,7 @@ in
       extraLuaConfig = "require('configs/base')";
       plugins = with pkgs.vimPlugins; [
         {
-          plugin = codecompanion-nvim;
+          plugin = codecompanion;
           type = "lua";
           config = "require('plugins/codecompanion')";
         }
@@ -389,6 +464,11 @@ in
           config = "require('plugins/lualine-nvim')";
         }
         luasnip
+        {
+          plugin = mcphub_nvim;
+          type = "lua";
+          config = "require('plugins/mcphub')";
+        }
         mkdir-nvim
         {
           plugin = neotest;
@@ -616,6 +696,17 @@ in
       "nvim/lua" = {
         recursive = true;
         source = ./lua;
+      };
+      "mcphub/servers.json" = {
+        text = builtins.toJSON {
+          nativeMCPServers = [ ];
+          mcpServers = {
+            tidewave = {
+              url = "http://localhost:4000/tidewave/mcp";
+              disabled = false;
+            };
+          };
+        };
       };
     };
   };
