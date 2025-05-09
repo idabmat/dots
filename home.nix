@@ -10,8 +10,8 @@ let
   zen-browser = pkgs.stdenv.mkDerivation {
     name = "zen-browser";
     src = pkgs.fetchurl {
-      url = "https://github.com/zen-browser/desktop/releases/download/1.12b/zen-x86_64.AppImage";
-      sha256 = "0w1jj2rpv3yaxgwzhan1c3yjnb2s2nswl5dsmhr7j8g3mh783kv2";
+      url = "https://github.com/zen-browser/desktop/releases/download/1.12.3b/zen-x86_64.AppImage";
+      sha256 = "1khajga2r8ndqd3rg8gypr0c58hhzbz7ajnif9q5h20zi2wjfbli";
     };
     buildInputs = with pkgs; [
       appimage-run
@@ -29,8 +29,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "olimorris";
       repo = "codecompanion.nvim";
-      rev = "01d523e7687d71c52dbee0a250b2f8fed85b4f60";
-      sha256 = "AOvupJKJufd2fKJmGXUeMo+nHLDGr5TCz18BWIyd+bc=";
+      rev = "HEAD";
+      sha256 = "8ltbsXcYbOu6mKcI9MsV8JSYKUJEKD89GsCLps+ak6k=";
     };
     nvimSkipModule = [
       "codecompanion.adapters.ollama"
@@ -74,7 +74,7 @@ let
       owner = "ravitemer";
       repo = "mcphub.nvim";
       rev = "HEAD";
-      sha256 = "44A0kL8Ui28MAN3tIsIa+CTnwNBHq45owoM7kdCNDPI=";
+      sha256 = "0pODBVZxs/P4pUR2X6GuTglmWeB5fpKStdx9URbfV1M=";
     };
     nvimSkipModule = [
       "mcphub"
