@@ -183,7 +183,6 @@
 
     ghostty = {
       enable = true;
-      enableZshIntegration = true;
       settings = {
         window-decoration = false;
         gtk-tabs-location = "bottom";
@@ -237,7 +236,6 @@
 
     zoxide = {
       enable = true;
-      enableZshIntegration = true;
     };
 
     bat = {
@@ -260,7 +258,6 @@
 
     direnv = {
       enable = true;
-      enableZshIntegration = true;
     };
 
     tmux = {
@@ -297,7 +294,6 @@
 
     fzf = {
       enable = true;
-      enableZshIntegration = true;
       colors = {
         fg = "#908caa";
         bg = "#232136";
@@ -318,7 +314,6 @@
 
     yazi = {
       enable = true;
-      enableZshIntegration = true;
     };
 
     neovim = {
