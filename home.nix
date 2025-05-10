@@ -7,9 +7,9 @@
 }:
 
 let
-  zen-browser = import ./zen-browser.nix;
-  codecompanion = import ./codecompanion.nix;
-  mcphub_nvim = import ./mcphub_nvim.nix;
+  zen-browser = (import ./zen-browser.nix { inherit pkgs; });
+  codecompanion = (import ./nvim/codecompanion.nix { inherit pkgs; });
+  mcphub_nvim = (import ./nvim/mcphub_nvim.nix { inherit pkgs; });
 in
 {
   nixpkgs = {
@@ -73,7 +73,7 @@ in
       pkgs.libation
       pkgs.swaynotificationcenter
       pkgs.spotify
-      (zen-browser { inherit pkgs; })
+      zen-browser
       mcp-hub.packages.${pkgs.system}.default
     ];
 
@@ -351,7 +351,7 @@ in
       extraLuaConfig = "require('configs/base')";
       plugins = with pkgs.vimPlugins; [
         {
-          plugin = (codecompanion { inherit pkgs; });
+          plugin = codecompanion;
           type = "lua";
           config = "require('plugins/codecompanion')";
         }
@@ -378,7 +378,7 @@ in
         }
         luasnip
         {
-          plugin = (mcphub_nvim { inherit pkgs; });
+          plugin = mcphub_nvim;
           type = "lua";
           config = "require('plugins/mcphub')";
         }
