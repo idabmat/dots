@@ -6,9 +6,6 @@
   ...
 }:
 
-let
-  zen-browser = (import ./zen-browser.nix { inherit pkgs; });
-in
 {
   nixpkgs = {
     config = {
@@ -71,7 +68,7 @@ in
       pkgs.libation
       pkgs.swaynotificationcenter
       pkgs.spotify
-      zen-browser
+      (import ./apps/zen-browser.nix { inherit pkgs; })
       mcp-hub.packages.${pkgs.system}.default
     ];
 
