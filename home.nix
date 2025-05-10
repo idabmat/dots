@@ -260,38 +260,6 @@
       enable = true;
     };
 
-    tmux = {
-      enable = true;
-      shell = "${pkgs.zsh}/bin/zsh";
-      prefix = "C-a";
-      baseIndex = 1;
-      clock24 = true;
-      keyMode = "vi";
-      shortcut = "a";
-      mouse = true;
-      terminal = "xterm-256color";
-      escapeTime = 0;
-      newSession = true;
-      plugins = [
-        pkgs.tmuxPlugins.vim-tmux-navigator
-        {
-          plugin = pkgs.tmuxPlugins.rose-pine;
-          extraConfig = "set -g @rose_pine_variant 'moon'";
-        }
-      ];
-      extraConfig = ''
-        set -ag terminal-overrides ",*:RGB"
-        bind C-a last-window
-        bind -r H resize-pane -L 5
-        bind -r J resize-pane -D 5
-        bind -r K resize-pane -U 5
-        bind -r L resize-pane -R 5
-        bind C-u copy-mode
-        bind -T copy-mode-vi C-v send-keys -X begin-selection
-        bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
-      '';
-    };
-
     fzf = {
       enable = true;
       colors = {
