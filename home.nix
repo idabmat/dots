@@ -609,8 +609,7 @@ in
     };
     configFile = {
       "nvim/lua" = {
-        recursive = true;
-        source = ./lua;
+        source = config.lib.file.mkOutOfStoreSymlink ./nvim/lua;
       };
       "mcphub/servers.json" = {
         text = builtins.toJSON {
