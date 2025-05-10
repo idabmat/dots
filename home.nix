@@ -181,23 +181,6 @@
       '';
     };
 
-    kitty = {
-      enable = true;
-      font = {
-        package = pkgs.nerd-fonts.caskaydia-cove;
-        name = "CaskaydiaCove Nerd Font Mono";
-        size = 14;
-      };
-      settings = {
-        disable_ligatures = "cursor";
-        background_opacity = 1.0;
-      };
-      shellIntegration = {
-        enableZshIntegration = true;
-      };
-      themeFile = "rose-pine";
-    };
-
     ghostty = {
       enable = true;
       enableZshIntegration = true;
