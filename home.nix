@@ -68,7 +68,7 @@
       pkgs.libation
       pkgs.swaynotificationcenter
       pkgs.spotify
-      (import ./apps/zen-browser.nix { inherit pkgs; })
+      (pkgs.callPackage ./apps/zen-browser.nix { })
       mcp-hub.packages.${pkgs.system}.default
     ];
 
@@ -464,7 +464,7 @@
             ''SUPER SHIFT,s,exec,grim -g "$(slurp)" - | wl-copy''
             "SUPER,v,exec,walker -m clipboard"
             "SUPER,x,fullscreen,"
-            "SUPER,z,exec,zen-browser"
+            "SUPER,z,exec,zen"
             "SUPER,return,exec,ghostty"
             "SUPER,space,exec,swaync-client -t"
           ];
