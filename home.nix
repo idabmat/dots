@@ -59,6 +59,7 @@
       pkgs.yek
       pkgs.jq
       pkgs.cantarell-fonts
+      pkgs.nerd-fonts.caskaydia-cove
       pkgs.slurp
       pkgs.grim
       pkgs.motion
