@@ -301,6 +301,7 @@
         marksman
         nil
         nixfmt-rfc-style
+        pyright
         rust-analyzer
         tailwindcss-language-server
         taplo
