@@ -1,7 +1,7 @@
 require('codecompanion').setup({
   strategies = {
     chat = {
-      adapter = 'qwen3',
+      adapter = 'my_openai',
       tools = {
         opts = {
           auto_submit_errors = true,
@@ -10,13 +10,13 @@ require('codecompanion').setup({
       },
     },
     inline = {
-      adapter = 'qwen3',
+      adapter = 'my_openai',
     },
     agent = {
-      adapter = 'qwen3',
+      adapter = 'my_openai',
     },
     cmd = {
-      adapter = 'qwen3',
+      adapter = 'my_openai',
     },
   },
   extensions = {
@@ -30,8 +30,8 @@ require('codecompanion').setup({
     },
   },
   adapters = {
-    qwen3 = function()
-      return require('codecompanion.adapters').extend('ollama', {
+    my_openai = function()
+      return require('codecompanion.adapters').extend('openai_compatible', {
         schema = {
           model = {
             default = 'qwen3:latest',
@@ -39,26 +39,24 @@ require('codecompanion').setup({
         },
       })
     end,
-    coder = function()
-      return require('codecompanion.adapters').extend('ollama', {
-        schema = {
-          model = {
-            default = 'deepseek-coder-v2:latest',
-          },
-        },
-      })
-    end,
-    r1 = function()
-      return require('codecompanion.adapters').extend('ollama', {
-        schema = {
-          model = {
-            default = 'deepseek-r1:latest',
-          },
-        },
-      })
-    end,
+    opts = {
+      show_model_choices = true,
+    },
   },
   opts = {
     log_level = 'DEBUG',
+  },
+  display = {
+    action_palette = {
+      prompt = 'Prompt',
+      provider = 'telescope',
+      opts = {
+        show_default_actions = true,
+        show_default_prompt_library = true,
+      },
+    },
+    chat = {
+      show_settings = false,
+    },
   },
 })
