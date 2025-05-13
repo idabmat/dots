@@ -1,13 +1,22 @@
 require('codecompanion').setup({
   strategies = {
     chat = {
-      adapter = 'coder',
+      adapter = 'qwen3',
+      tools = {
+        opts = {
+          auto_submit_errors = true,
+          auto_submit_success = true,
+        },
+      },
     },
     inline = {
-      adapter = 'coder',
+      adapter = 'qwen3',
+    },
+    agent = {
+      adapter = 'qwen3',
     },
     cmd = {
-      adapter = 'coder',
+      adapter = 'qwen3',
     },
   },
   extensions = {
@@ -21,11 +30,11 @@ require('codecompanion').setup({
     },
   },
   adapters = {
-    qwen = function()
+    qwen3 = function()
       return require('codecompanion.adapters').extend('ollama', {
         schema = {
           model = {
-            default = 'qwen2.5-coder:latest',
+            default = 'qwen3:latest',
           },
         },
       })
