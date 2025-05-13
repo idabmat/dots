@@ -121,3 +121,7 @@ vim.keymap.set('n', '<leader>ts', function() neotest.run.stop() end)
 vim.keymap.set('n', '<leader>ta', function() neotest.run.attach() end)
 vim.keymap.set('n', '<leader>to', ':Neotest output<CR>')
 vim.keymap.set('n', '<leader>tp', ':Neotest output-panel<CR>')
+
+local codecompanion = require('codecompanion')
+vim.keymap.set('n', '<leader>cc', function() codecompanion.chat() end)
+vim.keymap.set('n', '<leader>ca', function() codecompanion.actions() end)
