@@ -82,6 +82,7 @@ with pkgs.vimPlugins;
         p.nix
         p.sql
         p.typescript
+        p.yaml
         p.zig
       ])
     );
