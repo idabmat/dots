@@ -6,7 +6,7 @@ pkgs.vimUtils.buildVimPlugin {
     owner = "olimorris";
     repo = "codecompanion.nvim";
     rev = "HEAD";
-    sha256 = "8ltbsXcYbOu6mKcI9MsV8JSYKUJEKD89GsCLps+ak6k=";
+    sha256 = "QaMhacXZVnrn6yEbREHgaQeClCFt+han9uIbQBpc1vw=";
   };
   nvimSkipModule = [
     "codecompanion.adapters.ollama"
@@ -44,3 +44,4 @@ pkgs.vimUtils.buildVimPlugin {
     "minimal"
   ];
 }
+

@@ -6,7 +6,7 @@ pkgs.vimUtils.buildVimPlugin {
     owner = "ravitemer";
     repo = "mcphub.nvim";
     rev = "HEAD";
-    sha256 = "0pODBVZxs/P4pUR2X6GuTglmWeB5fpKStdx9URbfV1M=";
+    sha256 = "u7Vv73FfZQqcY6nrS1DtZ8ENwHUWnCQ28FPQ/dTwd2c=";
   };
   nvimSkipModule = [
     "mcphub"

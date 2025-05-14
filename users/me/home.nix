@@ -7,78 +7,60 @@
 }:
 
 {
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
-
   home = {
     username = "me";
     homeDirectory = "/home/me";
-    stateVersion = "24.05";
-    packages = [
-      pkgs.lsd
-      pkgs.lla
-      pkgs.graphite-cli
-      pkgs.python3
-      pkgs.exercism
-      pkgs.btop
-      pkgs.ps
-      pkgs.unzip
-      pkgs.silver-searcher
-      pkgs.devbox
-      pkgs.ripgrep
-      pkgs.walker
-      pkgs.bitwarden-desktop
-      pkgs.yubikey-manager
-      pkgs.yubioath-flutter
-      pkgs.slack
-      pkgs.chromium
-      pkgs.discord
-      pkgs.wl-clipboard
-      pkgs.openrgb
-      pkgs.flyctl
-      pkgs.gnome-podcasts
-      pkgs.gnome-music
-      pkgs.mplayer
-      pkgs.timg
-      pkgs.localsearch
-      pkgs.pavucontrol
-      pkgs.playerctl
-      pkgs.code-cursor
-      pkgs.rose-pine-cursor
-      pkgs.rose-pine-gtk-theme
-      pkgs.rose-pine-icon-theme
-      pkgs.gradience
-      pkgs.nwg-look
-      pkgs.adw-gtk3
-      pkgs.adwaita-icon-theme
-      pkgs.nautilus
-      pkgs.aichat
-      pkgs.yek
-      pkgs.jq
-      pkgs.cantarell-fonts
-      pkgs.nerd-fonts.caskaydia-cove
-      pkgs.slurp
-      pkgs.grim
-      pkgs.motion
-      pkgs.gimp
-      pkgs.jellyfin
-      pkgs.audiobookshelf
-      pkgs.libation
-      pkgs.swaynotificationcenter
-      pkgs.spotify
-      (pkgs.callPackage ./apps/zen-browser.nix { })
+    stateVersion = "24.11";
+    packages = with pkgs; [
+      neofetch
+      lsd
+      graphite-cli
+      python3
+      exercism
+      btop
+      ps
+      unzip
+      silver-searcher
+      devbox
+      ripgrep
+      walker
+      bitwarden-desktop
+      yubikey-manager
+      yubioath-flutter
+      slack
+      discord
+      wl-clipboard
+      openrgb
+      flyctl
+      mplayer
+      timg
+      pavucontrol
+      playerctl
+      rose-pine-cursor
+      rose-pine-gtk-theme
+      rose-pine-icon-theme
+      gradience
+      nwg-look
+      adw-gtk3
+      adwaita-icon-theme
+      nautilus
+      aichat
+      jq
+      cantarell-fonts
+      nerd-fonts.caskaydia-cove
+      slurp
+      grim
+      gimp
+      swaynotificationcenter
+      spotify
+      (callPackage ../../apps/zen.nix { })
       mcp-hub.packages.${pkgs.system}.default
     ];
-
     file = {
       ".p10k.zsh" = {
         source = ./p10k.zsh;
       };
     };
-
     pointerCursor = {
       gtk = {
         enable = true;
@@ -92,21 +74,15 @@
         mkdir -p ${config.home.homeDirectory}/.cache/oh-my-zsh/completions
         ${pkgs.devbox}/bin/devbox completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_devbox
         ${pkgs.graphite-cli}/bin/gt completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_gt
-        ${pkgs.lla}/bin/lla completion zsh --path ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_lla
         ${pkgs.exercism}/bin/exercism completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_exercism
       '';
     };
-  };
-
-  dconf = {
-    enable = true;
   };
 
   programs = {
     home-manager = {
       enable = true;
     };
-
     git = {
       enable = true;
       userName = "Igor de Alcantara Barroso";
@@ -227,14 +203,6 @@
       nativeMessagingHosts = [ pkgs.web-eid-app ];
     };
 
-    beets = {
-      enable = false;
-      settings = {
-        directory = "/media/music";
-        plugins = [ "fetchart" ];
-      };
-    };
-
     zoxide = {
       enable = true;
     };
@@ -322,20 +290,16 @@
           variables = [ "--all" ];
         };
         settings = {
-          monitor = [ "DP-1,3440x1440@143.92, 0x0, 1" ];
+          monitor = [ "eDP-1,2560x1600@180, 0x0, 1.25" ];
           env = [
             "NIXOS_OZONE_WL,1"
-            "LIBVA_DRIVER_NAME,nvidia"
-            "GBM_BACKEND,nvidia-drm"
-            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
             "__GL_GSYNC_ALLOWED,1"
             "__GL_VRR_ALLOWED,1"
             "NVD_BACKEND,direct"
             "XCURSOR_SIZE,32"
             "HYPRCURSOR_THEME,BreezeX-RosePine-Linux"
             "HYPRCURSOR_SIZE,32"
-            "FREETYPE_PROPERTIES,cff:no-stem-darkening=0 autofitter:no-stem-darkening=0"
-            "GDK_DPI_SCALE,1.5"
+            "GDK_DPI_SCALE,1.25"
           ];
           exec-once = [
             "walker --gapplication-service"
@@ -368,8 +332,8 @@
             rounding = 10;
           };
           gestures = {
-            workspace_swipe = "true";
-            workspace_swipe_forever = "true";
+            workspace_swipe = true;
+            workspace_swipe_touch = true;
           };
           bind = [
             "SUPER,n,movefocus,l"
@@ -405,7 +369,7 @@
             "SUPER,a,exec,walker -m applications"
             "SUPER,d,exec,walker -m websearch"
             "SUPER,j,exec,walker -m emojis"
-            "SUPER,t,exec,ghostty -e ${config.home.homeDirectory}/code/todox/bin/todox"
+            # "SUPER,t,exec,ghostty -e ${config.home.homeDirectory}/code/todox/bin/todox"
             "SUPER,f,togglefloating,"
             "SUPER,q,killactive,"
             "SUPER,s,exec,grim"
@@ -492,10 +456,8 @@
       settings = {
         ipc = "on";
         splash = false;
-        preload = [ "${config.home.homeDirectory}/.config/home-manager/wallpaper.png" ];
-        wallpaper = [
-          ",${config.home.homeDirectory}/.config/home-manager/wallpaper.png"
-        ];
+        preload = [ (toString ./wallpaper.png) ];
+        wallpaper = [ ",${toString ./wallpaper.png}" ];
       };
     };
   };

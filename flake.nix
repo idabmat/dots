@@ -1,32 +1,46 @@
 {
-  description = "Home Manager configuration of me";
-
+  description = "System configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+    };
     mcp-hub.url = "github:ravitemer/mcp-hub";
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
     };
   };
-
   outputs =
+    inputs@{ nixpkgs, home-manager, ... }:
     {
-      nixpkgs,
-      home-manager,
-      mcp-hub,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      homeConfigurations."me" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        extraSpecialArgs = { inherit mcp-hub; };
-        modules = [ ./home.nix ];
+      nixosConfigurations = {
+        nixtab =
+          let
+            users = {
+              "me" = ./users/me/home.nix;
+            };
+            specialArgs = { inherit users; };
+          in
+          nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = specialArgs;
+            modules = [
+              ./hosts/nixtab
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  extraSpecialArgs = inputs // specialArgs;
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users = users;
+                };
+              }
+            ];
+          };
       };
     };
 }
