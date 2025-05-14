@@ -53,6 +53,7 @@
       gimp
       swaynotificationcenter
       spotify
+      iio-hyprland
       (callPackage ../../apps/zen.nix { })
       mcp-hub.packages.${pkgs.system}.default
     ];
@@ -305,6 +306,7 @@
             "walker --gapplication-service"
             "hyprctl setcursor BreezeX-RosePine-Linux 32"
             "swaync"
+            "iio-hyprland"
           ];
           input = {
             natural_scroll = "yes";

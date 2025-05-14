@@ -79,6 +79,11 @@
         enable = true;
       };
     };
+    sensor = {
+      iio = {
+        enable = true;
+      };
+    };
   };
 
   networking = {
