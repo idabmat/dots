@@ -458,8 +458,8 @@
       settings = {
         ipc = "on";
         splash = false;
-        preload = [ (toString ./wallpaper.png) ];
-        wallpaper = [ ",${toString ./wallpaper.png}" ];
+        preload = [ (toString ./wallpaper.jpg) ];
+        wallpaper = [ ",${toString ./wallpaper.jpg}" ];
       };
     };
   };
