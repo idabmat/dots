@@ -12,7 +12,7 @@
     homeDirectory = "/home/me";
     stateVersion = "24.11";
     packages = with pkgs; [
-      neofetch
+      fastfetch
       lsd
       graphite-cli
       python3
@@ -56,6 +56,7 @@
       iio-hyprland
       (callPackage ../../apps/zen.nix { })
       mcp-hub.packages.${pkgs.system}.default
+      # vulkan-hdr-layer-kwin6
     ];
     file = {
       ".p10k.zsh" = {
@@ -78,6 +79,10 @@
         ${pkgs.exercism}/bin/exercism completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_exercism
       '';
     };
+  };
+
+  dconf = {
+    enable = true;
   };
 
   programs = {
@@ -291,8 +296,15 @@
           variables = [ "--all" ];
         };
         settings = {
+          ecosystem = {
+            no_update_news = false;
+            no_donation_nag = true;
+          };
+          experimental = {
+            xx_color_management_v4 = false;
+          };
           monitor = [
-            "eDP-1,2560x1600@180,0x1400,1.25"
+            "eDP-1,2560x1600@180,0x1440,1.25"
             ",preferred,0x0,1"
           ];
           env = [
@@ -339,7 +351,14 @@
           gestures = {
             workspace_swipe = true;
             workspace_swipe_touch = true;
+            workspace_swipe_forever = true;
           };
+          device = [
+            {
+              name = "elan9008:00-04f3:43c7";
+              output = "eDP-1";
+            }
+          ];
           bind = [
             "SUPER,n,movefocus,l"
             "SUPER,e,movefocus,d"
