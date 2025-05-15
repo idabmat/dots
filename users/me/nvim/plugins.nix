@@ -92,9 +92,9 @@ with pkgs.vimPlugins;
   nvim-web-devicons
   plenary-nvim
   {
-    plugin = rose-pine;
+    plugin = neovim-ayu;
     type = "lua";
-    config = "vim.cmd('colorscheme rose-pine-moon')";
+    config = "require('plugins/theme')";
   }
   tcomment_vim
   telescope-nvim

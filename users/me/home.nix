@@ -36,9 +36,12 @@
       timg
       pavucontrol
       playerctl
+      ayu-theme-gtk
       rose-pine-cursor
-      rose-pine-gtk-theme
-      rose-pine-icon-theme
+      beauty-line-icon-theme
+      kdePackages.qtwayland
+      kdePackages.qt6ct
+      kdePackages.qtstyleplugin-kvantum
       gradience
       nwg-look
       adw-gtk3
@@ -172,7 +175,7 @@
         gtk-single-instance = true;
         font-family = "CaskaydiaCove Nerd Font Mono";
         font-size = 21;
-        theme = "rose-pine-moon";
+        theme = "ayu";
         keybind = [
           "ctrl+a>shift+r=reload_config"
 
@@ -326,8 +329,8 @@
           general = {
             layout = "dwindle";
             border_size = 1;
-            "col.inactive_border" = "0xff6e6a86";
-            "col.active_border" = "0xff9ccfd8";
+            "col.inactive_border" = "0xff1b1c21";
+            "col.active_border" = "0xff00ceff 0xff0072ff";
             gaps_out = 0;
           };
           misc = {
