@@ -320,7 +320,6 @@
           exec-once = [
             "walker --gapplication-service"
             "hyprctl setcursor BreezeX-RosePine-Linux 32"
-            "swaync"
             "iio-hyprland"
           ];
           input = {
@@ -484,6 +483,12 @@
         preload = [ (toString ./wallpaper.jpg) ];
         wallpaper = [ ",${toString ./wallpaper.jpg}" ];
       };
+    };
+    hyprpolkitagent = {
+      enable = true;
+    };
+    swaync = {
+      enable = true;
     };
   };
 }
