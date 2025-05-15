@@ -291,7 +291,10 @@
           variables = [ "--all" ];
         };
         settings = {
-          monitor = [ "eDP-1,2560x1600@180, 0x0, 1.25" ];
+          monitor = [
+            "eDP-1,2560x1600@180,0x1400,1.25"
+            ",preferred,0x0,1"
+          ];
           env = [
             "NIXOS_OZONE_WL,1"
             "__GL_GSYNC_ALLOWED,1"
