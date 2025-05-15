@@ -1,0 +1,6 @@
+export NIXOS_OZONE_WL="1"
+export __GL_GSYNC_ALLOWED="1"
+export __GL_VRR_ALLOWED="1"
+export NVD_BACKEND="direct"
+export XCURSOR_SIZE="32"
+export GDK_DPI_SCALE="1.25"

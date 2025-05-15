@@ -293,7 +293,7 @@
       hyprland = {
         enable = true;
         systemd = {
-          variables = [ "--all" ];
+          enable = false;
         };
         settings = {
           ecosystem = {
@@ -307,20 +307,10 @@
             "eDP-1,2560x1600@180,0x1440,1.25,bitdepth,10,cm,hdr,sdrbrightness,1.2,sdrsaturation,0.98"
             ",preferred,0x0,1,bitdepth,10,cm,hdr,sdrbrightness,1.2,sdrsaturation,0.98"
           ];
-          env = [
-            "NIXOS_OZONE_WL,1"
-            "__GL_GSYNC_ALLOWED,1"
-            "__GL_VRR_ALLOWED,1"
-            "NVD_BACKEND,direct"
-            "XCURSOR_SIZE,32"
-            "HYPRCURSOR_THEME,BreezeX-RosePine-Linux"
-            "HYPRCURSOR_SIZE,32"
-            "GDK_DPI_SCALE,1.25"
-          ];
           exec-once = [
-            "walker --gapplication-service"
-            "hyprctl setcursor BreezeX-RosePine-Linux 32"
-            "iio-hyprland"
+            "uwsm app -- walker --gapplication-service"
+            "uwsm app -- hyprctl setcursor BreezeX-RosePine-Linux 32"
+            "uwsm app -- iio-hyprland"
           ];
           input = {
             natural_scroll = "yes";
@@ -443,6 +433,10 @@
       videos = "${config.home.homeDirectory}/videos";
     };
     configFile = {
+      "uwsm" = {
+        recursive = true;
+        source = ./uwsm;
+      };
       "nvim/lua" = {
         recursive = true;
         source = ./nvim/lua;
