@@ -373,6 +373,7 @@
             "SUPER,j,exec,walker -m emojis"
             # "SUPER,t,exec,ghostty -e ${config.home.homeDirectory}/code/todox/bin/todox"
             "SUPER,f,togglefloating,"
+            "SUPER,f,pin,"
             "SUPER,q,killactive,"
             "SUPER,s,exec,grim"
             ''SUPER SHIFT,s,exec,grim -g "$(slurp)" - | wl-copy''
