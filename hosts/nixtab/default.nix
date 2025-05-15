@@ -9,6 +9,7 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+      rocmSupport = true;
     };
   };
 
@@ -68,6 +69,13 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+        amdvlk
+      ];
+      extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk
+      ];
     };
     bluetooth = {
       enable = true;
@@ -121,6 +129,9 @@
   environment = {
     systemPackages = with pkgs; [
       neovim
+      clinfo
+      vulkan-tools
+      rocmPackages.rocm-smi
     ];
     shells = with pkgs; [
       zsh
@@ -189,6 +200,10 @@
     ollama = {
       enable = true;
       acceleration = "rocm";
+      environmentVariables = {
+        HCC_AMDGPU_TARGET = "gfx1151";
+      };
+      rocmOverrideGfx = "11.0.1";
     };
   };
 
