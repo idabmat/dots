@@ -56,7 +56,7 @@
       iio-hyprland
       (callPackage ../../apps/zen.nix { })
       mcp-hub.packages.${pkgs.system}.default
-      # vulkan-hdr-layer-kwin6
+      vulkan-hdr-layer-kwin6
     ];
     file = {
       ".p10k.zsh" = {
@@ -304,8 +304,8 @@
             xx_color_management_v4 = false;
           };
           monitor = [
-            "eDP-1,2560x1600@180,0x1440,1.25"
-            ",preferred,0x0,1"
+            "eDP-1,2560x1600@180,0x1440,1.25,bitdepth,10,cm,hdr,sdrbrightness,1.2,sdrsaturation,0.98"
+            ",preferred,0x0,1,bitdepth,10,cm,hdr,sdrbrightness,1.2,sdrsaturation,0.98"
           ];
           env = [
             "NIXOS_OZONE_WL,1"
