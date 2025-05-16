@@ -200,6 +200,8 @@
           "ctrl+a>left=goto_split:left"
           "ctrl+a>right=goto_split:right"
           "ctrl+a>ctrl+a=goto_split:next"
+          "shift+up=scroll_page_up"
+          "shift+down=scroll_page_down"
         ];
       };
     };
