@@ -309,8 +309,8 @@
             xx_color_management_v4 = false;
           };
           monitor = [
-            "eDP-1,2560x1600@180,0x1440,1.25,bitdepth,10,cm,hdr,sdrbrightness,1.2,sdrsaturation,0.98"
-            ",preferred,0x0,1,bitdepth,10,cm,hdr,sdrbrightness,1.2,sdrsaturation,0.98"
+            "eDP-1,2560x1600@180,0x0,1.25"
+            ",preferred,0x1280,1"
           ];
           exec-once = [
             "uwsm app -- walker --gapplication-service"
