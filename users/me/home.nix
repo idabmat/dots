@@ -60,6 +60,7 @@
       (callPackage ../../apps/zen.nix { })
       mcp-hub.packages.${pkgs.system}.default
       vulkan-hdr-layer-kwin6
+      sshuttle
     ];
     file = {
       ".p10k.zsh" = {
