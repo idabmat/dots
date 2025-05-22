@@ -113,6 +113,11 @@
     rtkit = {
       enable = true;
     };
+    pam = {
+      services = {
+        hyprlock = { };
+      };
+    };
   };
 
   users = {

@@ -36,6 +36,7 @@
       mplayer
       timg
       pavucontrol
+      brightnessctl
       playerctl
       ayu-theme-gtk
       rose-pine-cursor
@@ -292,6 +293,64 @@
         zls
       ];
     };
+
+    hyprlock = {
+      enable = true;
+      settings = {
+        general = {
+          grace = 0;
+          disable_loading_bar = false;
+          no_fade_in = false;
+        };
+
+        background = [
+          {
+            path = (toString ./wallpaper.jpg);
+          }
+        ];
+
+        label = [
+          {
+            monitor = "";
+            text = ''cmd[update:1000] echo "<span>$(date +"%I:%M")</span>"'';
+            color = "rgba(216, 222, 233, .85)";
+            font_size = 40;
+            position = "240, 110";
+            halign = "left";
+            valign = "center";
+          }
+          {
+            monitor = "";
+            text = ''cmd[update:1000] echo -e "$(date +"%A, %B %d")"'';
+            color = "rgba(216, 222, 233, .85)";
+            font_size = 20;
+            position = "217, 040";
+            halign = "left";
+            valign = "center";
+          }
+        ];
+
+        input-field = [
+          {
+            monitor = "";
+            size = "320, 55";
+            outline_thickness = 0;
+            dots_size = 0.2;
+            dots_spacing = 0.2;
+            dots_center = true;
+            outer_color = "rgba(255, 255, 255, 0)";
+            inner_color = "rgba(255, 255, 255, 0)";
+            font_color = "rgb(200, 200, 200)";
+            fade_on_empty = false;
+            placeholder_text = ''🔒 <i><span foreground="##ffffff99">Enter password</span></i>'';
+            hide_input = false;
+            position = "160, -30";
+            halign = "left";
+            valign = "center";
+          }
+        ];
+      };
+    };
   };
 
   wayland = {
@@ -391,6 +450,7 @@
             # "SUPER,t,exec,ghostty -e ${config.home.homeDirectory}/code/todox/bin/todox"
             "SUPER,f,togglefloating,"
             "SUPER,f,pin,"
+            "SUPER,l,exec,hyprlock"
             "SUPER,q,killactive,"
             "SUPER,s,exec,grim"
             ''SUPER SHIFT,s,exec,grim -g "$(slurp)" - | wl-copy''
@@ -490,6 +550,36 @@
         splash = false;
         preload = [ (toString ./wallpaper.jpg) ];
         wallpaper = [ ",${toString ./wallpaper.jpg}" ];
+      };
+    };
+    hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          lock_cmd = "pidof hyprlock || hyprlock";
+          before_sleep_cmd = "loginctl lock-session";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+        };
+        listener = [
+          {
+            timeout = 60;
+            on-timeout = "brightnessctl -s set 10";
+            on-resume = "brightnessctl -r";
+          }
+          {
+            timeout = 180;
+            on-timeout = "loginctl lock-session";
+          }
+          {
+            timeout = 180;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
+          }
+          {
+            timeout = 600;
+            on-timeout = "systemctl suspend";
+          }
+        ];
       };
     };
     hyprpolkitagent = {
