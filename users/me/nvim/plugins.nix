@@ -1,13 +1,9 @@
-{ pkgs }:
+{ pkgs, mcphub-nvim }:
 
-let
-  codecompanion = (import ./codecompanion.nix { inherit pkgs; });
-  mcphub_nvim = (import ./mcphub_nvim.nix { inherit pkgs; });
-in
 with pkgs.vimPlugins;
 [
   {
-    plugin = codecompanion;
+    plugin = codecompanion-nvim;
     type = "lua";
     config = "require('plugins/codecompanion')";
   }
@@ -34,7 +30,7 @@ with pkgs.vimPlugins;
   }
   luasnip
   {
-    plugin = mcphub_nvim;
+    plugin = mcphub-nvim.packages."${pkgs.system}".default;
     type = "lua";
     config = "require('plugins/mcphub')";
   }

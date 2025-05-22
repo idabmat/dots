@@ -175,6 +175,9 @@
         support32Bit = true;
       };
     };
+    resolved = {
+      enable = true;
+    };
     greetd = {
       enable = true;
       settings = {

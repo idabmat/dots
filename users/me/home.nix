@@ -3,6 +3,7 @@
   pkgs,
   lib,
   mcp-hub,
+  mcphub-nvim,
   ...
 }:
 
@@ -271,7 +272,7 @@
       viAlias = true;
       vimAlias = true;
       extraLuaConfig = "require('configs/base')";
-      plugins = (import ./nvim/plugins.nix { inherit pkgs; });
+      plugins = (import ./nvim/plugins.nix { inherit pkgs mcphub-nvim; });
       extraPackages = with pkgs; [
         bash-language-server
         dockerfile-language-server-nodejs
@@ -453,7 +454,15 @@
           mcpServers = {
             tidewave = {
               url = "http://localhost:4000/tidewave/mcp";
-              disabled = false;
+              disabled = true;
+              custom_instructions = {
+                text = ''
+                  This is a Phoenix application, which uses Tailwind.
+                  Prefer using LiveView instead of regular Controllers.
+                  Once you are done with changes, run `mix compile` and fix any issues.
+                  Write tests for your changes and run `mix test` afterwards.
+                '';
+              };
             };
           };
         };

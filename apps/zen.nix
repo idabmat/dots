@@ -9,8 +9,8 @@
 stdenv.mkDerivation {
   name = "zen";
   src = fetchurl {
-    url = "https://github.com/zen-browser/desktop/releases/download/1.12.3b/zen-x86_64.AppImage";
-    sha256 = "1khajga2r8ndqd3rg8gypr0c58hhzbz7ajnif9q5h20zi2wjfbli";
+    url = "https://github.com/zen-browser/desktop/releases/download/1.12.7b/zen-x86_64.AppImage";
+    sha256 = "14c2pjnap39p0kr4z556bq7x5yhgpjpb0ckxf78s805cnlfwbzbh";
   };
   dontUnpack = true;
   nativeBuildInputs = [

@@ -5,6 +5,7 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
     mcp-hub.url = "github:ravitemer/mcp-hub";
+    mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs = {
