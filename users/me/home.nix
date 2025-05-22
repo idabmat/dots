@@ -58,7 +58,6 @@
       swaynotificationcenter
       spotify
       iio-hyprland
-      (callPackage ../../apps/zen.nix { })
       mcp-hub.packages.${pkgs.system}.default
       vulkan-hdr-layer-kwin6
       sshuttle
@@ -397,7 +396,7 @@
             ''SUPER SHIFT,s,exec,grim -g "$(slurp)" - | wl-copy''
             "SUPER,v,exec,walker -m clipboard"
             "SUPER,x,fullscreen,"
-            "SUPER,z,exec,zen"
+            "SUPER,z,exec,firefox"
             "SUPER,return,exec,ghostty"
             "SUPER,space,exec,swaync-client -t"
           ];
