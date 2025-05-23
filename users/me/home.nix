@@ -7,6 +7,9 @@
   ...
 }:
 
+let
+  hypr = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/hypr;
+in
 {
   home = {
     username = "me";
@@ -296,60 +299,6 @@
 
     hyprlock = {
       enable = true;
-      settings = {
-        general = {
-          grace = 0;
-          disable_loading_bar = false;
-          no_fade_in = false;
-        };
-
-        background = [
-          {
-            path = (toString ./wallpaper.jpg);
-          }
-        ];
-
-        label = [
-          {
-            monitor = "";
-            text = ''cmd[update:1000] echo "<span>$(date +"%I:%M")</span>"'';
-            color = "rgba(216, 222, 233, .85)";
-            font_size = 40;
-            position = "240, 110";
-            halign = "left";
-            valign = "center";
-          }
-          {
-            monitor = "";
-            text = ''cmd[update:1000] echo -e "$(date +"%A, %B %d")"'';
-            color = "rgba(216, 222, 233, .85)";
-            font_size = 20;
-            position = "217, 040";
-            halign = "left";
-            valign = "center";
-          }
-        ];
-
-        input-field = [
-          {
-            monitor = "";
-            size = "320, 55";
-            outline_thickness = 0;
-            dots_size = 0.2;
-            dots_spacing = 0.2;
-            dots_center = true;
-            outer_color = "rgba(255, 255, 255, 0)";
-            inner_color = "rgba(255, 255, 255, 0)";
-            font_color = "rgb(200, 200, 200)";
-            fade_on_empty = false;
-            placeholder_text = ''🔒 <i><span foreground="##ffffff99">Enter password</span></i>'';
-            hide_input = false;
-            position = "160, -30";
-            halign = "left";
-            valign = "center";
-          }
-        ];
-      };
     };
   };
 
@@ -359,129 +308,6 @@
         enable = true;
         systemd = {
           enable = false;
-        };
-        settings = {
-          ecosystem = {
-            no_update_news = false;
-            no_donation_nag = true;
-          };
-          experimental = {
-            xx_color_management_v4 = false;
-          };
-          monitor = [
-            "eDP-1,2560x1600@180,0x0,1.25"
-            ",preferred,0x1280,1"
-          ];
-          exec-once = [
-            "uwsm app -- walker --gapplication-service"
-            "uwsm app -- hyprctl setcursor BreezeX-RosePine-Linux 32"
-            "uwsm app -- iio-hyprland"
-          ];
-          input = {
-            natural_scroll = "yes";
-            touchpad = {
-              natural_scroll = "yes";
-            };
-          };
-          dwindle = { };
-          master = {
-            new_status = "slave";
-            orientation = "center";
-          };
-          general = {
-            layout = "dwindle";
-            border_size = 1;
-            "col.inactive_border" = "0xff1b1c21";
-            "col.active_border" = "0xff00ceff 0xff0072ff";
-            gaps_out = 0;
-          };
-          misc = {
-            disable_hyprland_logo = true;
-            vrr = 2;
-          };
-          decoration = {
-            rounding = 10;
-          };
-          gestures = {
-            workspace_swipe = true;
-            workspace_swipe_touch = true;
-            workspace_swipe_forever = true;
-          };
-          device = [
-            {
-              name = "elan9008:00-04f3:43c7";
-              output = "eDP-1";
-            }
-          ];
-          bind = [
-            "SUPER,n,movefocus,l"
-            "SUPER,e,movefocus,d"
-            "SUPER,i,movefocus,u"
-            "SUPER,o,movefocus,r"
-            "SUPER_SHIFT,n,movewindow,l"
-            "SUPER_SHIFT,e,movewindow,d"
-            "SUPER_SHIFT,i,movewindow,u"
-            "SUPER_SHIFT,o,movewindow,r"
-            "SUPER,1,workspace,1"
-            "SUPER,2,workspace,2"
-            "SUPER,3,workspace,3"
-            "SUPER,4,workspace,4"
-            "SUPER,5,workspace,5"
-            "SUPER,6,workspace,6"
-            "SUPER,7,workspace,7"
-            "SUPER,8,workspace,8"
-            "SUPER,9,workspace,9"
-            "SUPER,0,workspace,10"
-            "SUPER_SHIFT,1,movetoworkspace,1"
-            "SUPER_SHIFT,2,movetoworkspace,2"
-            "SUPER_SHIFT,3,movetoworkspace,3"
-            "SUPER_SHIFT,4,movetoworkspace,4"
-            "SUPER_SHIFT,5,movetoworkspace,5"
-            "SUPER_SHIFT,6,movetoworkspace,6"
-            "SUPER_SHIFT,7,movetoworkspace,7"
-            "SUPER_SHIFT,8,movetoworkspace,8"
-            "SUPER_SHIFT,9,movetoworkspace,9"
-            "SUPER_SHIFT,0,movetoworkspace,10"
-            "SUPER,tab,workspace,m+1"
-            "SUPER_SHIFT,tab,workspace,m-1"
-            "SUPER,a,exec,walker -m applications"
-            "SUPER,d,exec,walker -m websearch"
-            "SUPER,j,exec,walker -m emojis"
-            # "SUPER,t,exec,ghostty -e ${config.home.homeDirectory}/code/todox/bin/todox"
-            "SUPER,f,togglefloating,"
-            "SUPER,f,pin,"
-            "SUPER,l,exec,hyprlock"
-            "SUPER,q,killactive,"
-            "SUPER,s,exec,grim"
-            ''SUPER SHIFT,s,exec,grim -g "$(slurp)" - | wl-copy''
-            "SUPER,v,exec,walker -m clipboard"
-            "SUPER,x,fullscreen,"
-            "SUPER,z,exec,firefox"
-            "SUPER,return,exec,ghostty"
-            "SUPER,space,exec,swaync-client -t"
-          ];
-          binde = [
-            "SUPER CTRL,n,exec,hyprctl dispatch resizeactive -10 0"
-            "SUPER CTRL,e,exec,hyprctl dispatch resizeactive 0 -10"
-            "SUPER CTRL,i,exec,hyprctl dispatch resizeactive 0 10"
-            "SUPER CTRL,o,exec,hyprctl dispatch resizeactive 10 0"
-          ];
-          bindel = [
-            ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-            ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-          ];
-          bindl = [
-            ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            ",XF86AudioMicMute,exec,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-            ",XF86AudioPlay,exec,playerctl play-pause"
-            ",XF86AudioPrev,exec,playerctl previous"
-            ",XF86AudioNext,exec,playerctl next"
-            ",XF86AudioStop,exec,playerctl stop"
-          ];
-          bindm = [
-            "CTRL,mouse:272,movewindow"
-            "CTRL,mouse:273,resizewindow"
-          ];
         };
       };
     };
@@ -499,6 +325,7 @@
       videos = "${config.home.homeDirectory}/videos";
     };
     configFile = {
+      hypr.source = hypr;
       "uwsm" = {
         recursive = true;
         source = ./uwsm;
@@ -545,42 +372,9 @@
     };
     hyprpaper = {
       enable = true;
-      settings = {
-        ipc = "on";
-        splash = false;
-        preload = [ (toString ./wallpaper.jpg) ];
-        wallpaper = [ ",${toString ./wallpaper.jpg}" ];
-      };
     };
     hypridle = {
       enable = true;
-      settings = {
-        general = {
-          lock_cmd = "pidof hyprlock || hyprlock";
-          before_sleep_cmd = "loginctl lock-session";
-          after_sleep_cmd = "hyprctl dispatch dpms on";
-        };
-        listener = [
-          {
-            timeout = 60;
-            on-timeout = "brightnessctl -s set 10";
-            on-resume = "brightnessctl -r";
-          }
-          {
-            timeout = 180;
-            on-timeout = "loginctl lock-session";
-          }
-          {
-            timeout = 180;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
-          }
-          {
-            timeout = 600;
-            on-timeout = "systemctl suspend";
-          }
-        ];
-      };
     };
     hyprpolkitagent = {
       enable = true;
