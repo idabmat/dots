@@ -65,6 +65,7 @@ in
       mcp-hub.packages.${pkgs.system}.default
       vulkan-hdr-layer-kwin6
       sshuttle
+      docker-compose
     ];
     file = {
       ".p10k.zsh" = {
