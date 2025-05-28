@@ -92,6 +92,14 @@
         enable = true;
       };
     };
+    amdgpu = {
+      amdvlk = {
+        enable = true;
+        support32Bit = {
+          enable = true;
+        };
+      };
+    };
   };
 
   networking = {
@@ -155,6 +163,12 @@
     };
     zsh = {
       enable = true;
+    };
+    steam = {
+      enable = true;
+      gamescopeSession = {
+        enable = true;
+      };
     };
   };
 
