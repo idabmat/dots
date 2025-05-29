@@ -92,6 +92,9 @@
         enable = true;
       };
     };
+    i2c = {
+      enable = true;
+    };
     amdgpu = {
       amdvlk = {
         enable = true;
