@@ -335,25 +335,6 @@ in
         recursive = true;
         source = ./nvim/lua;
       };
-      "mcphub/servers.json" = {
-        text = builtins.toJSON {
-          nativeMCPServers = [ ];
-          mcpServers = {
-            tidewave = {
-              url = "http://localhost:4000/tidewave/mcp";
-              disabled = true;
-              custom_instructions = {
-                text = ''
-                  This is a Phoenix application, which uses Tailwind.
-                  Prefer using LiveView instead of regular Controllers.
-                  Once you are done with changes, run `mix compile` and fix any issues.
-                  Write tests for your changes and run `mix test` afterwards.
-                '';
-              };
-            };
-          };
-        };
-      };
     };
   };
 
