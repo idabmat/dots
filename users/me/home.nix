@@ -9,6 +9,7 @@
 
 let
   hypr = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/hypr;
+  nvim = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nvim;
 in
 {
   home = {
@@ -275,8 +276,58 @@ in
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
-      extraLuaConfig = "require('configs/base')";
-      plugins = (import ./nvim/plugins.nix { inherit pkgs mcphub-nvim; });
+      plugins = with pkgs.vimPlugins; [
+        codecompanion-nvim
+        cmp-buffer
+        cmp-cmdline
+        cmp-path
+        cmp-nvim-lsp
+        cmp_luasnip
+        gitsigns-nvim
+        gitsigns-nvim
+        hardtime-nvim
+        lualine-nvim
+        luasnip
+        mcphub-nvim.packages."${pkgs.system}".default
+        mkdir-nvim
+        neotest
+        neotest-elixir
+        nvim-autopairs
+        nvim-cmp
+        nvim-lspconfig
+        (nvim-treesitter.withPlugins (p: [
+          p.bash
+          p.css
+          p.dockerfile
+          p.elixir
+          p.gitcommit
+          p.gitignore
+          p.gleam
+          p.go
+          p.hcl
+          p.heex
+          p.html
+          p.hyprlang
+          p.javascript
+          p.json
+          p.lua
+          p.mermaid
+          p.nix
+          p.sql
+          p.typescript
+          p.yaml
+          p.zig
+        ]))
+        nvim-web-devicons
+        plenary-nvim
+        neovim-ayu
+        tcomment_vim
+        telescope-nvim
+        telescope-fzf-native-nvim
+        vim-fugitive
+        vim-repeat
+        vim-surround
+      ];
       extraPackages = with pkgs; [
         bash-language-server
         dockerfile-language-server-nodejs
@@ -327,13 +378,10 @@ in
     };
     configFile = {
       hypr.source = hypr;
+      nvim.source = nvim;
       "uwsm" = {
         recursive = true;
         source = ./uwsm;
-      };
-      "nvim/lua" = {
-        recursive = true;
-        source = ./nvim/lua;
       };
     };
   };
