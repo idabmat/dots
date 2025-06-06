@@ -67,6 +67,7 @@ in
       vulkan-hdr-layer-kwin6
       sshuttle
       docker-compose
+      kooha
     ];
     file = {
       ".p10k.zsh" = {
