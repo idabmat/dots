@@ -10,6 +10,7 @@
 let
   hypr = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/hypr;
   nvim = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nvim;
+  naya-flow = import ../../apps/naya-flow.nix { inherit pkgs; };
 in
 {
   home = {
@@ -68,6 +69,7 @@ in
       sshuttle
       docker-compose
       kooha
+      naya-flow
     ];
     file = {
       ".p10k.zsh" = {
