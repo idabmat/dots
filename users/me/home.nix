@@ -70,6 +70,7 @@ in
       docker-compose
       kooha
       naya-flow
+      wvkbd
     ];
     file = {
       ".p10k.zsh" = {
