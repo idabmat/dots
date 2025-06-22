@@ -418,7 +418,23 @@ in
         systemd = {
           enable = false;
         };
+        plugins = with pkgs.hyprlandPlugins; [
+          hyprgrass
+        ];
         settings = {
+          plugins = {
+            touch_gestures = {
+              sensitivity = 4.0;
+              workspace_swipe_fingers = 3;
+              workspace_swipe_edge = "r";
+              long_press_delay = 400;
+              resize_on_border_long_press = true;
+              edge_margin = 50;
+              hyprgrass-bind = [
+                '', swipe:3:u, exec, kill -34 "$(ps -C wvkbd-mobintl | ag -v PID | awk '{print $1}')"''
+              ];
+            };
+          };
           decoration = {
             rounding = 10;
           };
@@ -449,8 +465,7 @@ in
           };
           gestures = {
             workspace_swipe = true;
-            workspace_swipe_forever = true;
-            workspace_swipe_touch = true;
+            workspace_swipe_cancel_ratio = 0.15;
           };
           input = {
             touchpad = {
