@@ -420,6 +420,7 @@ in
         };
         plugins = with pkgs.hyprlandPlugins; [
           hyprgrass
+          hyprspace
         ];
         settings = {
           plugins = {
@@ -432,8 +433,10 @@ in
               edge_margin = 50;
               hyprgrass-bind = [
                 '', swipe:3:u, exec, kill -34 "$(ps -C wvkbd-mobintl | ag -v PID | awk '{print $1}')"''
+                ", swipe:3:d, overview:toggle, "
               ];
             };
+            hyprspace = { };
           };
           decoration = {
             rounding = 10;
