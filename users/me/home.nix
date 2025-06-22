@@ -70,6 +70,7 @@ in
       kooha
       naya-flow
       wvkbd
+      nwg-drawer
     ];
     file = {
       ".p10k.zsh" = {
@@ -432,8 +433,9 @@ in
               resize_on_border_long_press = true;
               edge_margin = 50;
               hyprgrass-bind = [
-                '', swipe:3:u, exec, kill -34 "$(ps -C wvkbd-mobintl | ag -v PID | awk '{print $1}')"''
+                ", swipe:3:u, exec, pkill -RTMIN wvkbd-mobintl"
                 ", swipe:3:d, overview:toggle, "
+                ", edge:d:u, exec, pkill -USR1 nwg-drawer"
               ];
             };
             hyprspace = { };
@@ -557,6 +559,7 @@ in
             "uwsm app -- hyprctl setcursor BreezeX-RosePine-Linux 32"
             "uwsm app -- iio-hyprland"
             "uwsm app -- wvkbd-mobintl -H 350 -L 300 --hidden"
+            "uwsm app -- nwg-drawer -r"
           ];
           monitor = [
             "eDP-1,2560x1600@180,0x0,1"
