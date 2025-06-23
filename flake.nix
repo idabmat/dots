@@ -2,7 +2,7 @@
   description = "System configuration";
   inputs = {
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/4c78e34c72dfa32d48fc4d11be1219a9d0ec6210";
+      url = "github:NixOS/nixpkgs/nixos-unstable";
     };
     mcp-hub.url = "github:ravitemer/mcp-hub";
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
