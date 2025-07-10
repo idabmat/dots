@@ -359,7 +359,7 @@ in
       settings = {
         background = [
           {
-            path = "${./wallpaper.jpg}";
+            path = "${./wallpaper.png}";
           }
         ];
 
@@ -609,9 +609,9 @@ in
       enable = true;
       settings = {
         ipc = "on";
-        preload = [ "${./wallpaper.jpg}" ];
+        preload = [ "${./wallpaper.png}" ];
         splash = false;
-        wallpaper = [ ",${./wallpaper.jpg}" ];
+        wallpaper = [ ",${./wallpaper.png}" ];
       };
     };
     hypridle = {
