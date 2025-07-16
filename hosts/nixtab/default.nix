@@ -27,9 +27,6 @@
   ];
 
   boot = {
-    extraModprobeConfig = ''
-      options bluetooth disable_ertm=1
-    '';
     loader = {
       systemd-boot = {
         enable = true;
@@ -84,12 +81,6 @@
       enable = true;
       powerOnBoot = true;
       package = pkgs.bluez;
-      settings = {
-        General = {
-          JustWorksRepairing = "always";
-          Privacy = "device";
-        };
-      };
     };
     xpadneo = {
       enable = true;
