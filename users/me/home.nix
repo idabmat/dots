@@ -59,7 +59,7 @@ in
       nerd-fonts.caskaydia-cove
       slurp
       grim
-      gimp
+      # gimp
       swaynotificationcenter
       spotify
       iio-hyprland
