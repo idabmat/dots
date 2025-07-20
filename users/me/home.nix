@@ -59,7 +59,7 @@ in
       nerd-fonts.caskaydia-cove
       slurp
       grim
-      # gimp
+      gimp
       swaynotificationcenter
       spotify
       iio-hyprland
@@ -564,7 +564,6 @@ in
           ];
           monitor = [
             "eDP-1,2560x1600@180,0x0,1"
-            "HDMI-A-1,4096x2160@60,0x1600,1"
             ",preferred,0x1600,1"
           ];
         };
