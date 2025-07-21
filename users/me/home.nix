@@ -256,22 +256,26 @@ in
 
     fzf = {
       enable = true;
+      changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ];
       colors = {
-        fg = "#908caa";
-        bg = "#232136";
-        hl = "#ea9a97";
-        "fg+" = "#e0def4";
-        "bg+" = "#393552";
-        "hl+" = "#ea9a97";
-        border = "#44415a";
-        header = "#3e8fb0";
-        gutter = "#232136";
-        spinner = "#f6c177";
-        info = "#9ccfd8";
-        pointer = "#c4a7e7";
-        marker = "#eb6f92";
-        prompt = "#908caa";
+        "fg" = "#cbccc6";
+        "bg" = "#1f2430";
+        "hl" = "#707a8c";
+        "fg+" = "#707a8c";
+        "bg+" = "#191e2a";
+        "hl+" = "#ffcc66";
+        "info" = "#73d0ff";
+        "prompt" = "#707a8c";
+        "pointer" = "#cbccc6";
+        "marker" = "#73d0ff";
+        "spinner" = "#73d0ff";
+        "header" = "#d4bfff";
       };
+      fileWidgetOptions = [ "--preview 'head {}'" ];
+      historyWidgetOptions = [
+        "--sort"
+        "--exact"
+      ];
     };
 
     yazi = {
