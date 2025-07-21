@@ -18,7 +18,8 @@ in
     stateVersion = "24.11";
     packages = with pkgs; [
       fastfetch
-      lsd
+      lsr
+      tree
       graphite-cli
       python3
       exercism
@@ -148,7 +149,7 @@ in
     zsh = {
       enable = true;
       shellAliases = {
-        ls = "lsd";
+        ls = "lsr";
         cd = "z";
         cat = "bat";
       };
