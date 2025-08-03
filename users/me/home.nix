@@ -301,8 +301,6 @@ in
         luasnip
         mcphub-nvim.packages."${pkgs.system}".default
         mkdir-nvim
-        neotest
-        neotest-elixir
         nvim-autopairs
         nvim-cmp
         nvim-lspconfig
