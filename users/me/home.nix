@@ -43,14 +43,10 @@ in
       pavucontrol
       brightnessctl
       playerctl
-      ayu-theme-gtk
       rose-pine-cursor
-      beauty-line-icon-theme
       kdePackages.qtwayland
       kdePackages.qt6ct
       kdePackages.qtstyleplugin-kvantum
-      gradience
-      nwg-look
       adw-gtk3
       adwaita-icon-theme
       nautilus
@@ -95,8 +91,32 @@ in
     };
   };
 
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.dracula-theme;
+      name = "Dracula";
+    };
+
+    iconTheme = {
+      package = pkgs.dracula-icon-theme;
+      name = "Dracula";
+    };
+
+    gtk3 = {
+      extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
+    };
+  };
+
   dconf = {
     enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
   };
 
   programs = {
@@ -186,7 +206,7 @@ in
         gtk-single-instance = true;
         font-family = "CaskaydiaCove Nerd Font Mono";
         font-size = 21;
-        theme = "ayu";
+        theme = "Dracula";
         keybind = [
           "ctrl+a>shift+r=reload_config"
 
@@ -232,18 +252,7 @@ in
     bat = {
       enable = true;
       config = {
-        theme = "rose-pine";
-      };
-      themes = {
-        rose-pine = {
-          src = pkgs.fetchFromGitHub {
-            owner = "rose-pine";
-            repo = "tm-theme";
-            rev = "c4235f9a65fd180ac0f5e4396e3a86e21a0884ec";
-            hash = "sha256-jji8WOKDkzAq8K+uSZAziMULI8Kh7e96cBRimGvIYKY=";
-          };
-          file = "dist/themes/rose-pine-moon.tmTheme";
-        };
+        theme = "Dracula";
       };
     };
 
@@ -294,6 +303,7 @@ in
         cmp-path
         cmp-nvim-lsp
         cmp_luasnip
+        dracula-nvim
         gitsigns-nvim
         gitsigns-nvim
         hardtime-nvim
@@ -329,7 +339,6 @@ in
         ]))
         nvim-web-devicons
         plenary-nvim
-        neovim-ayu
         tcomment_vim
         telescope-nvim
         telescope-fzf-native-nvim

@@ -1,6 +1,6 @@
 require('lualine').setup({
   options = {
-    theme = 'ayu',
+    theme = 'dracula-nvim',
     icons_enabled = true,
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
@@ -43,17 +43,19 @@ require('lualine').setup({
           return "󰐻 " .. count
         end,
         color = function()
+          local colors = require('dracula').colors()
+
           if not vim.g.loaded_mcphub then
-            return { fg = "#6c7086" }
+            return { fg = colors.comment }
           end
 
           local status = vim.g.mcphub_status or "stopped"
           if status == "ready" or status == "restarted" then
-            return { fg = "#50fa7b" }
+            return { fg = colors.bright_green }
           elseif status == "starting" or status == "restarting" then
-            return { fg = "#ffb86c" }
+            return { fg = colors.orange }
           else
-            return { fg = "#ff5555" }
+            return { fg = colors.bright_red }
           end
         end
       }

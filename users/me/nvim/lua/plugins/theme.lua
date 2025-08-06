@@ -1,4 +1,3 @@
-require('ayu').setup({
-  mirage = false,
+require('dracula').setup({
 })
-vim.cmd('colorscheme ayu')
+vim.cmd('colorscheme dracula')
