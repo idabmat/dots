@@ -123,6 +123,23 @@ in
     home-manager = {
       enable = true;
     };
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          email = "igor@talihmq.com";
+          name = "Igor de Alcantara Barroso";
+        };
+        signing = {
+          behavior = "own";
+          backend = "gpg";
+          key = "794A41BA3DBE9931";
+        };
+        ui = {
+          pager = "delta";
+        };
+      };
+    };
     git = {
       enable = true;
       userName = "Igor de Alcantara Barroso";
