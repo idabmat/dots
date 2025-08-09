@@ -127,7 +127,7 @@ in
       enable = true;
       settings = {
         user = {
-          email = "igor@talihmq.com";
+          email = "igor@talimhq.com";
           name = "Igor de Alcantara Barroso";
         };
         signing = {
