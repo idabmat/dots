@@ -189,6 +189,7 @@ in
         ls = "lsr";
         cd = "z";
         cat = "bat";
+        jjd = "jj diff --git";
       };
       oh-my-zsh = {
         enable = true;
