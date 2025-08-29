@@ -370,12 +370,14 @@ in
         dockerfile-language-server-nodejs
         expert
         gopls
+        gleam
         lua-language-server
         marksman
         nil
         nixfmt-rfc-style
         pyright
         rust-analyzer
+        tailwindcss-language-server
         taplo
         terraform-ls
         typescript-language-server
