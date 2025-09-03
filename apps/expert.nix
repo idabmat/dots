@@ -6,7 +6,7 @@ let
   arch = "linux_amd64";
   src = pkgs.fetchurl {
     url = "https://github.com/${owner}/${pname}/releases/download/v${version}/${pname}_${arch}";
-    sha256 = "0clpbf7w1s7gqy2sxmwzhy70x72x2vbsns39k4kzyway6i00p32z";
+    sha256 = "1ihv6z1l8g825k32rf553zzzqkyjqcngf86j0785i0380x1vz8pf";
   };
 in
 pkgs.stdenv.mkDerivation {

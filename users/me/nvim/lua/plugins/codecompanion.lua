@@ -30,18 +30,21 @@ require('codecompanion').setup({
     },
   },
   adapters = {
-    my_openai = function()
-      return require('codecompanion.adapters').extend('openai_compatible', {
-        schema = {
-          model = {
-            default = 'qwen3:latest',
+    http = {
+      my_openai = function()
+        return require('codecompanion.adapters').extend('openai_compatible', {
+          schema = {
+            model = {
+              default = 'qwen3:latest',
+            },
           },
-        },
-      })
-    end,
-    opts = {
-      show_model_choices = true,
-    },
+        })
+      end,
+      opts = {
+        show_model_choices = true,
+      },
+
+    }
   },
   opts = {
     log_level = 'DEBUG',
