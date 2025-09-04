@@ -5,8 +5,8 @@ let
   version = "nightly";
   arch = "linux_amd64";
   src = pkgs.fetchurl {
-    url = "https://github.com/${owner}/${pname}/releases/download/v${version}/${pname}_${arch}";
-    sha256 = "1ihv6z1l8g825k32rf553zzzqkyjqcngf86j0785i0380x1vz8pf";
+    url = "https://github.com/${owner}/${pname}/releases/download/${version}/${pname}_${arch}";
+    sha256 = "08dxlnzsfpsv0jgz5c9g8r9ifh3mp109ais0wkp75iw4wl8g5xnm";
   };
 in
 pkgs.stdenv.mkDerivation {
