@@ -4,15 +4,21 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
-    mcp-hub.url = "github:ravitemer/mcp-hub";
-    mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
+    mcp-hub = {
+      url = "github:ravitemer/mcp-hub";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mcphub-nvim = {
+      url = "github:ravitemer/mcphub.nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs = {
-        nixpkgs = {
-          follows = "nixpkgs";
-        };
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    expert = {
+      url = "github:elixir-lang/expert";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs =

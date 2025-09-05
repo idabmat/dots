@@ -4,13 +4,13 @@
   lib,
   mcp-hub,
   mcphub-nvim,
+  expert,
   ...
 }:
 
 let
   nvim = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nvim;
   naya-flow = import ../../apps/naya-flow.nix { inherit pkgs; };
-  expert = import ../../apps/expert.nix { inherit pkgs; };
 in
 {
   home = {
@@ -368,7 +368,7 @@ in
       extraPackages = with pkgs; [
         bash-language-server
         dockerfile-language-server-nodejs
-        expert
+        expert.packages.${pkgs.system}.default
         gopls
         gleam
         lua-language-server
