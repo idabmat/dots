@@ -367,7 +367,7 @@ in
       ];
       extraPackages = with pkgs; [
         bash-language-server
-        dockerfile-language-server-nodejs
+        dockerfile-language-server
         expert.packages.${pkgs.system}.default
         gopls
         gleam
@@ -455,7 +455,6 @@ in
         };
         plugins = with pkgs.hyprlandPlugins; [
           hyprgrass
-          hyprspace
         ];
         settings = {
           plugins = {
@@ -472,7 +471,6 @@ in
                 ", edge:d:u, exec, pkill -USR1 nwg-drawer"
               ];
             };
-            hyprspace = { };
           };
           decoration = {
             rounding = 10;
