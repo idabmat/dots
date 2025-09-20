@@ -372,6 +372,7 @@ in
         expert.packages.${pkgs.system}.default
         gopls
         gleam
+        hyprls
         lua-language-server
         marksman
         nil
