@@ -5,6 +5,7 @@
   mcp-hub,
   mcphub-nvim,
   expert,
+  hyprland,
   ...
 }:
 
@@ -398,6 +399,7 @@ in
     windowManager = {
       hyprland = {
         enable = true;
+        package = hyprland.packages.${pkgs.system}.hyprland;
         systemd = {
           enable = false;
         };

@@ -20,6 +20,7 @@
       url = "github:elixir-lang/expert";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
   outputs =
     inputs@{ nixpkgs, home-manager, ... }:
@@ -34,7 +35,7 @@
           in
           nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-            specialArgs = specialArgs;
+            specialArgs = inputs // specialArgs;
             modules = [
               ./hosts/nixtab
               home-manager.nixosModules.home-manager
