@@ -10,6 +10,7 @@
 
 let
   nvim = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nvim;
+  hypr = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/hypr;
   naya-flow = import ../../apps/naya-flow.nix { inherit pkgs; };
 in
 {
@@ -389,60 +390,6 @@ in
 
     hyprlock = {
       enable = true;
-      settings = {
-        background = [
-          {
-            path = "${./wallpaper.png}";
-          }
-        ];
-
-        general = {
-          disable_loading_bar = false;
-          grace = 0;
-          no_fade_in = false;
-        };
-
-        input-field = [
-          {
-            monitor = "";
-            size = "320, 55";
-            dots_center = true;
-            dots_size = 0.2;
-            dots_spacing = 0.2;
-            fade_on_empty = false;
-            font_color = "rgb(200, 200, 200)";
-            halign = "left";
-            hide_input = false;
-            inner_color = "rgba(255, 255, 255, 0)";
-            outer_color = "rgba(255, 255, 255, 0)";
-            outline_thickness = 0;
-            placeholder_text = ''🔒 <i><span foreground="##ffffff99">Enter password</span></i>'';
-            position = "160, -30";
-            valign = "center";
-          }
-        ];
-
-        label = [
-          {
-            monitor = "";
-            color = "rgba(216, 222, 233, .85)";
-            font_size = 40;
-            halign = "left";
-            position = "240, 110";
-            text = ''cmd[update:1000] echo "<span>$(date +"%H:%M")</span>"'';
-            valign = "center";
-          }
-          {
-            monitor = "";
-            color = "rgba(216, 222, 233, .85)";
-            font_size = 20;
-            halign = "left";
-            position = "217, 040";
-            text = ''cmd[update:1000] echo -e "$(date +"%A, %B %d")"'';
-            valign = "center";
-          }
-        ];
-      };
     };
   };
 
@@ -452,151 +399,6 @@ in
         enable = true;
         systemd = {
           enable = false;
-        };
-        plugins = with pkgs.hyprlandPlugins; [
-          hyprgrass
-        ];
-        settings = {
-          plugins = {
-            touch_gestures = {
-              sensitivity = 4.0;
-              workspace_swipe_fingers = 3;
-              workspace_swipe_edge = "r";
-              long_press_delay = 400;
-              resize_on_border_long_press = true;
-              edge_margin = 50;
-              hyprgrass-bind = [
-                ", swipe:3:u, exec, pkill -RTMIN wvkbd-mobintl"
-                ", swipe:3:d, overview:toggle, "
-                ", edge:d:u, exec, pkill -USR1 nwg-drawer"
-              ];
-            };
-          };
-          decoration = {
-            rounding = 10;
-          };
-
-          device = [
-            {
-              name = "elan9008:00-04f3:43c7";
-              output = "eDP-1";
-            }
-            {
-              name = "elan9008:00-04f3:43c7-stylus";
-              output = "eDP-1";
-            }
-          ];
-          ecosystem = {
-            no_donation_nag = true;
-            no_update_news = false;
-          };
-          experimental = {
-            xx_color_management_v4 = false;
-          };
-          general = {
-            border_size = 1;
-            "col.active_border" = "0xff00ceff 0xff0072ff";
-            "col.inactive_border" = "0xff1b1c21";
-            gaps_out = 0;
-            layout = "dwindle";
-          };
-          gestures = {
-            workspace_swipe = true;
-            workspace_swipe_cancel_ratio = 0.15;
-          };
-          input = {
-            touchpad = {
-              natural_scroll = "yes";
-            };
-            natural_scroll = "yes";
-          };
-          master = {
-            new_status = "slave";
-            orientation = "center";
-          };
-          misc = {
-            disable_hyprland_logo = true;
-            vrr = 2;
-          };
-          bind = [
-            "SUPER,n,movefocus,l"
-            "SUPER,e,movefocus,d"
-            "SUPER,i,movefocus,u"
-            "SUPER,o,movefocus,r"
-            "SUPER_SHIFT,n,movewindow,l"
-            "SUPER_SHIFT,e,movewindow,d"
-            "SUPER_SHIFT,i,movewindow,u"
-            "SUPER_SHIFT,o,movewindow,r"
-            "SUPER,1,workspace,1"
-            "SUPER,2,workspace,2"
-            "SUPER,3,workspace,3"
-            "SUPER,4,workspace,4"
-            "SUPER,5,workspace,5"
-            "SUPER,6,workspace,6"
-            "SUPER,7,workspace,7"
-            "SUPER,8,workspace,8"
-            "SUPER,9,workspace,9"
-            "SUPER,0,workspace,10"
-            "SUPER_SHIFT,1,movetoworkspace,1"
-            "SUPER_SHIFT,2,movetoworkspace,2"
-            "SUPER_SHIFT,3,movetoworkspace,3"
-            "SUPER_SHIFT,4,movetoworkspace,4"
-            "SUPER_SHIFT,5,movetoworkspace,5"
-            "SUPER_SHIFT,6,movetoworkspace,6"
-            "SUPER_SHIFT,7,movetoworkspace,7"
-            "SUPER_SHIFT,8,movetoworkspace,8"
-            "SUPER_SHIFT,9,movetoworkspace,9"
-            "SUPER_SHIFT,0,movetoworkspace,10"
-            "SUPER,tab,workspace,m+1"
-            "SUPER_SHIFT,tab,workspace,m-1"
-            "SUPER,a,exec,walker -m applications"
-            "SUPER,d,exec,walker -m websearch"
-            "SUPER,j,exec,walker -m emojis"
-            "SUPER,f,togglefloating,"
-            "SUPER,f,pin,"
-            "SUPER,l,exec,hyprlock"
-            "SUPER,q,killactive,"
-            "SUPER,s,exec,grim"
-            ''SUPER SHIFT,s,exec,grim -g "$(slurp)" - | wl-copy''
-            "SUPER,v,exec,walker -m clipboard"
-            "SUPER,x,fullscreen,"
-            "SUPER,z,exec,firefox"
-            "SUPER,return,exec,ghostty"
-            "SUPER,space,exec,swaync-client -t"
-          ];
-          binde = [
-            "SUPER CTRL,n,exec,hyprctl dispatch resizeactive -10 0"
-            "SUPER CTRL,e,exec,hyprctl dispatch resizeactive 0 -10"
-            "SUPER CTRL,i,exec,hyprctl dispatch resizeactive 0 10"
-            "SUPER CTRL,o,exec,hyprctl dispatch resizeactive 10 0"
-          ];
-          bindel = [
-            ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-            ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-          ];
-          bindl = [
-            ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            ",XF86AudioMicMute,exec,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-            ",XF86AudioPlay,exec,playerctl play-pause"
-            ",XF86AudioPrev,exec,playerctl previous"
-            ",XF86AudioNext,exec,playerctl next"
-            ",XF86AudioStop,exec,playerctl stop"
-          ];
-          bindm = [
-            "CTRL,mouse:272,movewindow"
-            "CTRL,mouse:273,resizewindow"
-          ];
-          exec-once = [
-            "uwsm app -- walker --gapplication-service"
-            "uwsm app -- hyprctl setcursor BreezeX-RosePine-Linux 32"
-            "uwsm app -- iio-hyprland"
-            "uwsm app -- wvkbd-mobintl -H 350 -L 300 --hidden"
-            "uwsm app -- nwg-drawer -r"
-          ];
-          monitor = [
-            "eDP-1,2560x1600@180,0x0,1"
-            ",preferred,0x1600,1"
-          ];
         };
       };
     };
@@ -615,6 +417,7 @@ in
     };
     configFile = {
       nvim.source = nvim;
+      hypr.source = hypr;
       "uwsm" = {
         recursive = true;
         source = ./uwsm;
@@ -638,43 +441,9 @@ in
     };
     hyprpaper = {
       enable = true;
-      settings = {
-        ipc = "on";
-        preload = [ "${./wallpaper.png}" ];
-        splash = false;
-        wallpaper = [ ",${./wallpaper.png}" ];
-      };
     };
     hypridle = {
       enable = true;
-      settings = {
-        general = {
-          after_sleep_cmd = "hyprctl dispatch dpms on";
-          before_sleep_cmd = "loginctl lock-session";
-          lock_cmd = "pidof hyprlock || hyprlock";
-        };
-
-        listener = [
-          {
-            on-resume = "brightnessctl -r";
-            on-timeout = "brightnessctl -s set 10";
-            timeout = 60;
-          }
-          {
-            on-timeout = "loginctl lock-session";
-            timeout = 180;
-          }
-          {
-            on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
-            on-timeout = "hyprctl dispatch dpms off";
-            timeout = 180;
-          }
-          {
-            on-timeout = "systemctl suspend";
-            timeout = 600;
-          }
-        ];
-      };
     };
     hyprpolkitagent = {
       enable = true;
