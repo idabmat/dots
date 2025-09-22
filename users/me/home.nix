@@ -229,6 +229,10 @@ in
         font-family = "CaskaydiaCove Nerd Font Mono";
         font-size = 21;
         theme = "Dracula";
+        keybind = [
+          "unconsumed:ctrl+tab=unbind"
+          "unconsumed:ctrl+shift+tab=unbind"
+        ];
       };
     };
 
@@ -272,6 +276,8 @@ in
         bind -r O resize-pane -R 5
         bind v split-window -h
         bind s split-window -v
+        bind -n C-Tab next-window
+        bind -n C-BTab previous-window
         bind C-u copy-mode
         bind -T copy-mode-vi C-v send-keys -X begin-selection
         bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
