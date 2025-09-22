@@ -112,6 +112,17 @@ vim.keymap.set('n', '<leader>gb', telescope.git_branches)
 vim.keymap.set('n', '<leader>gs', telescope.git_status)
 vim.keymap.set('n', '<leader>gss', telescope.git_stash)
 
+vim.g['test#strategy'] = 'vimux'
+vim.keymap.set('n', '<leader>t', ':TestFile<CR>')
+vim.keymap.set('n', '<leader>s', ':TestNearest<CR>')
+vim.keymap.set('n', '<leader>l', ':TestLast<CR>')
+vim.keymap.set('n', '<leader>a', ':TestSuite<CR>')
+
+vim.keymap.set('n', '<C-n>', ':TmuxNavigateLeft<CR>')
+vim.keymap.set('n', '<C-e>', ':TmuxNavigateDown<CR>')
+vim.keymap.set('n', '<C-i>', ':TmuxNavigateUp<CR>')
+vim.keymap.set('n', '<C-o>', ':TmuxNavigateRight<CR>')
+
 local codecompanion = require('codecompanion')
 vim.keymap.set('n', '<leader>cc', function() codecompanion.chat() end)
 vim.keymap.set('n', '<leader>ca', function() codecompanion.actions() end)

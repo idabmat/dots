@@ -70,6 +70,7 @@ in
       naya-flow
       wvkbd
       nwg-drawer
+      iw
     ];
     file = {
       ".p10k.zsh" = {
@@ -231,6 +232,52 @@ in
       };
     };
 
+    tmux = {
+      enable = true;
+      shell = "${pkgs.zsh}/bin/zsh";
+      prefix = "C-a";
+      baseIndex = 1;
+      clock24 = true;
+      keyMode = "vi";
+      shortcut = "a";
+      mouse = true;
+      terminal = "xterm-256color";
+      escapeTime = 0;
+      newSession = true;
+      plugins = with pkgs.tmuxPlugins; [
+        {
+          plugin = vim-tmux-navigator;
+          extraConfig = ''
+            set -g @vim_navigator_mapping_left "C-n"
+            set -g @vim_navigator_mapping_down "C-e"
+            set -g @vim_navigator_mapping_up "C-i"
+            set -g @vim_navigator_mapping_right "C-o"
+          '';
+        }
+        {
+          plugin = dracula;
+          extraConfig = ''
+            set -g @dracula-show-powerline true
+            set -g @dracula-show-fahrenheit false
+            set -g @dracula-show-location false
+          '';
+        }
+      ];
+      extraConfig = ''
+        set -ag terminal-overrides ",*:RGB"
+        bind C-a last-window
+        bind -r N resize-pane -L 6
+        bind -r E resize-pane -D 5
+        bind -r I resize-pane -U 5
+        bind -r O resize-pane -R 5
+        bind v split-window -h
+        bind s split-window -v
+        bind C-u copy-mode
+        bind -T copy-mode-vi C-v send-keys -X begin-selection
+        bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
+      '';
+    };
+
     firefox = {
       enable = true;
       profiles = {
@@ -339,6 +386,9 @@ in
         vim-fugitive
         vim-repeat
         vim-surround
+        vim-test
+        vim-tmux-navigator
+        vimux
       ];
       extraPackages = with pkgs; [
         bash-language-server

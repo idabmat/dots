@@ -1,4 +1,5 @@
-require('configs/base')require('plugins/codecompanion')
+require('configs/base')
+require('plugins/codecompanion')
 require('plugins/gitsigns')
 require('plugins/hardtime')
 require('plugins/lualine-nvim')
