@@ -247,7 +247,6 @@ in
       mouse = true;
       terminal = "xterm-256color";
       escapeTime = 0;
-      newSession = true;
       plugins = with pkgs.tmuxPlugins; [
         {
           plugin = vim-tmux-navigator;
