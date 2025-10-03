@@ -133,7 +133,6 @@
       extraGroups = [
         "networkmanager"
         "wheel"
-        "docker"
       ];
     }) users;
   };
@@ -228,12 +227,6 @@
         HCC_AMDGPU_TARGET = "gfx1151";
       };
       rocmOverrideGfx = "11.0.1";
-    };
-  };
-
-  virtualisation = {
-    docker = {
-      enable = true;
     };
   };
 

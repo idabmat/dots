@@ -64,7 +64,6 @@ in
       iio-hyprland
       mcp-hub.packages.${pkgs.system}.default
       sshuttle
-      docker-compose
       kooha
       naya-flow
       wvkbd
