@@ -4,6 +4,10 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
+    expert = {
+      url = "github:elixir-lang/expert";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mcp-hub = {
       url = "github:ravitemer/mcp-hub";
       inputs.nixpkgs.follows = "nixpkgs";

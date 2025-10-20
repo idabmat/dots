@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  expert,
   mcp-hub,
   mcphub-nvim,
   hyprland,
@@ -396,7 +397,7 @@ in
       extraPackages = with pkgs; [
         bash-language-server
         dockerfile-language-server
-        beamMinimal28Packages.elixir-ls
+        expert.packages.${pkgs.system}.default
         gopls
         gleam
         hyprls

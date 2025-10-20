@@ -11,8 +11,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.lsp.config('elixirls', {
-  cmd = { 'elixir-ls' },
+vim.lsp.config('expert', {
+  cmd = { 'expert' },
+  root_markers = { 'mix.exs', '.git' },
+  filetypes = { 'elixir', 'eelixir', 'heex', 'surface' }
 })
 
 vim.lsp.config('lua_ls', {
@@ -71,7 +73,7 @@ vim.lsp.config('nil_ls', {
 vim.lsp.enable('bashls')
 vim.lsp.enable('cssls')
 vim.lsp.enable('dockerls')
-vim.lsp.enable('elixirls')
+vim.lsp.enable('expert')
 vim.lsp.enable('gleam')
 vim.lsp.enable('gopls')
 vim.lsp.enable('html')
