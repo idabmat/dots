@@ -133,6 +133,7 @@
       extraGroups = [
         "networkmanager"
         "wheel"
+        "docker"
       ];
     }) users;
   };
@@ -229,6 +230,8 @@
       rocmOverrideGfx = "11.0.1";
     };
   };
+
+  virtualisation.docker.enable = true;
 
   system.stateVersion = "24.11";
 }
