@@ -70,6 +70,7 @@ in
       wvkbd
       nwg-drawer
       iw
+      claude-code
     ];
     file = {
       ".p10k.zsh" = {
