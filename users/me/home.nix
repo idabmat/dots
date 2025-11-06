@@ -63,7 +63,7 @@ in
       swaynotificationcenter
       spotify
       iio-hyprland
-      mcp-hub.packages.${pkgs.system}.default
+      mcp-hub.packages.${pkgs.stdenv.hostPlatform.system}.default
       sshuttle
       kooha
       naya-flow
@@ -357,7 +357,7 @@ in
         hardtime-nvim
         lualine-nvim
         luasnip
-        mcphub-nvim.packages."${pkgs.system}".default
+        mcphub-nvim.packages."${pkgs.stdenv.hostPlatform.system}".default
         mkdir-nvim
         nvim-autopairs
         nvim-cmp
@@ -400,7 +400,7 @@ in
       extraPackages = with pkgs; [
         bash-language-server
         dockerfile-language-server
-        expert.packages.${pkgs.system}.default
+        expert.packages.${pkgs.stdenv.hostPlatform.system}.default
         gopls
         gleam
         hyprls
@@ -429,7 +429,7 @@ in
     windowManager = {
       hyprland = {
         enable = true;
-        package = hyprland.packages.${pkgs.system}.hyprland;
+        package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
         systemd = {
           enable = false;
         };
