@@ -12,7 +12,6 @@
 let
   nvim = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nvim;
   hypr = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/hypr;
-  naya-flow = import ../../apps/naya-flow.nix { inherit pkgs; };
 in
 {
   home = {
@@ -66,7 +65,6 @@ in
       mcp-hub.packages.${pkgs.stdenv.hostPlatform.system}.default
       sshuttle
       kooha
-      naya-flow
       wvkbd
       nwg-drawer
       iw
