@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.lsp.config('expert', {
-  cmd = { '/home/me/code/expert/apps/expert/burrito_out/expert_linux_amd64', '--stdio' },
+  cmd = { 'expert', '--stdio' },
   root_markers = { 'mix.exs', '.git' },
   filetypes = { 'elixir', 'eelixir', 'heex', 'surface' }
 })
