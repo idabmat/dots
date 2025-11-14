@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  expert,
   mcp-hub,
   mcphub-nvim,
   hyprland,
@@ -399,7 +398,6 @@ in
       extraPackages = with pkgs; [
         bash-language-server
         dockerfile-language-server
-        expert.packages.${pkgs.stdenv.hostPlatform.system}.default
         gopls
         gleam
         hyprls
