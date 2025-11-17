@@ -39,7 +39,7 @@ in
       wl-clipboard
       openrgb
       flyctl
-      mplayer
+      # mplayer
       timg
       pavucontrol
       brightnessctl
