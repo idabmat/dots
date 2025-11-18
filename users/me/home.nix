@@ -245,7 +245,7 @@ in
       keyMode = "vi";
       shortcut = "a";
       mouse = true;
-      terminal = "xterm-256color";
+      terminal = "screen-256color";
       escapeTime = 0;
       plugins = with pkgs.tmuxPlugins; [
         {
@@ -268,6 +268,7 @@ in
       ];
       extraConfig = ''
         set -ag terminal-overrides ",*:RGB"
+        set -g focus-events
         bind C-a last-window
         bind -r N resize-pane -L 6
         bind -r E resize-pane -D 5
