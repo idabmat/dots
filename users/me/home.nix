@@ -350,6 +350,7 @@ in
         cmp-path
         cmp-nvim-lsp
         cmp_luasnip
+        csvview-nvim
         dracula-nvim
         gitsigns-nvim
         gitsigns-nvim
