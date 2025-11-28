@@ -73,9 +73,6 @@
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [
-        rocmPackages.clr.icd
-      ];
     };
     bluetooth = {
       enable = true;
@@ -148,6 +145,9 @@
     shells = with pkgs; [
       zsh
     ];
+    variables = {
+      AMD_VULKAN_ICD = "RADV";
+    };
   };
 
   programs = {
@@ -228,6 +228,7 @@
         HCC_AMDGPU_TARGET = "gfx1151";
       };
       rocmOverrideGfx = "11.0.1";
+      loadModels = [ "qwen3-coder:latest" ];
     };
   };
 
