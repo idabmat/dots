@@ -1,7 +1,7 @@
 require('codecompanion').setup({
   strategies = {
     chat = {
-      adapter = 'my_openai',
+      adapter = 'qwen3',
       tools = {
         opts = {
           auto_submit_errors = true,
@@ -10,13 +10,13 @@ require('codecompanion').setup({
       },
     },
     inline = {
-      adapter = 'my_openai',
+      adapter = 'qwen3',
     },
     agent = {
-      adapter = 'my_openai',
+      adapter = 'qwen3',
     },
     cmd = {
-      adapter = 'my_openai',
+      adapter = 'qwen3',
     },
   },
   extensions = {
@@ -31,11 +31,12 @@ require('codecompanion').setup({
   },
   adapters = {
     http = {
-      my_openai = function()
-        return require('codecompanion.adapters').extend('openai_compatible', {
+      qwen3 = function()
+        return require('codecompanion.adapters').extend('ollama', {
+          name = 'qwen3',
           schema = {
             model = {
-              default = 'qwen3:latest',
+              default = 'qwen3-coder:latest',
             },
           },
         })
