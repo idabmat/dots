@@ -105,7 +105,7 @@
   };
 
   time = {
-    timeZone = "Europe/Paris";
+    timeZone = "Europe/Lisbon";
   };
 
   i18n = {
