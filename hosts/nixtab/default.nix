@@ -102,6 +102,9 @@
     networkmanager = {
       enable = true;
     };
+    firewall = {
+      checkReversePath = "loose";
+    };
   };
 
   time = {
@@ -184,6 +187,7 @@
     };
     tailscale = {
       enable = true;
+      useRoutingFeatures = "client";
     };
     pipewire = {
       enable = true;
