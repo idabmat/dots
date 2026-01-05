@@ -181,6 +181,9 @@
     supergfxd = {
       enable = true;
     };
+    upower = {
+      enable = true;
+    };
     asusd = {
       enable = true;
       enableUserService = true;

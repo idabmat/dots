@@ -124,6 +124,29 @@ in
     home-manager = {
       enable = true;
     };
+    ashell = {
+      enable = true;
+      systemd = {
+        enable = true;
+      };
+      settings = {
+        appearance = {
+          scale_factor = 1.5;
+        };
+        modules = {
+          left = [ "Workspaces" ];
+          center = [ "Clock" ];
+          right = [
+            "SystemInfo"
+            "MediaPlayer"
+            [
+              "Tray"
+              "Settings"
+            ]
+          ];
+        };
+      };
+    };
     jujutsu = {
       enable = true;
       settings = {
