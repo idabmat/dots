@@ -11,11 +11,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.lsp.config('expert', {
-  cmd = { '/home/me/code/expert/apps/expert/_build/prod/rel/plain/bin/start_expert', '--stdio' },
-  root_markers = { 'mix.exs', '.git' },
-  filetypes = { 'elixir', 'eelixir', 'heex', 'surface' }
-})
+-- vim.lsp.config('expert', {
+--   cmd = { '/home/me/code/expert/apps/expert/_build/prod/rel/plain/bin/start_expert', '--stdio' },
+--   root_markers = { 'mix.exs', '.git' },
+--   filetypes = { 'elixir', 'eelixir', 'heex', 'surface' }
+-- })
 
 vim.lsp.config('lua_ls', {
   on_init = function(client)
@@ -73,7 +73,8 @@ vim.lsp.config('nil_ls', {
 vim.lsp.enable('bashls')
 vim.lsp.enable('cssls')
 vim.lsp.enable('dockerls')
-vim.lsp.enable('expert')
+-- vim.lsp.enable('expert')
+vim.lsp.enable('elixirls')
 vim.lsp.enable('gleam')
 vim.lsp.enable('gopls')
 vim.lsp.enable('html')

@@ -423,6 +423,7 @@ in
       extraPackages = with pkgs; [
         bash-language-server
         dockerfile-language-server
+        beamMinimal26Packages.elixir-ls
         gopls
         gleam
         hyprls
