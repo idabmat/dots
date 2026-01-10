@@ -429,7 +429,7 @@ in
         lua-language-server
         marksman
         nil
-        nixfmt-rfc-style
+        nixfmt
         pyright
         rust-analyzer
         tailwindcss-language-server
