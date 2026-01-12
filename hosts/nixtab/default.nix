@@ -31,6 +31,9 @@
   ];
 
   boot = {
+    extraModprobeConfig = ''
+      options cfg80211 ieee80211_regdom="PT"
+    '';
     loader = {
       systemd-boot = {
         enable = true;
@@ -70,6 +73,7 @@
   };
 
   hardware = {
+    wirelessRegulatoryDatabase = true;
     graphics = {
       enable = true;
       enable32Bit = true;
