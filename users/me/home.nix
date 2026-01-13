@@ -161,6 +161,7 @@ in
         };
         ui = {
           pager = "delta";
+          diff-formatter = ":git";
         };
       };
     };
@@ -216,7 +217,7 @@ in
         ls = "lsd";
         cd = "z";
         cat = "bat";
-        jjd = "jj diff --git";
+        jjd = "jj diff";
       };
       oh-my-zsh = {
         enable = true;
