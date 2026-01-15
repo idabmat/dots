@@ -24,7 +24,6 @@ in
       graphite-cli
       python3
       exercism
-      btop
       ps
       unzip
       silver-searcher
@@ -317,6 +316,14 @@ in
         me = { };
       };
       nativeMessagingHosts = [ pkgs.web-eid-app ];
+    };
+
+    btop = {
+      enable = true;
+      settings = {
+        color_theme = "TTY";
+        base_10_sizes = true;
+      };
     };
 
     zoxide = {
