@@ -70,6 +70,35 @@ vim.lsp.config('nil_ls', {
   },
 })
 
+vim.lsp.config('yamlls', {
+  settings = {
+    redhat = {
+      telemetry = {
+        enabled = false
+      }
+    },
+    yaml = {
+      completion = true,
+      format = {
+        enable = true
+      },
+      hover = true,
+      validate = true,
+      schemaStore = {
+        enable = true
+      },
+      schemas = {
+        kubernetes = {
+          "*.yaml"
+        },
+      },
+      kubernetesCRDStore = {
+        enable = true
+      }
+    }
+  }
+})
+
 vim.lsp.enable('bashls')
 vim.lsp.enable('cssls')
 vim.lsp.enable('dockerls')
