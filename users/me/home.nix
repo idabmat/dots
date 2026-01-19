@@ -315,6 +315,23 @@ in
       profiles = {
         me = { };
       };
+      policies = {
+        DisableAppUpdate = true;
+        DisableFirefoxStudies = true;
+        DisableTelemetry = true;
+        DontCheckDefaultBrowser = true;
+        FirefoxHome = {
+          SponsoredStories = false;
+          SponsoredTopSites = false;
+          Stories = false;
+        };
+        GenerativeAI = {
+          Enabled = false;
+        };
+        SearchEngines = {
+          Remove = [ "Perplexity" ];
+        };
+      };
       nativeMessagingHosts = [ pkgs.web-eid-app ];
     };
 
