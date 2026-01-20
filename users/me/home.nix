@@ -67,6 +67,7 @@ in
       nwg-drawer
       iw
       claude-code
+      bluetui
     ];
     file = {
       ".p10k.zsh" = {
