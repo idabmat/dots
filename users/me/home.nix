@@ -67,8 +67,6 @@ in
       nwg-drawer
       iw
       claude-code
-      talosctl
-      kubectl
     ];
     file = {
       ".p10k.zsh" = {
