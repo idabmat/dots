@@ -428,6 +428,7 @@ in
           p.javascript
           p.json
           p.lua
+          p.markdown_inline
           p.mermaid
           p.nix
           p.sql
@@ -437,6 +438,7 @@ in
         ]))
         nvim-web-devicons
         plenary-nvim
+        render-markdown-nvim
         tcomment_vim
         telescope-nvim
         telescope-fzf-native-nvim
