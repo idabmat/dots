@@ -405,6 +405,7 @@ in
         gitsigns-nvim
         gitsigns-nvim
         hardtime-nvim
+        hunk-nvim
         lualine-nvim
         luasnip
         mcphub-nvim.packages."${pkgs.stdenv.hostPlatform.system}".default
