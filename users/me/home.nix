@@ -163,6 +163,11 @@ in
         ui = {
           pager = "delta";
           diff-formatter = ":git";
+          diff-editor = [
+            "nvim"
+            "-c"
+            "DiffEditor $left $right $output"
+          ];
         };
       };
     };
