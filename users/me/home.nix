@@ -29,13 +29,14 @@ in
       silver-searcher
       devbox
       ripgrep
-      walker
       bitwarden-desktop
       yubikey-manager
       yubioath-flutter
       slack
       discord
       wl-clipboard
+      cliphist
+      bemoji
       openrgb
       flyctl
       mplayer
@@ -537,6 +538,9 @@ in
       enable = true;
     };
     hyprpolkitagent = {
+      enable = true;
+    };
+    hyprlauncher = {
       enable = true;
     };
     swaync = {
