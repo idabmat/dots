@@ -68,6 +68,7 @@ in
       iw
       claude-code
       bluetui
+      keymapp
     ];
     file = {
       ".p10k.zsh" = {
