@@ -11,6 +11,7 @@
 let
   nvim = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nvim;
   hypr = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/hypr;
+  nwgdrawer = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nwg-drawer;
 in
 {
   home = {
@@ -133,8 +134,10 @@ in
         enable = true;
       };
       settings = {
+        app_launcher_cmd = "nwg-drawer";
         appearance = {
           scale_factor = 1.5;
+          style = "Solid";
         };
         modules = {
           left = [ "Workspaces" ];
@@ -510,6 +513,7 @@ in
     configFile = {
       nvim.source = nvim;
       hypr.source = hypr;
+      nwg-drawer.source = nwgdrawer;
       "uwsm" = {
         recursive = true;
         source = ./uwsm;
