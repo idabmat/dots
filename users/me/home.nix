@@ -68,7 +68,6 @@ in
       wvkbd
       nwg-drawer
       iw
-      claude-code
       bluetui
       keymapp
     ];
@@ -214,14 +213,12 @@ in
         side-by-side = true;
       };
     };
-
     gpg = {
       enable = true;
       scdaemonSettings = {
         disable-ccid = true;
       };
     };
-
     zsh = {
       enable = true;
       shellAliases = {
@@ -254,7 +251,6 @@ in
         fi
       '';
     };
-
     ghostty = {
       enable = true;
       settings = {
@@ -270,7 +266,6 @@ in
         ];
       };
     };
-
     tmux = {
       enable = true;
       shell = "${pkgs.zsh}/bin/zsh";
@@ -318,7 +313,6 @@ in
         bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
       '';
     };
-
     firefox = {
       enable = true;
       profiles = {
@@ -343,7 +337,6 @@ in
       };
       nativeMessagingHosts = [ pkgs.web-eid-app ];
     };
-
     btop = {
       enable = true;
       settings = {
@@ -351,25 +344,21 @@ in
         base_10_sizes = true;
       };
     };
-
     zoxide = {
       enable = true;
     };
-
     bat = {
       enable = true;
       config = {
         theme = "Dracula";
       };
     };
-
     direnv = {
       enable = true;
       nix-direnv = {
         enable = true;
       };
     };
-
     fzf = {
       enable = true;
       changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ];
@@ -393,11 +382,6 @@ in
         "--exact"
       ];
     };
-
-    yazi = {
-      enable = true;
-    };
-
     neovim = {
       enable = true;
       defaultEditor = true;
@@ -481,7 +465,6 @@ in
         zls
       ];
     };
-
     hyprlock = {
       enable = true;
     };
