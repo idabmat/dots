@@ -1,52 +1,21 @@
 require('codecompanion').setup({
-  ignore_warnings = true,
-  strategies = {
+  ignore_warnings = false,
+  interactions = {
     chat = {
-      adapter = 'qwen3',
+      adapter = {
+        name = "opencode",
+        model = "claude-opus-4-6-20260205",
+      },
       tools = {
         opts = {
           auto_submit_errors = true,
           auto_submit_success = true,
         },
       },
-    },
-    inline = {
-      adapter = 'qwen3',
-    },
-    agent = {
-      adapter = 'qwen3',
-    },
-    cmd = {
-      adapter = 'qwen3',
-    },
-  },
-  extensions = {
-    mcphub = {
-      callback = 'mcphub.extensions.codecompanion',
       opts = {
-        show_result_in_chat = true,
-        make_vars = true,
-        make_slash_commands = true,
+        completion = "cmp",
       },
     },
-  },
-  adapters = {
-    http = {
-      qwen3 = function()
-        return require('codecompanion.adapters').extend('ollama', {
-          name = 'qwen3',
-          schema = {
-            model = {
-              default = 'qwen3-coder:latest',
-            },
-          },
-        })
-      end,
-      opts = {
-        show_model_choices = true,
-      },
-
-    }
   },
   opts = {
     log_level = 'DEBUG',
@@ -61,7 +30,7 @@ require('codecompanion').setup({
       },
     },
     chat = {
-      show_settings = false,
+      show_settings = true,
     },
   },
 })

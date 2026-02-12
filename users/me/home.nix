@@ -2,8 +2,6 @@
   config,
   pkgs,
   lib,
-  mcp-hub,
-  mcphub-nvim,
   hyprland,
   ...
 }:
@@ -62,7 +60,6 @@ in
       swaynotificationcenter
       spotify
       iio-hyprland
-      mcp-hub.packages.${pkgs.stdenv.hostPlatform.system}.default
       sshuttle
       kooha
       wvkbd
@@ -402,7 +399,6 @@ in
         hunk-nvim
         lualine-nvim
         luasnip
-        mcphub-nvim.packages."${pkgs.stdenv.hostPlatform.system}".default
         mkdir-nvim
         nvim-autopairs
         nvim-cmp
@@ -464,6 +460,29 @@ in
         yaml-language-server
         zls
       ];
+    };
+    mcp = {
+      enable = true;
+      servers = {
+        tidewave = {
+          url = "http://localhost:4000/tidewave/mcp";
+          custom_instructions = {
+            text = ''
+              This is a Phoenix application, which uses Tailwind.
+              Prefer using LiveView instead of regular Controllers.
+              Once you are done with changes, run `mix compile` and fix any issues.
+              Write tests for your changes and run `mix test` afterwards.
+            '';
+          };
+        };
+      };
+    };
+    opencode = {
+      enable = true;
+      enableMcpIntegration = true;
+      settings = {
+        theme = "system";
+      };
     };
     hyprlock = {
       enable = true;
