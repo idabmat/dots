@@ -2,8 +2,7 @@
   description = "System configuration";
   inputs = {
     nixpkgs = {
-      # Waiting for https://nixpk.gs/pr-tracker.html?pr=488420
-      url = "github:NixOS/nixpkgs/160a4c2";
+      url = "github:NixOS/nixpkgs/nixos-unstable";
     };
     mcp-hub = {
       url = "github:ravitemer/mcp-hub";
