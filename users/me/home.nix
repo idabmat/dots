@@ -3,6 +3,7 @@
   pkgs,
   lib,
   hyprland,
+  expert,
   ...
 }:
 
@@ -443,6 +444,8 @@ in
       extraPackages = with pkgs; [
         bash-language-server
         dockerfile-language-server
+        expert.packages.${pkgs.stdenv.hostPlatform.system}.default
+        beamMinimal28Packages.rebar3
         gopls
         gleam
         hyprls
