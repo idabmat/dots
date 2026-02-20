@@ -478,6 +478,12 @@ in
             '';
           };
         };
+        linear = {
+          url = "https://mcp.linear.app/mcp";
+          headers = {
+            Authorization = "Bearer {env:LINEAR_API_KEY}";
+          };
+        };
       };
     };
     opencode = {
