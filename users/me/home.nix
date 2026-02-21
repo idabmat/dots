@@ -5,14 +5,11 @@
   hyprland,
   expert,
   ...
-}:
-
-let
+}: let
   nvim = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nvim;
   hypr = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/hypr;
   nwgdrawer = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nwg-drawer;
-in
-{
+in {
   home = {
     username = "me";
     homeDirectory = "/home/me";
@@ -83,7 +80,7 @@ in
       size = 32;
     };
     activation = {
-      generateCompletions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      generateCompletions = lib.hm.dag.entryAfter ["writeBoundary"] ''
         mkdir -p ${config.home.homeDirectory}/.cache/oh-my-zsh/completions
         ${pkgs.devbox}/bin/devbox completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_devbox
         ${pkgs.graphite-cli}/bin/gt completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_gt
@@ -137,8 +134,8 @@ in
           style = "Solid";
         };
         modules = {
-          left = [ "Workspaces" ];
-          center = [ "Clock" ];
+          left = ["Workspaces"];
+          center = ["Clock"];
           right = [
             "SystemInfo"
             "MediaPlayer"
@@ -176,7 +173,6 @@ in
     git = {
       settings = {
         user = {
-
           email = "igor@talimhq.com";
           name = "Igor de Alcantara Barroso";
           github = {
@@ -314,7 +310,7 @@ in
     firefox = {
       enable = true;
       profiles = {
-        me = { };
+        me = {};
       };
       policies = {
         DisableAppUpdate = true;
@@ -330,10 +326,10 @@ in
           Enabled = false;
         };
         SearchEngines = {
-          Remove = [ "Perplexity" ];
+          Remove = ["Perplexity"];
         };
       };
-      nativeMessagingHosts = [ pkgs.web-eid-app ];
+      nativeMessagingHosts = [pkgs.web-eid-app];
     };
     btop = {
       enable = true;
@@ -359,7 +355,7 @@ in
     };
     fzf = {
       enable = true;
-      changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ];
+      changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"];
       colors = {
         "fg" = "#cbccc6";
         "bg" = "#1f2430";
@@ -374,7 +370,7 @@ in
         "spinner" = "#73d0ff";
         "header" = "#d4bfff";
       };
-      fileWidgetOptions = [ "--preview 'head {}'" ];
+      fileWidgetOptions = ["--preview 'head {}'"];
       historyWidgetOptions = [
         "--sort"
         "--exact"
@@ -452,7 +448,7 @@ in
         lua-language-server
         marksman
         nil
-        nixfmt
+        alejandra
         pyright
         rust-analyzer
         tailwindcss-language-server

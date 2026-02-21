@@ -4,9 +4,7 @@
   users,
   hyprland,
   ...
-}:
-
-{
+}: {
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -20,9 +18,9 @@
         "nix-command"
         "flakes"
       ];
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
   };
 
@@ -125,21 +123,23 @@
     };
     pam = {
       services = {
-        hyprlock = { };
+        hyprlock = {};
       };
     };
   };
 
   users = {
-    users = lib.attrsets.mapAttrs (name: value: {
-      isNormalUser = true;
-      shell = pkgs.zsh;
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "docker"
-      ];
-    }) users;
+    users =
+      lib.attrsets.mapAttrs (name: value: {
+        isNormalUser = true;
+        shell = pkgs.zsh;
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "docker"
+        ];
+      })
+      users;
   };
 
   environment = {
@@ -179,7 +179,7 @@
     };
   };
 
-  systemd.services.supergfxd.path = [ pkgs.pciutils ];
+  systemd.services.supergfxd.path = [pkgs.pciutils];
 
   services = {
     supergfxd = {
@@ -222,7 +222,7 @@
       enable = true;
     };
     udev = {
-      packages = [ pkgs.yubikey-personalization ];
+      packages = [pkgs.yubikey-personalization];
     };
     blueman = {
       enable = true;
@@ -239,7 +239,7 @@
         HCC_AMDGPU_TARGET = "gfx1151";
       };
       rocmOverrideGfx = "11.0.1";
-      loadModels = [ "qwen3-coder:latest" ];
+      loadModels = ["qwen3-coder:latest"];
     };
   };
 
