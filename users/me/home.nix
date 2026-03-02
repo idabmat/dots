@@ -486,7 +486,7 @@ in {
       enable = true;
       enableMcpIntegration = true;
       settings = {
-        theme = "system";
+        theme = "dracula";
       };
     };
     hyprlock = {
