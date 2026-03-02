@@ -190,7 +190,6 @@
     };
     asusd = {
       enable = true;
-      enableUserService = true;
     };
     tailscale = {
       enable = true;
