@@ -226,11 +226,6 @@
     blueman = {
       enable = true;
     };
-    hardware = {
-      openrgb = {
-        enable = true;
-      };
-    };
     ollama = {
       enable = true;
       package = pkgs.ollama-rocm;

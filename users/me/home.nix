@@ -34,7 +34,6 @@ in {
       wl-clipboard
       cliphist
       bemoji
-      openrgb
       flyctl
       mplayer
       timg
