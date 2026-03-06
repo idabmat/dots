@@ -24,7 +24,6 @@ in {
       ps
       unzip
       silver-searcher
-      devbox
       ripgrep
       bitwarden-desktop
       yubikey-manager
@@ -82,7 +81,6 @@ in {
     activation = {
       generateCompletions = lib.hm.dag.entryAfter ["writeBoundary"] ''
         mkdir -p ${config.home.homeDirectory}/.cache/oh-my-zsh/completions
-        ${pkgs.devbox}/bin/devbox completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_devbox
         ${pkgs.graphite-cli}/bin/gt completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_gt
         ${pkgs.exercism}/bin/exercism completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_exercism
         ${pkgs.talosctl}/bin/talosctl completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_talosctl
