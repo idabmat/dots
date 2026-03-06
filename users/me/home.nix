@@ -64,6 +64,7 @@ in {
       iw
       bluetui
       keymapp
+      beans
     ];
     file = {
       ".p10k.zsh" = {
