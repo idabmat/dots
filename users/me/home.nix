@@ -105,6 +105,9 @@ in {
         gtk-application-prefer-dark-theme = true;
       };
     };
+    gtk4 = {
+      theme = config.gtk.theme;
+    };
   };
 
   dconf = {
@@ -197,6 +200,7 @@ in {
       signing = {
         key = "794A41BA3DBE9931";
         signByDefault = true;
+        format = "openpgp";
       };
     };
     delta = {
@@ -521,6 +525,7 @@ in {
       publicShare = "${config.home.homeDirectory}/public";
       templates = "${config.home.homeDirectory}/templates";
       videos = "${config.home.homeDirectory}/videos";
+      setSessionVariables = true;
     };
     configFile = {
       nvim.source = nvim;
