@@ -6,7 +6,6 @@
   expert,
   ...
 }: let
-  nvim = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nvim;
   hypr = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/hypr;
   nwgdrawer = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nwg-drawer;
 in {
@@ -518,7 +517,10 @@ in {
       setSessionVariables = true;
     };
     configFile = {
-      nvim.source = nvim;
+      nvim = {
+        recursive = true;
+        source = ./nvim;
+      };
       hypr.source = hypr;
       nwg-drawer.source = nwgdrawer;
       "uwsm" = {
