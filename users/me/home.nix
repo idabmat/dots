@@ -65,11 +65,6 @@ in {
       keymapp
       beans
     ];
-    file = {
-      ".p10k.zsh" = {
-        source = ./p10k.zsh;
-      };
-    };
     pointerCursor = {
       gtk = {
         enable = true;
@@ -234,17 +229,12 @@ in {
       plugins = [
         {
           name = "powerlevel10k";
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-          src = pkgs.zsh-powerlevel10k;
+          src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
+          file = "powerlevel10k.zsh-theme";
         }
       ];
-      initContent = ''
-        if [[ -f "$HOME"/.nix-profile/etc/profile.d/nix.sh ]]; then
-          source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-        fi
-        if [[ -f "$HOME"/.p10k.zsh ]]; then
-          source "$HOME/.p10k.zsh"
-        fi
+      initContent = lib.mkOrder 1000 ''
+        source ${./p10k.zsh}
       '';
     };
     ghostty = {
