@@ -322,13 +322,6 @@ in {
       };
       nativeMessagingHosts = [pkgs.web-eid-app];
     };
-    chromium = {
-      enable = true;
-      commandLineArgs = [];
-      dictionaries = [];
-      extensions = [];
-      nativeMessagingHosts = [];
-    };
     btop = {
       enable = true;
       settings = {
