@@ -372,6 +372,8 @@ in {
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
+      withRuby = false;
+      withPython3 = false;
       plugins = with pkgs.vimPlugins; [
         codecompanion-nvim
         cmp-buffer
@@ -476,7 +478,7 @@ in {
     opencode = {
       enable = true;
       enableMcpIntegration = true;
-      settings = {
+      tui = {
         theme = "dracula";
       };
     };
