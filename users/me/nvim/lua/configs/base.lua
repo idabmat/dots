@@ -1,8 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.keymap.set('n', '<leader><leader>', '<c-^>', {})
-vim.opt["grepprg"] = "ag --nogroup --nocolor"
-vim["$FZF_DEFAULT_COMMAND"] = 'ag --literal --files-with-matches --nocolor --hidden -g ""'
+vim.opt["grepprg"] = "rg --no-heading --color=never"
+vim["$FZF_DEFAULT_COMMAND"] = 'rg --files-with-matches --color=never --hidden'
 vim.g.html_indent_tags = "li|p"
 
 local options = {

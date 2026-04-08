@@ -22,7 +22,6 @@ in {
       exercism
       ps
       unzip
-      silver-searcher
       ripgrep
       bitwarden-desktop
       yubikey-manager
@@ -212,6 +211,7 @@ in {
     zsh = {
       enable = true;
       shellAliases = {
+        ag = "rg";
         ls = "lsd";
         cd = "z";
         cat = "bat";
