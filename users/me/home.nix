@@ -13,55 +13,44 @@ in {
     username = "me";
     homeDirectory = "/home/me";
     stateVersion = "24.11";
+    shell = {
+      enableZshIntegration = true;
+    };
     packages = with pkgs; [
-      fastfetch
-      lsd
-      tree
-      graphite-cli
-      python3
-      exercism
       ps
       unzip
-      ripgrep
       bitwarden-desktop
       yubikey-manager
       yubioath-flutter
       slack
-      discord
       wl-clipboard
       cliphist
       bemoji
-      flyctl
       mplayer
-      timg
+      imv
+      gimp
       pavucontrol
       brightnessctl
       playerctl
+      spotify
       rose-pine-cursor
       kdePackages.qtwayland
       kdePackages.qt6ct
       kdePackages.qtstyleplugin-kvantum
       adw-gtk3
       adwaita-icon-theme
-      nautilus
-      aichat
-      jq
       cantarell-fonts
       nerd-fonts.caskaydia-cove
+      nautilus
       slurp
       grim
-      gimp
-      swaynotificationcenter
-      spotify
-      iio-hyprland
-      sshuttle
       kooha
-      wvkbd
-      nwg-drawer
-      iw
+      swaynotificationcenter
       bluetui
       keymapp
-      beans
+      iio-hyprland
+      wvkbd
+      nwg-drawer
     ];
     pointerCursor = {
       gtk = {
@@ -70,14 +59,6 @@ in {
       package = pkgs.rose-pine-cursor;
       name = "BreezeX-RosePine-Linux";
       size = 32;
-    };
-    activation = {
-      generateCompletions = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        mkdir -p ${config.home.homeDirectory}/.cache/oh-my-zsh/completions
-        ${pkgs.graphite-cli}/bin/gt completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_gt
-        ${pkgs.exercism}/bin/exercism completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_exercism
-        ${pkgs.talosctl}/bin/talosctl completion zsh > ${config.home.homeDirectory}/.cache/oh-my-zsh/completions/_talosctl
-      '';
     };
   };
 
@@ -139,6 +120,37 @@ in {
             ]
           ];
         };
+      };
+    };
+    fastfetch = {
+      enable = true;
+    };
+    ripgrep = {
+      enable = true;
+    };
+    lsd = {
+      enable = true;
+    };
+    jq = {
+      enable = true;
+    };
+    ranger = {
+      enable = true;
+      settings = {
+        preview_images = true;
+        preview_images_method = "kitty";
+      };
+    };
+    discord = {
+      enable = true;
+      settings = {
+        BACKGROUND_COLOR = "#000000";
+        chromiumSwitches = {};
+        IS_MAXIMIZED = true;
+        IS_MINIMIZED = false;
+        offloadAdmControls = true;
+        enableHardwareAcceleration = true;
+        openH264Enabled = true;
       };
     };
     jujutsu = {
@@ -212,10 +224,10 @@ in {
       enable = true;
       shellAliases = {
         ag = "rg";
-        ls = "lsd";
         cd = "z";
         cat = "bat";
         jjd = "jj diff";
+        tree = "lsd --tree";
       };
       oh-my-zsh = {
         enable = true;
@@ -346,7 +358,7 @@ in {
     };
     fzf = {
       enable = true;
-      changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"];
+      changeDirWidgetOptions = ["--preview 'lsd --tree -C {} | head -200'"];
       colors = {
         "fg" = "#cbccc6";
         "bg" = "#1f2430";
@@ -480,6 +492,9 @@ in {
       enableMcpIntegration = true;
       tui = {
         theme = "dracula";
+      };
+      tools = {
+        beans = "${pkgs.beans}/.opencode/plugin/beans-prime.ts";
       };
     };
     hyprlock = {
