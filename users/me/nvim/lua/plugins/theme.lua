@@ -1,3 +1,2 @@
-require('dracula').setup({
-})
-vim.cmd('colorscheme dracula')
+require('rose-pine')
+vim.cmd('colorscheme rose-pine')

@@ -8,6 +8,18 @@
 }: let
   hypr = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/hypr;
   nwgdrawer = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nwg-drawer;
+  yazi-theme = pkgs.fetchFromGitHub {
+    owner = "rose-pine";
+    repo = "yazi";
+    rev = "main";
+    sha256 = "sha256-9e3dXViWl1rK9BPrGAFfs9ZL/tsG6Njz6ksuU6AIrFY=";
+  };
+  lsd-theme = pkgs.fetchFromGitHub {
+    owner = "nolight132";
+    repo = "rose-pine-lsd";
+    rev = "main";
+    sha256 = "sha256-Vbzt2aSnyGZZ42gUNmPWVvewjZQ88U3k15xxXxofcNM=";
+  };
 in {
   home = {
     username = "me";
@@ -65,13 +77,12 @@ in {
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.dracula-theme;
-      name = "Dracula";
+      package = pkgs.rose-pine-gtk-theme;
+      name = "rose-pine";
     };
 
     iconTheme = {
-      package = pkgs.dracula-icon-theme;
-      name = "Dracula";
+      name = "RoséPine";
     };
 
     gtk3 = {
@@ -107,6 +118,12 @@ in {
         appearance = {
           scale_factor = 1.5;
           style = "Solid";
+          text_color = "#FFFFFF";
+          background_color = {
+            base = "#0D1017";
+            weak = "#141821";
+            strong = "#000080";
+          };
         };
         modules = {
           left = ["Workspaces"];
@@ -130,16 +147,23 @@ in {
     };
     lsd = {
       enable = true;
+      colors = "${lsd-theme}/colors.yaml";
     };
     jq = {
       enable = true;
     };
-    ranger = {
+    yazi = {
       enable = true;
-      settings = {
-        preview_images = true;
-        preview_images_method = "kitty";
+      flavors = {
+        rose-pine = "${yazi-theme}/flavors/rose-pine.yazi";
       };
+      theme = {
+        flavor = {
+          dark = "rose-pine";
+          light = "rose-pine";
+        };
+      };
+      shellWrapperName = "y";
     };
     discord = {
       enable = true;
@@ -256,7 +280,8 @@ in {
         gtk-single-instance = true;
         font-family = "CaskaydiaCove Nerd Font Mono";
         font-size = 21;
-        theme = "Dracula";
+        theme = "Rose Pine";
+        background-opacity = 0.9;
         keybind = [
           "unconsumed:ctrl+tab=unbind"
           "unconsumed:ctrl+shift+tab=unbind"
@@ -285,11 +310,9 @@ in {
           '';
         }
         {
-          plugin = dracula;
+          plugin = rose-pine;
           extraConfig = ''
-            set -g @dracula-show-powerline true
-            set -g @dracula-show-fahrenheit false
-            set -g @dracula-show-location false
+            set -g @rose_pine_variant 'main'
           '';
         }
       ];
@@ -346,8 +369,14 @@ in {
     };
     bat = {
       enable = true;
+      themes = {
+        rose-pine = {
+          src = yazi-theme;
+          file = "flavors/rose-pine.yazi/tmtheme.xml";
+        };
+      };
       config = {
-        theme = "Dracula";
+        theme = "rose-pine";
       };
     };
     direnv = {
@@ -360,18 +389,20 @@ in {
       enable = true;
       changeDirWidgetOptions = ["--preview 'lsd --tree -C {} | head -200'"];
       colors = {
-        "fg" = "#cbccc6";
-        "bg" = "#1f2430";
-        "hl" = "#707a8c";
-        "fg+" = "#707a8c";
-        "bg+" = "#191e2a";
-        "hl+" = "#ffcc66";
-        "info" = "#73d0ff";
-        "prompt" = "#707a8c";
-        "pointer" = "#cbccc6";
-        "marker" = "#73d0ff";
-        "spinner" = "#73d0ff";
-        "header" = "#d4bfff";
+        "fg" = "#908caa";
+        "bg" = "#191724";
+        "hl" = "#ebbcba";
+        "fg+" = "#e0def4";
+        "bg+" = "#26233a";
+        "hl+" = "#ebbcba";
+        "border" = "#403d52";
+        "header" = "#31748f";
+        "gutter" = "#191724";
+        "spinner" = "#f6c177";
+        "info" = "#9ccfd8";
+        "pointer" = "#c4a7e7";
+        "marker" = "#eb6f92";
+        "prompt" = "#908caa";
       };
       fileWidgetOptions = ["--preview 'head {}'"];
       historyWidgetOptions = [
@@ -394,7 +425,7 @@ in {
         cmp-nvim-lsp
         cmp_luasnip
         csvview-nvim
-        dracula-nvim
+        rose-pine
         gitsigns-nvim
         gitsigns-nvim
         hardtime-nvim
@@ -491,7 +522,7 @@ in {
       enable = true;
       enableMcpIntegration = true;
       tui = {
-        theme = "dracula";
+        theme = "rosepine";
       };
       tools = {
         beans = "${pkgs.beans}/.opencode/plugin/beans-prime.ts";
@@ -499,6 +530,34 @@ in {
     };
     hyprlock = {
       enable = true;
+    };
+    zathura = {
+      enable = true;
+      options = {
+        # source: https://github.com/edunfelt/zathura/blob/main/rose-pine
+        default-bg = "#191724";
+        default-fg = "#e0def4";
+        statusbar-fg = "#e0def4";
+        statusbar-bg = "#555169";
+        inputbar-bg = "#6e6a86";
+        inputbar-fg = "#ebbcba";
+        notification-bg = "#e0def4";
+        notification-fg = "#555169";
+        notification-error-bg = "#f6c177";
+        notification-error-fg = "#555169";
+        notification-warning-bg = "#ebbcba";
+        notification-warning-fg = "#555169";
+        highlight-color = "rgba(0xeb, 0xbc, 0xba, 0.5)";
+        highlight-active-color = "rgba(0xeb, 0x6f, 0x92, 0.5)";
+        completion-bg = "#6e6a86";
+        completion-fg = "#ebbcba";
+        completion-highlight-fg = "#26233a";
+        completion-highlight-bg = "#ebbcba";
+        recolor-lightcolor = "#191724";
+        recolor-darkcolor = "#e0def4";
+        recolor = "false";
+        recolor-keephue = "false";
+      };
     };
   };
 
@@ -513,6 +572,7 @@ in {
       };
     };
   };
+
   xdg = {
     userDirs = {
       enable = true;
@@ -533,9 +593,19 @@ in {
       };
       hypr.source = hypr;
       nwg-drawer.source = nwgdrawer;
-      "uwsm" = {
+      uwsm = {
         recursive = true;
         source = ./uwsm;
+      };
+    };
+    dataFile = {
+      "icons/RoséPine" = {
+        source = "${pkgs.fetchFromGitHub {
+          owner = "Henriquehnnm";
+          repo = "rose-pine-icon-theme";
+          rev = "main";
+          sha256 = "sha256-/CGj07sgM4kGQVRSW//tyYrRzh5puPTONLxWPNzeZNM=";
+        }}/icons/RoséPine";
       };
     };
   };
