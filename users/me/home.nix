@@ -144,6 +144,9 @@ in {
     };
     ripgrep = {
       enable = true;
+      arguments = [
+        "--smart-case"
+      ];
     };
     lsd = {
       enable = true;
