@@ -63,6 +63,7 @@ in {
       iio-hyprland
       wvkbd
       nwg-drawer
+      graphite-cli
     ];
     pointerCursor = {
       gtk = {
