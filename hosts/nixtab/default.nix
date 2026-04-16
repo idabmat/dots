@@ -51,6 +51,9 @@
         "nls_iso8859-1"
         "usbhid"
       ];
+      systemd = {
+        enable = false;
+      };
       luks = {
         yubikeySupport = true;
         devices = {
