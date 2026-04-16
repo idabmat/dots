@@ -529,7 +529,7 @@ in {
         theme = "rosepine";
       };
       tools = {
-        beans = "${pkgs.beans}/.opencode/plugin/beans-prime.ts";
+        # beans = "${pkgs.beans}/.opencode/plugin/beans-prime.ts";
       };
     };
     hyprlock = {
