@@ -522,15 +522,9 @@ in {
         };
       };
     };
-    opencode = {
+    claude-code = {
       enable = true;
-      enableMcpIntegration = true;
-      tui = {
-        theme = "rosepine";
-      };
-      tools = {
-        # beans = "${pkgs.beans}/.opencode/plugin/beans-prime.ts";
-      };
+      enableMcpIntegration = false;
     };
     hyprlock = {
       enable = true;
