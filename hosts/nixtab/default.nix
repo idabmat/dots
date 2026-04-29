@@ -182,7 +182,32 @@
     };
   };
 
-  systemd.services.supergfxd.path = [pkgs.pciutils];
+  systemd = {
+    services = {
+      supergfxd.path = [pkgs.pciutils];
+      xhci-resume-fix = let
+        dev = "0000:c4:00.4";
+        rebind = pkgs.writeShellScript "xhci-rebind" ''
+          echo ${dev} > /sys/bus/pci/drivers/xhci_hcd/unbind 2>/dev/null || true
+          echo ${dev} > /sys/bus/pci/drivers/xhci_hcd/bind
+        '';
+        unbind = pkgs.writeShellScript "xhci-unbind" ''
+          echo ${dev} > /sys/bus/pci/drivers/xhci_hcd/unbind 2>/dev/null || true
+        '';
+      in {
+        description = "Rebind xHCI controller ${dev} around suspend to fix webcam resume";
+        before = ["sleep.target"];
+        after = ["suspend.target" "hibernate.target" "hybrid-sleep.target" "suspend-then-hibernate.target"];
+        wantedBy = ["sleep.target" "suspend.target" "hibernate.target" "hybrid-sleep.target" "suspend-then-hibernate.target"];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = rebind;
+          ExecStop = unbind;
+        };
+      };
+    };
+  };
 
   services = {
     supergfxd = {
