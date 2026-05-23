@@ -6,20 +6,8 @@
   expert,
   ...
 }: let
-  hyprDir = /home/me/.config/home-manager/users/me/hypr;
-  hyprLink = name: {
-    source = config.lib.file.mkOutOfStoreSymlink "${toString hyprDir}/${name}";
-  };
-  hyprFiles = {
-    "hypr/hyprland.lua"    = hyprLink "hyprland.lua";
-    "hypr/hypridle.conf"   = hyprLink "hypridle.conf";
-    "hypr/hyprlauncher.conf" = hyprLink "hyprlauncher.conf";
-    "hypr/hyprlock.conf"   = hyprLink "hyprlock.conf";
-    "hypr/hyprpaper.conf"  = hyprLink "hyprpaper.conf";
-    "hypr/hyprtoolkit.conf" = hyprLink "hyprtoolkit.conf";
-    "hypr/wallpaper.jpg"   = hyprLink "wallpaper.jpg";
-  };
-  nwgdrawer = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nwg-drawer;
+  liveDir = dir:
+    config.lib.file.mkOutOfStoreSymlink "/home/me/.config/home-manager/users/me/${dir}";
   yazi-theme = pkgs.fetchFromGitHub {
     owner = "rose-pine";
     repo = "yazi";
@@ -434,6 +422,10 @@ in {
       vimAlias = true;
       withRuby = false;
       withPython3 = false;
+      initLua = ''
+        vim.opt.rtp:prepend(vim.fn.expand("~/.config/my-nvim"))
+        dofile(vim.fn.expand("~/.config/my-nvim/init.lua"))
+      '';
       plugins = with pkgs.vimPlugins; [
         codecompanion-nvim
         cmp-buffer
@@ -586,12 +578,12 @@ in {
   };
 
   home.activation.hyprLuarc = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    run install -Dm644 /dev/stdin ${toString hyprDir}/.luarc.json <<EOF
+    run install -Dm644 /dev/stdin /home/me/.config/home-manager/users/me/hypr/.luarc.json <<EOF
     ${builtins.toJSON {
       workspace.library = [
         "${config.wayland.windowManager.hyprland.finalPackage}/share/hypr/stubs"
       ];
-      diagnostics.globals = [ "hl" ];
+      diagnostics.globals = ["hl"];
     }}
     EOF
   '';
@@ -610,17 +602,12 @@ in {
       setSessionVariables = true;
     };
     configFile = {
-      nvim = {
-        recursive = true;
-        source = ./nvim;
-      };
-      nwg-drawer.source = nwgdrawer;
-      uwsm = {
-        recursive = true;
-        source = ./uwsm;
-      };
+      hypr.source = liveDir "hypr";
+      my-nvim.source = liveDir "nvim";
+      nwg-drawer.source = liveDir "nwg-drawer";
+      uwsm.source = liveDir "uwsm";
       "hypr/.luarc.json".enable = lib.mkForce false;
-    } // hyprFiles;
+    };
     dataFile = {
       "icons/RoséPine" = {
         source = "${pkgs.fetchFromGitHub {
