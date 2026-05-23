@@ -20,6 +20,12 @@
     rev = "main";
     sha256 = "sha256-Vbzt2aSnyGZZ42gUNmPWVvewjZQ88U3k15xxXxofcNM=";
   };
+  rose-pine-icons = pkgs.fetchFromGitHub {
+    owner = "Henriquehnnm";
+    repo = "rose-pine-icon-theme";
+    rev = "main";
+    sha256 = "sha256-/CGj07sgM4kGQVRSW//tyYrRzh5puPTONLxWPNzeZNM=";
+  };
 in {
   home = {
     username = "me";
@@ -609,14 +615,7 @@ in {
       "hypr/.luarc.json".enable = lib.mkForce false;
     };
     dataFile = {
-      "icons/RoséPine" = {
-        source = "${pkgs.fetchFromGitHub {
-          owner = "Henriquehnnm";
-          repo = "rose-pine-icon-theme";
-          rev = "main";
-          sha256 = "sha256-/CGj07sgM4kGQVRSW//tyYrRzh5puPTONLxWPNzeZNM=";
-        }}/icons/RoséPine";
-      };
+      "icons/RoséPine".source = "${rose-pine-icons}/icons/RoséPine";
     };
   };
 
