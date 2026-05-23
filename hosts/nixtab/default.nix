@@ -251,10 +251,10 @@
       enable = true;
       package = pkgs.ollama-rocm;
       environmentVariables = {
-        HCC_AMDGPU_TARGET = "gfx1151";
+        OLLAMA_CONTEXT_LENGTH = "8192";
+        OLLAMA_KV_CACHE_TYPE = "q8_0";
       };
-      rocmOverrideGfx = "11.0.1";
-      loadModels = ["qwen3-coder:latest"];
+      loadModels = ["qwen3.6:27b"];
     };
   };
 
