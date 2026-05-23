@@ -52,21 +52,14 @@
         "usbhid"
       ];
       systemd = {
-        enable = false;
+        enable = true;
       };
       luks = {
-        yubikeySupport = true;
         devices = {
           "nixos-enc" = {
             device = "/dev/nvme0n1p2";
             preLVM = true;
-            yubikey = {
-              slot = 2;
-              twoFactor = true;
-              storage = {
-                device = "/dev/nvme0n1p1";
-              };
-            };
+            crypttabExtraOpts = ["fido2-device=auto"];
           };
         };
       };
