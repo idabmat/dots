@@ -564,6 +564,7 @@ in {
     windowManager = {
       hyprland = {
         enable = true;
+        configType = "hyprlang";
         package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
         systemd = {
           enable = false;
