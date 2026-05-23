@@ -6,7 +6,19 @@
   expert,
   ...
 }: let
-  hypr = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/hypr;
+  hyprDir = /home/me/.config/home-manager/users/me/hypr;
+  hyprLink = name: {
+    source = config.lib.file.mkOutOfStoreSymlink "${toString hyprDir}/${name}";
+  };
+  hyprFiles = {
+    "hypr/hyprland.lua"    = hyprLink "hyprland.lua";
+    "hypr/hypridle.conf"   = hyprLink "hypridle.conf";
+    "hypr/hyprlauncher.conf" = hyprLink "hyprlauncher.conf";
+    "hypr/hyprlock.conf"   = hyprLink "hyprlock.conf";
+    "hypr/hyprpaper.conf"  = hyprLink "hyprpaper.conf";
+    "hypr/hyprtoolkit.conf" = hyprLink "hyprtoolkit.conf";
+    "hypr/wallpaper.jpg"   = hyprLink "wallpaper.jpg";
+  };
   nwgdrawer = config.lib.file.mkOutOfStoreSymlink /home/me/.config/home-manager/users/me/nwg-drawer;
   yazi-theme = pkgs.fetchFromGitHub {
     owner = "rose-pine";
@@ -564,7 +576,7 @@ in {
     windowManager = {
       hyprland = {
         enable = true;
-        configType = "hyprlang";
+        configType = "lua";
         package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
         systemd = {
           enable = false;
@@ -572,6 +584,17 @@ in {
       };
     };
   };
+
+  home.activation.hyprLuarc = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    run install -Dm644 /dev/stdin ${toString hyprDir}/.luarc.json <<EOF
+    ${builtins.toJSON {
+      workspace.library = [
+        "${config.wayland.windowManager.hyprland.finalPackage}/share/hypr/stubs"
+      ];
+      diagnostics.globals = [ "hl" ];
+    }}
+    EOF
+  '';
 
   xdg = {
     userDirs = {
@@ -591,13 +614,13 @@ in {
         recursive = true;
         source = ./nvim;
       };
-      hypr.source = hypr;
       nwg-drawer.source = nwgdrawer;
       uwsm = {
         recursive = true;
         source = ./uwsm;
       };
-    };
+      "hypr/.luarc.json".enable = lib.mkForce false;
+    } // hyprFiles;
     dataFile = {
       "icons/RoséPine" = {
         source = "${pkgs.fetchFromGitHub {
