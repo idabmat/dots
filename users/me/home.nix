@@ -543,6 +543,26 @@ in {
       tui = {
         theme = "rose-pine";
       };
+      settings = {
+        provider = {
+          "llama.cpp" = {
+            npm = "@ai-sdk/openai-compatible";
+            name = "llama.cpp (local)";
+            options = {
+              baseURL = "http://127.0.0.1:8080/v1";
+            };
+            models = {
+              "qwen3.5-35b-a3b" = {
+                name = "Qwen3.5 35B-A3B (local)";
+                limit = {
+                  context = 131072;
+                  output = 65536;
+                };
+              };
+            };
+          };
+        };
+      };
     };
     hyprlock = {
       enable = true;
