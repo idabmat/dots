@@ -537,6 +537,13 @@ in {
       enable = true;
       enableMcpIntegration = false;
     };
+    opencode = {
+      enable = true;
+      enableMcpIntegration = true;
+      tui = {
+        theme = "rose-pine";
+      };
+    };
     hyprlock = {
       enable = true;
     };
