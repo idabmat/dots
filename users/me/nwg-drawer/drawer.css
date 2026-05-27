@@ -1,41 +1,188 @@
+@define-color rp_base        #191724;
+@define-color rp_surface     #1f1d2e;
+@define-color rp_overlay     #26233a;
+@define-color rp_muted       #6e6a86;
+@define-color rp_subtle      #908caa;
+@define-color rp_text        #e0def4;
+@define-color rp_love        #eb6f92;
+@define-color rp_gold        #f6c177;
+@define-color rp_rose        #ebbcba;
+@define-color rp_pine        #31748f;
+@define-color rp_foam        #9ccfd8;
+@define-color rp_iris        #c4a7e7;
+@define-color rp_hl_low      #21202e;
+@define-color rp_hl_med      #403d52;
+@define-color rp_hl_high     #524f67;
+
 window {
-  background-color: rgba(40, 42, 54, 0.95);
-  color: #f8f8f2;
+  background-color: alpha(@rp_base, 0.92);
+  color: @rp_text;
+  font-family: "Inter", "Cantarell", sans-serif;
+  font-size: 22px;
 }
 
-/* search entry */
 entry {
-  background-color: rgba(0, 0, 0, 0.2)
+  background-color: alpha(@rp_overlay, 0.85);
+  color: @rp_text;
+  caret-color: @rp_rose;
+  border: 1px solid @rp_hl_med;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin: 14px;
+  min-height: 32px;
+  min-width: 520px;
+  font-size: 22px;
 }
 
-button,
-image {
+entry:focus {
+  border-color: @rp_iris;
+  background-color: alpha(@rp_overlay, 0.95);
+}
+
+entry selection {
+  background-color: @rp_hl_med;
+  color: @rp_text;
+}
+
+label {
+  color: @rp_text;
+}
+
+button {
   background: none;
-  border: none
+  border: 1px solid transparent;
+  border-radius: 14px;
+  color: @rp_text;
+  padding: 12px 16px;
+  margin: 4px;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+button label {
+  color: #cdcbe0;
+  font-size: 21px;
+  margin-top: 10px;
 }
 
 button:hover {
-  background-color: rgba(255, 255, 255, 0.1)
+  background-color: alpha(@rp_iris, 0.12);
+  border-color: alpha(@rp_iris, 0.35);
 }
 
-/* in case you wanted to give category buttons a different look */
+button:hover label {
+  color: @rp_text;
+}
+
+button:focus {
+  background-color: alpha(@rp_iris, 0.18);
+  border-color: @rp_iris;
+  outline: none;
+}
+
+button:active {
+  background-color: alpha(@rp_rose, 0.20);
+  border-color: @rp_rose;
+}
+
+image {
+  background: none;
+  border: none;
+}
+
 #category-button {
-  margin: 0 10px 0 10px
+  margin: 4px 6px;
+  padding: 4px 16px;
+  border-radius: 12px;
+  background-color: @rp_overlay;
+  border: 1px solid transparent;
+}
+
+#category-button image {
+  margin-right: 10px;
+}
+
+#category-button label {
+  color: @rp_text;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+#category-button:hover {
+  background-color: alpha(@rp_foam, 0.15);
+  border-color: alpha(@rp_foam, 0.45);
+}
+
+#category-button:focus {
+  background-color: alpha(@rp_foam, 0.22);
+  border-color: @rp_foam;
 }
 
 #pinned-box {
-  padding-bottom: 5px;
-  border-bottom: 1px dotted gray
+  padding: 10px 10px 14px 10px;
+  margin: 0 12px 8px 12px;
+  border-bottom: 1px solid @rp_hl_med;
 }
 
 #files-box {
-  padding: 5px;
-  border: 1px dotted gray;
-  border-radius: 15px
+  padding: 8px;
+  margin: 8px 12px;
+  border: 1px solid @rp_hl_med;
+  border-radius: 14px;
+  background-color: alpha(@rp_surface, 0.6);
 }
 
-/* math operation result label */
 #math-label {
   font-weight: bold;
-  font-size: 16px
+  font-size: 26px;
+  color: @rp_gold;
+  padding: 8px 14px;
+}
+
+#status-line-wrapper {
+  padding: 6px 12px;
+  border-top: 1px solid @rp_hl_med;
+}
+
+#status-label {
+  color: @rp_subtle;
+  font-size: 18px;
+}
+
+#close-button {
+  background-color: transparent;
+  border-radius: 999px;
+  padding: 4px;
+}
+
+#close-button:hover {
+  background-color: alpha(@rp_love, 0.20);
+  border-color: alpha(@rp_love, 0.55);
+}
+
+scrolledwindow {
+  background: transparent;
+}
+
+scrollbar {
+  background: transparent;
+  border: none;
+}
+
+scrollbar slider {
+  background-color: @rp_hl_med;
+  border-radius: 999px;
+  min-width: 6px;
+  min-height: 6px;
+}
+
+scrollbar slider:hover {
+  background-color: @rp_hl_high;
+}
+
+tooltip {
+  background-color: @rp_surface;
+  color: @rp_text;
+  border: 1px solid @rp_hl_med;
+  border-radius: 8px;
 }

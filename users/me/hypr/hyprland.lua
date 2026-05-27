@@ -150,7 +150,7 @@ hl.on("hyprland.start", function()
     "hyprctl setcursor BreezeX-RosePine-Linux 32",
     "iio-hyprland",
     "wvkbd-mobintl -H 350 -L 300 --hidden",
-    "nwg-drawer -is 128 -ovl -pblock hyprlock -pbuseicontheme -pbreboot reboot -pbpoweroff poweroff -pbexit 'uwsm stop' -pbsleep 'systemctl suspend-then-hibernate' -fm nautilus -r",
+    "nwg-drawer -is 128 -spacing 24 -ovl -pblock hyprlock -pbuseicontheme -pbreboot reboot -pbpoweroff poweroff -pbexit 'uwsm stop' -pbsleep 'systemctl suspend-then-hibernate' -fm nautilus -r",
   }
   for _, app in ipairs(apps) do
     hl.exec_cmd("uwsm app -- " .. app)
