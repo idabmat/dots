@@ -125,12 +125,16 @@ in {
         appearance = {
           scale_factor = 1.5;
           style = "Solid";
-          text_color = "#FFFFFF";
+          text_color = "#e0def4";
           background_color = {
-            base = "#0D1017";
-            weak = "#141821";
-            strong = "#000080";
+            base = "#191724";
+            weak = "#1f1d2e";
+            strong = "#26233a";
           };
+          primary_color = "#c4a7e7";
+          secondary_color = "#403d52";
+          success_color = "#9ccfd8";
+          danger_color = "#eb6f92";
         };
         modules = {
           left = ["Workspaces"];
