@@ -37,7 +37,6 @@ in {
     packages = with pkgs; [
       ps
       unzip
-      bitwarden-desktop
       yubikey-manager
       yubioath-flutter
       slack
