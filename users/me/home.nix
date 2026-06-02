@@ -49,11 +49,9 @@ in {
       pavucontrol
       brightnessctl
       playerctl
-      spotify
       rose-pine-cursor
       kdePackages.qtwayland
       kdePackages.qt6ct
-      kdePackages.qtstyleplugin-kvantum
       adw-gtk3
       adwaita-icon-theme
       cantarell-fonts
@@ -86,6 +84,7 @@ in {
       package = pkgs.rose-pine-gtk-theme;
       name = "rose-pine";
     };
+    colorScheme = "dark";
 
     iconTheme = {
       name = "RoséPine";
@@ -164,19 +163,6 @@ in {
     };
     jq = {
       enable = true;
-    };
-    yazi = {
-      enable = true;
-      flavors = {
-        rose-pine = "${yazi-theme}/flavors/rose-pine.yazi";
-      };
-      theme = {
-        flavor = {
-          dark = "rose-pine";
-          light = "rose-pine";
-        };
-      };
-      shellWrapperName = "y";
     };
     discord = {
       enable = true;
@@ -369,6 +355,21 @@ in {
           Remove = ["Perplexity"];
         };
       };
+      nativeMessagingHosts = [pkgs.web-eid-app];
+    };
+    chromium = {
+      enable = true;
+      commandLineArgs = [
+        "--force-device-scale-factor=1.6"
+        "--enable-features=UseOzonePlatform"
+        "--ozone-platform=wayland"
+      ];
+      extensions = [
+        {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # ublock
+        {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
+        {id = "ncibgoaomkmdpilpocfeponihegamlic";} # web eid
+        {id = "bkdgflcldnnnapblkhphbgpggdiikppg";} # duckduckgo
+      ];
       nativeMessagingHosts = [pkgs.web-eid-app];
     };
     btop = {

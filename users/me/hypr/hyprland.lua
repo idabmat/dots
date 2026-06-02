@@ -110,7 +110,7 @@ hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("grim"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | hyprlauncher -m | cliphist decode | wl-copy"))
 hl.bind(mainMod .. " + X", hl.dsp.window.fullscreen({ action = "toggle" }))
-hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("firefox"))
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("chromium"))
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd("ghostty"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("swaync-client -t"))
 
