@@ -151,6 +151,7 @@
       clinfo
       vulkan-tools
       rocmPackages.rocm-smi
+      amd-debug-tools
     ];
     shells = with pkgs; [
       zsh
@@ -204,6 +205,19 @@
           RemainAfterExit = true;
           ExecStart = rebind;
           ExecStop = unbind;
+        };
+      };
+      pm-trace = let
+        arm = pkgs.writeShellScript "pm-trace-arm" ''
+          echo 1 > /sys/power/pm_trace
+        '';
+      in {
+        description = "Arm pm_trace before suspend to capture a resume-hang device";
+        before = ["sleep.target"];
+        wantedBy = ["sleep.target"];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = arm;
         };
       };
     };
