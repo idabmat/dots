@@ -10,6 +10,13 @@
       allowUnfree = true;
       rocmSupport = true;
     };
+    overlays = [
+      (final: prev: {
+        asusctl = prev.asusctl.overrideAttrs (old: {
+          patches = (old.patches or []) ++ [./asusctl-power-zone-bounds.patch];
+        });
+      })
+    ];
   };
 
   nix = {

@@ -1,0 +1,15 @@
+--- a/rog-control-center/src/ui/setup_aura.rs
++++ b/rog-control-center/src/ui/setup_aura.rs
+@@ -144,8 +144,10 @@
+                         {
+                             pow3r.push(PowerZones::KeyboardAndLightbar);
+                         }
+-                        let n: Vec<SharedString> =
+-                            pow3r.iter().map(|z| names[(*z) as usize].clone()).collect();
++                        let n: Vec<SharedString> = pow3r
++                            .iter()
++                            .filter_map(|z| names.get((*z) as usize).cloned())
++                            .collect();
+                         handle
+                             .global::<AuraPageData>()
+                             .set_power_zone_names_old(n.as_slice().into());
