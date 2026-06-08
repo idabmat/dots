@@ -66,6 +66,7 @@ in {
       iio-hyprland
       wvkbd
       nwg-drawer
+      amp-cli
     ];
     pointerCursor = {
       gtk = {
@@ -436,6 +437,7 @@ in {
         dofile(vim.fn.expand("~/.config/my-nvim/init.lua"))
       '';
       plugins = with pkgs.vimPlugins; [
+        amp-nvim
         codecompanion-nvim
         cmp-buffer
         cmp-cmdline
