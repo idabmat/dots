@@ -258,25 +258,6 @@
     llama-cpp = {
       enable = false;
       package = pkgs.llama-cpp-rocm;
-      modelsPreset = {
-        "qwen3.5-35b-a3b" = {
-          hf-repo = "HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive";
-          hf-file = "Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf";
-          alias = "qwen3.5-35b-a3b";
-          temp = "1.0";
-          top-p = "0.95";
-          top-k = "20";
-          min-p = "0.0";
-          ctx-size = "131072";
-          presence-penalty = "0.0";
-          repeat-penalty = "1.0";
-          jinja = "on";
-          parallel = "1";
-          load-on-startup = "on";
-          no-mmap = "on";
-          flash-attn = "on";
-        };
-      };
     };
   };
 

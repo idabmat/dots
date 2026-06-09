@@ -318,6 +318,7 @@ in {
       extraConfig = ''
         set -ag terminal-overrides ",*:RGB"
         set -g focus-events
+        set -s extended-keys on
         bind C-a last-window
         bind -r N resize-pane -L 6
         bind -r E resize-pane -D 5
