@@ -113,11 +113,14 @@
   };
 
   time = {
-    timeZone = "Europe/Lisbon";
+    timeZone = "Europe/Madrid";
   };
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_TIME = "en_IE.UTF-8";
+    };
   };
 
   security = {

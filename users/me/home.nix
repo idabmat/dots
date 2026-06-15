@@ -134,9 +134,10 @@ in {
           success_color = "#9ccfd8";
           danger_color = "#eb6f92";
         };
+        region = "en_IE";
         modules = {
           left = ["Workspaces"];
-          center = ["Clock"];
+          center = ["Tempo"];
           right = [
             "SystemInfo"
             "MediaPlayer"
