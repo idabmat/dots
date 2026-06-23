@@ -191,6 +191,7 @@ in {
         };
         ui = {
           pager = "delta";
+          default-command = "log";
           diff-formatter = ":git";
           diff-editor = [
             "nvim"
