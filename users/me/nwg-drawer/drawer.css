@@ -17,7 +17,7 @@
 window {
   background-color: alpha(@rp_base, 0.92);
   color: @rp_text;
-  font-family: "Inter", "Cantarell", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 22px;
 }
 

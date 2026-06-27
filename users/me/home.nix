@@ -6,6 +6,7 @@
   expert,
   ...
 }: let
+  defaultFont = "Inter";
   liveDir = dir:
     config.lib.file.mkOutOfStoreSymlink "/home/me/.config/home-manager/users/me/${dir}";
   yazi-theme = pkgs.fetchFromGitHub {
@@ -54,7 +55,7 @@ in {
       kdePackages.qt6ct
       adw-gtk3
       adwaita-icon-theme
-      cantarell-fonts
+      inter
       nerd-fonts.caskaydia-cove
       nautilus
       slurp
@@ -88,6 +89,10 @@ in {
 
     iconTheme = {
       name = "RoséPine";
+    };
+
+    font = {
+      name = defaultFont;
     };
 
     gtk3 = {
@@ -124,6 +129,7 @@ in {
           scale_factor = 1.5;
           style = "Solid";
           text_color = "#e0def4";
+          font_name = defaultFont;
           background_color = {
             base = "#191724";
             weak = "#1f1d2e";
