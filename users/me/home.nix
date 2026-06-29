@@ -68,6 +68,7 @@ in {
       wvkbd
       nwg-drawer
       amp-cli
+      meld
     ];
     pointerCursor = {
       gtk = {
@@ -199,11 +200,8 @@ in {
           pager = "delta";
           default-command = "log";
           diff-formatter = ":git";
-          diff-editor = [
-            "nvim"
-            "-c"
-            "DiffEditor $left $right $output"
-          ];
+          diff-editor = "meld-3";
+          merge-editor = "meld";
         };
       };
     };
