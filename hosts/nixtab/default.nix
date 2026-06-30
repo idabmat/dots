@@ -4,7 +4,8 @@
   users,
   hyprland,
   ...
-}: {
+}:
+{
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -13,7 +14,7 @@
     overlays = [
       (final: prev: {
         asusctl = prev.asusctl.overrideAttrs (old: {
-          patches = (old.patches or []) ++ [./asusctl-power-zone-bounds.patch];
+          patches = (old.patches or [ ]) ++ [ ./asusctl-power-zone-bounds.patch ];
         });
       })
     ];
@@ -25,9 +26,9 @@
         "nix-command"
         "flakes"
       ];
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
   };
 
@@ -66,7 +67,7 @@
           "nixos-enc" = {
             device = "/dev/nvme0n1p2";
             preLVM = true;
-            crypttabExtraOpts = ["fido2-device=auto"];
+            crypttabExtraOpts = [ "fido2-device=auto" ];
           };
         };
       };
@@ -129,23 +130,21 @@
     };
     pam = {
       services = {
-        hyprlock = {};
+        hyprlock = { };
       };
     };
   };
 
   users = {
-    users =
-      lib.attrsets.mapAttrs (name: value: {
-        isNormalUser = true;
-        shell = pkgs.zsh;
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "docker"
-        ];
-      })
-      users;
+    users = lib.attrsets.mapAttrs (name: value: {
+      isNormalUser = true;
+      shell = pkgs.zsh;
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+      ];
+    }) users;
   };
 
   environment = {
@@ -188,28 +187,41 @@
 
   systemd = {
     services = {
-      supergfxd.path = [pkgs.pciutils];
-      xhci-resume-fix = let
-        dev = "0000:c4:00.4";
-        rebind = pkgs.writeShellScript "xhci-rebind" ''
-          echo ${dev} > /sys/bus/pci/drivers/xhci_hcd/unbind 2>/dev/null || true
-          echo ${dev} > /sys/bus/pci/drivers/xhci_hcd/bind
-        '';
-        unbind = pkgs.writeShellScript "xhci-unbind" ''
-          echo ${dev} > /sys/bus/pci/drivers/xhci_hcd/unbind 2>/dev/null || true
-        '';
-      in {
-        description = "Rebind xHCI controller ${dev} around suspend to fix webcam resume";
-        before = ["sleep.target"];
-        after = ["suspend.target" "hibernate.target" "hybrid-sleep.target" "suspend-then-hibernate.target"];
-        wantedBy = ["sleep.target" "suspend.target" "hibernate.target" "hybrid-sleep.target" "suspend-then-hibernate.target"];
-        serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-          ExecStart = rebind;
-          ExecStop = unbind;
+      supergfxd.path = [ pkgs.pciutils ];
+      xhci-resume-fix =
+        let
+          dev = "0000:c4:00.4";
+          rebind = pkgs.writeShellScript "xhci-rebind" ''
+            echo ${dev} > /sys/bus/pci/drivers/xhci_hcd/unbind 2>/dev/null || true
+            echo ${dev} > /sys/bus/pci/drivers/xhci_hcd/bind
+          '';
+          unbind = pkgs.writeShellScript "xhci-unbind" ''
+            echo ${dev} > /sys/bus/pci/drivers/xhci_hcd/unbind 2>/dev/null || true
+          '';
+        in
+        {
+          description = "Rebind xHCI controller ${dev} around suspend to fix webcam resume";
+          before = [ "sleep.target" ];
+          after = [
+            "suspend.target"
+            "hibernate.target"
+            "hybrid-sleep.target"
+            "suspend-then-hibernate.target"
+          ];
+          wantedBy = [
+            "sleep.target"
+            "suspend.target"
+            "hibernate.target"
+            "hybrid-sleep.target"
+            "suspend-then-hibernate.target"
+          ];
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+            ExecStart = rebind;
+            ExecStop = unbind;
+          };
         };
-      };
     };
   };
 
@@ -253,7 +265,7 @@
       enable = true;
     };
     udev = {
-      packages = [pkgs.yubikey-personalization];
+      packages = [ pkgs.yubikey-personalization ];
     };
     blueman = {
       enable = true;

@@ -5,10 +5,10 @@
   hyprland,
   expert,
   ...
-}: let
+}:
+let
   defaultFont = "Inter";
-  liveDir = dir:
-    config.lib.file.mkOutOfStoreSymlink "/home/me/.config/home-manager/users/me/${dir}";
+  liveDir = dir: config.lib.file.mkOutOfStoreSymlink "/home/me/.config/home-manager/users/me/${dir}";
   yazi-theme = pkgs.fetchFromGitHub {
     owner = "rose-pine";
     repo = "yazi";
@@ -27,7 +27,8 @@
     rev = "main";
     sha256 = "sha256-/CGj07sgM4kGQVRSW//tyYrRzh5puPTONLxWPNzeZNM=";
   };
-in {
+in
+{
   home = {
     username = "me";
     homeDirectory = "/home/me";
@@ -143,8 +144,8 @@ in {
         };
         region = "en_IE";
         modules = {
-          left = ["Workspaces"];
-          center = ["Tempo"];
+          left = [ "Workspaces" ];
+          center = [ "Tempo" ];
           right = [
             "SystemInfo"
             "MediaPlayer"
@@ -176,7 +177,7 @@ in {
       enable = true;
       settings = {
         BACKGROUND_COLOR = "#000000";
-        chromiumSwitches = {};
+        chromiumSwitches = { };
         IS_MAXIMIZED = true;
         IS_MINIMIZED = false;
         offloadAdmControls = true;
@@ -343,7 +344,7 @@ in {
       enable = true;
       configPath = "${config.xdg.configHome}/mozilla/firefox";
       profiles = {
-        me = {};
+        me = { };
       };
       policies = {
         DisableAppUpdate = true;
@@ -359,10 +360,10 @@ in {
           Enabled = false;
         };
         SearchEngines = {
-          Remove = ["Perplexity"];
+          Remove = [ "Perplexity" ];
         };
       };
-      nativeMessagingHosts = [pkgs.web-eid-app];
+      nativeMessagingHosts = [ pkgs.web-eid-app ];
     };
     chromium = {
       enable = true;
@@ -372,12 +373,12 @@ in {
         "--ozone-platform=wayland"
       ];
       extensions = [
-        {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # ublock
-        {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
-        {id = "ncibgoaomkmdpilpocfeponihegamlic";} # web eid
-        {id = "bkdgflcldnnnapblkhphbgpggdiikppg";} # duckduckgo
+        { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock
+        { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
+        { id = "ncibgoaomkmdpilpocfeponihegamlic"; } # web eid
+        { id = "bkdgflcldnnnapblkhphbgpggdiikppg"; } # duckduckgo
       ];
-      nativeMessagingHosts = [pkgs.web-eid-app];
+      nativeMessagingHosts = [ pkgs.web-eid-app ];
     };
     btop = {
       enable = true;
@@ -409,7 +410,7 @@ in {
     };
     fzf = {
       enable = true;
-      changeDirWidgetOptions = ["--preview 'lsd --tree -C {} | head -200'"];
+      changeDirWidgetOptions = [ "--preview 'lsd --tree -C {} | head -200'" ];
       colors = {
         "fg" = "#908caa";
         "bg" = "#191724";
@@ -426,7 +427,7 @@ in {
         "marker" = "#eb6f92";
         "prompt" = "#908caa";
       };
-      fileWidgetOptions = ["--preview 'head {}'"];
+      fileWidgetOptions = [ "--preview 'head {}'" ];
       historyWidgetOptions = [
         "--sort"
         "--exact"
@@ -622,13 +623,13 @@ in {
     };
   };
 
-  home.activation.hyprLuarc = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  home.activation.hyprLuarc = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     run install -Dm644 /dev/stdin /home/me/.config/home-manager/users/me/hypr/.luarc.json <<EOF
     ${builtins.toJSON {
       workspace.library = [
         "${config.wayland.windowManager.hyprland.finalPackage}/share/hypr/stubs"
       ];
-      diagnostics.globals = ["hl"];
+      diagnostics.globals = [ "hl" ];
     }}
     EOF
   '';
