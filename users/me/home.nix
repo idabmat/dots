@@ -511,7 +511,7 @@ in {
         lua-language-server
         marksman
         nil
-        alejandra
+        nixfmt
         pyright
         rust-analyzer
         tailwindcss-language-server
