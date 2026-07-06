@@ -410,7 +410,6 @@ in
     };
     fzf = {
       enable = true;
-      changeDirWidgetOptions = [ "--preview 'lsd --tree -C {} | head -200'" ];
       colors = {
         "fg" = "#908caa";
         "bg" = "#191724";
@@ -427,11 +426,18 @@ in
         "marker" = "#eb6f92";
         "prompt" = "#908caa";
       };
-      fileWidgetOptions = [ "--preview 'head {}'" ];
-      historyWidgetOptions = [
-        "--sort"
-        "--exact"
-      ];
+      changeDirWidget = {
+        options = [ "--preview 'lsd --tree -C {} | head -200'" ];
+      };
+      fileWidget = {
+        options = [ "--preview 'head {}'" ];
+      };
+      historyWidget = {
+        options = [
+          "--sort"
+          "--exact"
+        ];
+      };
     };
     neovim = {
       enable = true;
