@@ -72,6 +72,7 @@ in
       meld
     ];
     pointerCursor = {
+      enable = true;
       gtk = {
         enable = true;
       };
