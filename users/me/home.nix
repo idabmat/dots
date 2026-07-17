@@ -69,7 +69,6 @@ in
       wvkbd
       nwg-drawer
       amp-cli
-      meld
     ];
     pointerCursor = {
       enable = true;
@@ -202,8 +201,6 @@ in
           pager = "delta";
           default-command = "log";
           diff-formatter = ":git";
-          diff-editor = "meld-3";
-          merge-editor = "meld";
         };
       };
     };
