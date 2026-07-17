@@ -373,6 +373,10 @@ in
         "--enable-features=UseOzonePlatform"
         "--ozone-platform=wayland"
       ];
+      dictionaries = [
+        pkgs.hunspellDictsChromium.en-gb
+        pkgs.hunspellDictsChromium.fr-fr
+      ];
       extensions = [
         { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock
         { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
