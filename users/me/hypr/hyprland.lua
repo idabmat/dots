@@ -16,10 +16,11 @@ hl.monitor({
 
 hl.monitor({
   output = "HDMI-A-1",
-  mode = "3840x2160@60",
-  position = "auto",
-  scale = 1.6,
+  mode = "3440x1440@60",
+  position = "0x-1440",
+  scale = 1,
   bitdepth = 10,
+  cm = "srgb",
 })
 
 -----------------
