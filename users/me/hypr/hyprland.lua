@@ -1,3 +1,8 @@
+-----------------
+---- PLUGINS ----
+-----------------
+dofile("/home/me/.config/hypr/hyprgrass.lua")
+
 ------------------
 ---- MONITORS ----
 ------------------
@@ -76,6 +81,11 @@ hl.config({
   ecosystem = {
     no_donation_nag = true,
     no_update_news = false,
+  },
+
+  gestures = {
+    workspace_swipe_touch = true,
+    workspace_swipe_cancel_ratio = 0.15,
   },
 })
 

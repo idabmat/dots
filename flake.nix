@@ -15,6 +15,10 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+    hyprgrass = {
+      url = "github:idabmat/hyprgrass/push-xmtvyznuuqxx";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
   outputs =
     inputs@{

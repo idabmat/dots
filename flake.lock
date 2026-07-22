@@ -192,6 +192,32 @@
         "type": "github"
       }
     },
+    "hyprgrass": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ],
+        "nixpkgs": [
+          "hyprgrass",
+          "hyprland",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784719082,
+        "narHash": "sha256-r0kKcEid5NcolUgfE7rI1TT3VAMxrnjqzGLIVs/lbI8=",
+        "owner": "idabmat",
+        "repo": "hyprgrass",
+        "rev": "eb1c6b15521a98638518cad8f0016b8a8b1595b0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "idabmat",
+        "ref": "push-xmtvyznuuqxx",
+        "repo": "hyprgrass",
+        "type": "github"
+      }
+    },
     "hyprland": {
       "inputs": {
         "aquamarine": "aquamarine",
@@ -526,6 +552,7 @@
       "inputs": {
         "expert": "expert",
         "home-manager": "home-manager",
+        "hyprgrass": "hyprgrass",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2"
       }

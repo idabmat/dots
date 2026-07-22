@@ -3,6 +3,7 @@
   pkgs,
   lib,
   hyprland,
+  hyprgrass,
   expert,
   ...
 }:
@@ -69,6 +70,7 @@ in
       wvkbd
       nwg-drawer
       amp-cli
+      hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
     pointerCursor = {
       enable = true;
