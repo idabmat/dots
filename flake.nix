@@ -16,7 +16,7 @@
       url = "github:hyprwm/Hyprland";
     };
     hyprgrass = {
-      url = "github:idabmat/hyprgrass/push-xmtvyznuuqxx";
+      url = "git+file:///home/me/code/hyprgrass";
       inputs.hyprland.follows = "hyprland";
     };
   };
