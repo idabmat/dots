@@ -16,7 +16,7 @@
       url = "github:hyprwm/Hyprland";
     };
     hyprgrass = {
-      url = "git+file:///home/me/code/hyprgrass";
+      url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
     };
   };
