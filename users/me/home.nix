@@ -86,7 +86,7 @@ in
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.rose-pine-gtk-theme;
+      package = pkgs.callPackage ./rose-pine.nix { };
       name = "rose-pine";
     };
     colorScheme = "dark";
