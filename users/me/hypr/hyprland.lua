@@ -7,18 +7,19 @@ dofile("/home/me/.config/hypr/hyprgrass.lua")
 ---- MONITORS ----
 ------------------
 hl.monitor({
-  output = "eDP-1",
+  output = "desc:Tianma Microelectronics Ltd. TL134ADXP03",
   mode = "2560x1600@180",
   position = "0x0",
   scale = 1,
   bitdepth = 10,
+  disabled = true,
 })
 
 hl.monitor({
-  output = "HDMI-A-1",
-  mode = "preferred",
-  position = "0x1600",
-  scale = 1,
+  output = "desc:Samsung Electric Company SAMSUNG 0x01000E00",
+  mode = "3840x2160@60",
+  position = "0x-3840",
+  scale = 1.5,
   bitdepth = 10,
 })
 
