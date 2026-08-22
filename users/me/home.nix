@@ -10,6 +10,12 @@
 let
   defaultFont = "Inter";
   liveDir = dir: config.lib.file.mkOutOfStoreSymlink "/home/me/.config/home-manager/users/me/${dir}";
+  hyprgrassPlugin = hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+    postPatch = (old.postPatch or "") + ''
+      substituteInPlace src/ShimTrackpadGestures.cpp \
+        --replace-fail '"| mod mask: {}", gesture.modMask' '"| mod mask: {}", static_cast<uint32_t>(gesture.modMask)'
+    '';
+  });
   yazi-theme = pkgs.fetchFromGitHub {
     owner = "rose-pine";
     repo = "yazi";
@@ -70,7 +76,7 @@ in
       wvkbd
       nwg-drawer
       amp-cli
-      hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
+      hyprgrassPlugin
     ];
     pointerCursor = {
       enable = true;

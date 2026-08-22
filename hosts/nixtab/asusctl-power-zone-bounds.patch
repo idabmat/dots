@@ -1,9 +1,9 @@
 --- a/rog-control-center/src/ui/setup_aura.rs
 +++ b/rog-control-center/src/ui/setup_aura.rs
-@@ -144,8 +144,10 @@
-                         {
-                             pow3r.push(PowerZones::KeyboardAndLightbar);
-                         }
+@@ -140,8 +140,10 @@
+                         .collect();
+                     if dev.is_old_laptop() {
+                         pow3r.retain(|z| *z != PowerZones::None);
 -                        let n: Vec<SharedString> =
 -                            pow3r.iter().map(|z| names[(*z) as usize].clone()).collect();
 +                        let n: Vec<SharedString> = pow3r
