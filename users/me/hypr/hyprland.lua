@@ -17,9 +17,15 @@ hl.monitor({
 hl.monitor({
   output = "desc:Samsung Electric Company SAMSUNG 0x01000E00",
   mode = "3840x2160@60",
-  position = "0x-3840",
+  position = "0x-2160",
   scale = 1.5,
   bitdepth = 10,
+})
+
+hl.monitor({
+  output = "desc: LG Electronics LG ULTRAWIDE 604NTDVL2490",
+  mode = "3440x1440@100",
+  position = "0x-1440",
 })
 
 -----------------
