@@ -91,6 +91,7 @@ vim.lsp.config('yamlls', {
         kubernetes = {
           "*.yaml"
         },
+        ["https://www.schemastore.org/prettierrc.json"] = '.prettierrc.json',
       },
       kubernetesCRDStore = {
         enable = true

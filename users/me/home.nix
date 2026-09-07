@@ -8,7 +8,7 @@
   ...
 }:
 let
-  defaultFont = "Inter";
+  defaultFont = "Noto";
   liveDir = dir: config.lib.file.mkOutOfStoreSymlink "/home/me/.config/home-manager/users/me/${dir}";
   yazi-theme = pkgs.fetchFromGitHub {
     owner = "rose-pine";
@@ -57,7 +57,7 @@ in
       kdePackages.qt6ct
       adw-gtk3
       adwaita-icon-theme
-      inter
+      noto-fonts
       nerd-fonts.caskaydia-cove
       nautilus
       slurp
@@ -128,21 +128,12 @@ in
         enable = true;
       };
       settings = {
-        app_launcher_cmd = "nwg-drawer";
         appearance = {
-          scale_factor = 1.5;
-          style = "Solid";
-          text_color = "#e0def4";
           font_name = defaultFont;
-          background_color = {
-            base = "#191724";
-            weak = "#1f1d2e";
-            strong = "#26233a";
+          scale_factor = 1.5;
+          bar = {
+            surface = "solid";
           };
-          primary_color = "#c4a7e7";
-          secondary_color = "#403d52";
-          success_color = "#9ccfd8";
-          danger_color = "#eb6f92";
         };
         region = "en_IE";
         modules = {
