@@ -71,6 +71,7 @@ in
       nwg-drawer
       amp-cli
       hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
+      quickemu
     ];
     pointerCursor = {
       enable = true;
