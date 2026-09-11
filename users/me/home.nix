@@ -559,19 +559,37 @@ in
         theme = "rose-pine";
       };
       settings = {
+        # MCP tool schemas are injected into every request. Linear's ~70 tools
+        # made opencode's first request to the local model 37k tokens (the
+        # user message was 176 chars). Keep Linear out of build/plan and expose
+        # it through a dedicated primary agent (Tab to switch).
+        tools = {
+          "linear_*" = false;
+        };
+        agent = {
+          linear = {
+            description = "Work with Linear issues/projects via MCP (tool schemas cost ~20k tokens of context).";
+            mode = "primary";
+            tools = {
+              "linear_*" = true;
+            };
+          };
+        };
         provider = {
           "llama.cpp" = {
             npm = "@ai-sdk/openai-compatible";
             name = "llama.cpp (local)";
             options = {
-              baseURL = "http://127.0.0.1:8080/v1";
+              # Must match services.llama-cpp.settings.port in hosts/nixtab.
+              baseURL = "http://127.0.0.1:9931/v1";
             };
             models = {
-              "qwen3.5-35b-a3b" = {
-                name = "Qwen3.5 35B-A3B (local)";
+              "qwen3.8-27b" = {
+                name = "Qwen3.8 27B UD-Q3_K_XL + DFlash2 (local)";
                 limit = {
+                  # Must match services.llama-cpp.settings.ctx-size.
                   context = 131072;
-                  output = 65536;
+                  output = 16384;
                 };
               };
             };
