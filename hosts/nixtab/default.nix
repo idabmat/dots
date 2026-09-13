@@ -279,13 +279,31 @@
       enable = true;
     };
     udev = {
-      packages = [ pkgs.yubikey-personalization ];
+      packages = [
+        pkgs.yubikey-personalization
+        # xpadneo presents Bluetooth Xbox pads as 045e:028e (wired Xbox 360) so
+        # SDL applies the 360 evdev mapping. steam-devices' 60-steam-input.rules
+        # tags hidraw nodes of some pads (e.g. Elite Series 2, *045E:0B22*) with
+        # uaccess, and Steam's SDL then opens that hidraw with its wired-USB
+        # Xbox 360 HIDAPI driver instead of evdev: that pad never produces input,
+        # and SDL drops every other evdev joystick with the same 045e:028e IDs as
+        # "already handled by HIDAPI". Strip uaccess from hidraw nodes owned by
+        # xpadneo so Steam only sees the pads through evdev. Must sort after
+        # 60-steam-input.rules and before 73-seat-late.rules (uaccess builtin).
+        (pkgs.writeTextFile {
+          name = "xpadneo-no-hidraw-udev-rules";
+          destination = "/etc/udev/rules.d/71-xpadneo-no-hidraw.rules";
+          text = ''
+            KERNEL=="hidraw*", SUBSYSTEM=="hidraw", DRIVERS=="xpadneo", TAG-="uaccess", MODE="0600"
+          '';
+        })
+      ];
     };
     blueman = {
       enable = true;
     };
     llama-cpp = {
-      enable = true;
+      enable = false;
       # Vulkan (RADV) uses the GTT heap natively; the HIP path on gfx1151 only
       # sees the 4 GiB BIOS carve-out unless GGML_CUDA_ENABLE_UNIFIED_MEMORY=1.
       package = pkgs.llama-cpp-vulkan;
