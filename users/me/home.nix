@@ -316,6 +316,7 @@ in
       ];
       extraConfig = ''
         set -ag terminal-overrides ",*:RGB"
+        set -g allow-passthrough all
         set -g focus-events
         set -s extended-keys on
         bind C-a last-window
