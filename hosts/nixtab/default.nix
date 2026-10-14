@@ -158,7 +158,6 @@
       clinfo
       vulkan-tools
       rocmPackages.rocm-smi
-      amd-debug-tools
     ];
     shells = with pkgs; [
       zsh

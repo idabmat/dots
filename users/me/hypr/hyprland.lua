@@ -1,7 +1,7 @@
 -----------------
 ---- PLUGINS ----
 -----------------
-dofile("/home/me/.config/hypr/hyprgrass.lua")
+-- dofile("/home/me/.config/hypr/hyprgrass.lua")
 
 ------------------
 ---- MONITORS ----
