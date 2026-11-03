@@ -63,14 +63,10 @@
         "nls_iso8859-1"
         "usbhid"
       ];
-      systemd = {
-        enable = true;
-      };
       luks = {
         devices = {
           "nixos-enc" = {
             device = "/dev/nvme0n1p2";
-            preLVM = true;
             crypttabExtraOpts = [ "fido2-device=auto" ];
           };
         };

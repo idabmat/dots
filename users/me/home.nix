@@ -556,26 +556,12 @@ in
     opencode = {
       enable = true;
       enableMcpIntegration = true;
-      tui = {
-        theme = "rose-pine";
+      cli = {
+        theme = {
+          name = "rosepine";
+        };
       };
       settings = {
-        # MCP tool schemas are injected into every request. Linear's ~70 tools
-        # made opencode's first request to the local model 37k tokens (the
-        # user message was 176 chars). Keep Linear out of build/plan and expose
-        # it through a dedicated primary agent (Tab to switch).
-        tools = {
-          "linear_*" = false;
-        };
-        agent = {
-          linear = {
-            description = "Work with Linear issues/projects via MCP (tool schemas cost ~20k tokens of context).";
-            mode = "primary";
-            tools = {
-              "linear_*" = true;
-            };
-          };
-        };
         provider = {
           "llama.cpp" = {
             npm = "@ai-sdk/openai-compatible";
