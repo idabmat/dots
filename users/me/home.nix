@@ -5,6 +5,7 @@
   hyprland,
   hyprgrass,
   expert,
+  hunk,
   ...
 }:
 let
@@ -30,6 +31,9 @@ let
   };
 in
 {
+  imports = [
+    hunk.homeManagerModules.default
+  ];
   home = {
     username = "me";
     homeDirectory = "/home/me";
@@ -228,6 +232,14 @@ in
       enableJujutsuIntegration = true;
       options = {
         side-by-side = true;
+      };
+    };
+    hunk = {
+      enable = true;
+      settings = {
+        theme = "rose-pine";
+        agent_notes = true;
+        transparent_background = true;
       };
     };
     gpg = {
@@ -555,6 +567,13 @@ in
           name = "rosepine";
         };
       };
+      skills =
+        let
+          hunk-src = hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk.src;
+        in
+        {
+          hunk = "${hunk-src}/packages/hunk/skills/hunk-review/SKILL.md";
+        };
       settings = {
         provider = {
           "llama.cpp" = {
