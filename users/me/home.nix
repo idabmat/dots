@@ -192,9 +192,7 @@ in
           key = "794A41BA3DBE9931";
         };
         ui = {
-          pager = "delta";
           default-command = "log";
-          diff-formatter = ":git";
         };
       };
     };
@@ -215,12 +213,6 @@ in
           init = {
             defaultBranch = "main";
           };
-          pager = {
-            diff = "delta";
-            log = "delta";
-            reflog = "delta";
-            show = "delta";
-          };
         };
       };
       enable = true;
@@ -232,6 +224,8 @@ in
     };
     delta = {
       enable = true;
+      enableGitIntegration = true;
+      enableJujutsuIntegration = true;
       options = {
         side-by-side = true;
       };
