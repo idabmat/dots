@@ -4,7 +4,7 @@ require('codecompanion').setup({
     chat = {
       adapter = {
         name = "opencode",
-        model = "claude-opus-4-6-20260205",
+        model = "openai/GPT-6 Astra",
       },
       tools = {
         opts = {
@@ -30,7 +30,7 @@ require('codecompanion').setup({
       },
     },
     chat = {
-      show_settings = true,
+      show_settings = false,
     },
   },
 })

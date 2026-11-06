@@ -69,11 +69,9 @@ in
       kooha
       swaynotificationcenter
       bluetui
-      keymapp
       iio-hyprland
       wvkbd
       nwg-drawer
-      amp-cli
       hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
       quickemu
     ];
@@ -454,7 +452,6 @@ in
         dofile(vim.fn.expand("~/.config/my-nvim/init.lua"))
       '';
       plugins = with pkgs.vimPlugins; [
-        amp-nvim
         codecompanion-nvim
         cmp-buffer
         cmp-cmdline
@@ -554,10 +551,6 @@ in
           };
         };
       };
-    };
-    claude-code = {
-      enable = true;
-      enableMcpIntegration = false;
     };
     opencode = {
       enable = true;
