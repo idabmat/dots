@@ -13,8 +13,14 @@
     };
     overlays = [
       (final: prev: {
-        asusctl = prev.asusctl.overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [ ./asusctl-power-zone-bounds.patch ];
+        # Match FFmpeg's libdvdnav to avoid an undefined dvdnav_open2 at link time.
+        mplayer = prev.mplayer.override {
+          libdvdnav_4_2_1 = final.libdvdnav;
+        };
+
+        # Use system aws-lc: https://github.com/NixOS/nixpkgs/issues/570938
+        ashell = prev.ashell.overrideAttrs (old: {
+          buildInputs = (old.buildInputs or [ ]) ++ [ final.aws-lc ];
         });
       })
     ];
